@@ -1,4 +1,4 @@
-import s from '/Users/danil/mok/styles/Home.module.scss'
+import s from '/styles/Home.module.scss'
 import Image from 'next/image'
 
 export default function Trust () {
