@@ -1,0 +1,407 @@
+.footer {
+    background: #29292C;
+    padding: 0px 0px 90px;
+    position: relative;
+    max-width: 1440px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.footerBackground {
+    background: #29292C;
+    position: absolute;
+    width: 400%;
+    height: 100%;
+    left: -200%;
+    z-index: 1;
+}
+
+.contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    padding: 120px 0px;
+    position: relative;
+    z-index: 3;
+}
+
+.contactsHeader {
+    font-size: 70px;
+    font-weight: 700;
+    line-height: 77px;
+    color: #FFFFFF;
+}
+
+.contactsContainer {
+    display: flex;
+    gap: 50px
+}
+
+.contact {
+    color: white;
+    display: flex;
+    height: 94px;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 8px 18px;
+    border-left: 3px solid #5BE146;
+    position: relative;
+    cursor: pointer;
+}
+
+.contactColorBlue {
+    border-left: 3px solid #391FCF;
+}
+
+.contactColorYellow {
+    border-left: 3px solid #FEDF43;
+}
+
+.contactInfoType {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 26px;
+    text-align: left;
+}
+
+.contactInfo {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 39px;
+    width: 120%;
+    text-align: left;
+}
+
+.contactArrow {
+    position: absolute;
+    top: 10px;
+    right: 0
+}
+
+.map {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.mapContainer {
+    height: 500px;
+}
+
+.links {
+    border-top: 1px solid #494950;
+    border-bottom: 1px solid #494950;
+    display: flex;
+    justify-content: space-between;
+    padding: 60px 0px;
+    height: 507px;
+    color: white;
+    position: relative;
+    z-index: 3;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.logoImg {
+    width: 293px;
+    height: 57px;
+}
+
+.info {
+    font-size: 11.76px;
+    font-weight: 400;
+    line-height: 16.07px;
+    text-align: left;
+    color: #707070;
+}
+
+.infoContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 278px;
+}
+
+.linksHeader {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 27.32px;
+    text-align: left;
+}
+
+.navLinks {
+    display: flex;
+    flex-direction: column;
+    gap: 20px
+}
+
+.link {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24.59px;
+    text-align: left;
+}
+
+.contactsLinks {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.contactsLinksInfo {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 27px;
+    text-align: left;
+}
+
+.siteInfo {
+    margin-top: 60px;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #707070;
+    position: relative;
+    z-index: 3;
+}
+
+.siteInfoText {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 21.86px;
+    text-align: left;
+}
+
+.siteInfoAndLogo {
+    display: flex;
+    align-items: center;
+    gap: 20px
+}
+
+.traffLogo {
+    width: 230px;
+    height: 50px;
+}
+
+.logoPhone1 {
+    display: none;
+}
+
+.logoPhone2 {
+    display: none;
+}
+
+@media (max-width: 1440px) {
+    .footer {
+        max-width: 1280px;
+    }
+    .contactInfo {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 1280px) {
+    .footer {
+        max-width: 1024px;
+    }
+    .contact {
+        height: 80px;
+    }
+    .contactInfo {
+        font-size: 18px;
+    }
+    .contactsHeader {
+        font-size: 48px;
+    }
+    .linksHeader {
+        font-size: 16px;
+    }
+    .link {
+        font-size: 14px;
+    }
+    .info {
+        font-size: 8px;
+    }
+    .infoContainer {
+        width: 240px;
+    }
+    .logoImg {
+        width: 240px;
+        height: 50px;
+    }
+    .siteInfoText {
+        font-size: 12px;
+    }
+    .mapContainer {
+        height: 400px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .footer {
+        max-width: 768px;
+    }
+    .contacts {
+        padding: 30px 0px;
+    }
+    .links {
+        padding: 30px 0px;
+    }
+    .contact {
+        width: 100%;
+        height: 70px;
+    }
+    .contactsContainer {
+        gap: 10px
+    }
+    .contactInfo {
+        font-size: 14px;
+        width: 100%;
+        line-height: 14px;
+    }
+    .contactInfoType {
+        font-size: 16px;
+        width: 100%;
+    }
+    .contactsHeader {
+        font-size: 48px;
+    }
+    .contactArrow {
+        width: 15px;
+    }
+    .mapContainer {
+        height: 300px;
+    }
+    .logoImg {
+        width: 180px;
+        height: 40px;
+    }
+    .infoContainer {
+        width: 180px;
+    }
+    .info {
+        width: 180px;
+    }
+    .links {
+        display: flex;
+        gap: 20px;
+        height: 100%;
+    }
+    .link {
+        font-size: 10px;
+    }
+    .contactsLinks {
+        font-size: 10px;
+    }
+    .contactsLinksInfo {
+        font-size: 12px;
+    }
+    .navLinks {
+        gap: 10px
+    }
+    .siteInfo {
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer {
+        max-width: 425px;
+    }
+    .mapContainer {
+        height: 250px;
+    }
+    .contactsContainer {
+        flex-direction: column;
+        gap: 20px
+    }
+    .contacts {
+        gap: 25px
+    }
+    .contact {
+        width: 60%;
+    }
+    .logo {
+        display: none;
+    }
+    .links {
+        flex-wrap: wrap;
+    }
+    .navLinks {
+        width: 47.5%;
+    }
+    .contactsLinks {
+        flex-direction: row;
+        gap: 3px
+    }
+    .contactsLinksInfo {
+        width: 100%;
+    }
+    .logoPhone1 {
+        display: flex;
+        width: 100%;
+    }
+    .logoPhone2 {
+        display: flex;
+        width: 100%;
+    }
+    .info {
+        width: 100%;
+    }
+    .infoContainer {
+        width: 100%;
+    }
+    .siteInfo {
+        flex-direction: column;
+        align-items: start;
+    }
+    .traffLogo {
+        width: 115px;
+        height: 25px;
+    }
+    .navLinks {
+        gap: 5px
+    }
+}
+
+@media (max-width: 425px) {
+    .contactsHeader {
+        font-size: 32px;
+    }
+    .footer {
+        max-width: 375px;
+    }
+    .contactsLinks {
+        line-height: 18px;
+        align-items: center;
+    }
+    .contactsLinksInfo {
+        line-height: 12px;
+        font-size: 10px;
+    }
+    .navLinks {
+        width: 47%;
+        gap: 5px
+    }
+}
+
+@media (max-width: 375px) {
+    .footer {
+        max-width: 325px;
+    }
+    .contact {
+        width: 70%;
+    }
+    .navLinks {
+        width: 45%;
+        gap: 5px
+    }
+}

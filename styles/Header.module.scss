@@ -1,0 +1,307 @@
+.header {
+    height: 113px;
+    width: 100%;
+    max-width: 1440px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    z-index: 6;
+    background: white;
+}
+
+.headerBackground {
+    background: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 400%;
+    height: 100%;
+    left: -200%;
+    z-index: 1;
+}
+
+.logo {
+    width: 284.5px;
+    height: 55.7px;
+    position: relative;
+    z-index: 3;
+}
+
+.nav {
+    display: flex;
+    gap: 50px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24.59px;
+    position: relative;
+    z-index: 3;
+}
+
+.uslugi {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    &:hover {
+        color: #391FCF
+    }
+}
+
+.navLink {
+    transition: 0.5s;
+    &:hover {
+        color: #391FCF
+    }
+}
+
+.phoneNumber {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 3;
+}
+
+.appointment {
+    font-size: 16px;
+    color: #848198;
+    font-weight: 400;
+    line-height: 21.86px;
+}
+
+.number {
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 24.59px;
+}
+
+.makeAppointment {
+    font-size: 16px;
+    font-weight: 700;
+    color: #FFFFFF;
+    line-height: 21.86px;
+    height: 45px;
+    width: 236px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #391FCF;
+}
+
+$color: white;
+
+.button {
+    background: #391FCF;
+    text-align: center;
+    font-weight: 700;
+    position: relative;
+    will-change: transform;
+    cursor: pointer;
+}
+  
+.buttonMat {
+    color: $color;
+    border: 0px transparent;
+    transition: .3s ease-in-out;
+    transition-delay: .35s;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+  
+  &:before {
+    z-index: -1;
+    content: '';
+    display: block;
+    background: #5BE146;
+    position: absolute;
+    width: 200%;
+    height: 500%;
+    border-radius: 100%;
+    transition: .36s cubic-bezier(0.4, 0.0, 1, 1);
+  }
+
+  &:hover {
+    color: $color
+  }
+}
+
+.btn7 {
+    height: 45px;
+    width: 236px;
+    line-height: 18.92px;
+    font-size: 13.85px;
+    &:before {
+        transform: translate(-110%,-110%) translateZ(0);
+    }
+    &:hover:before {
+        transform: translate(-45%,-34%) translateZ(0)
+    }
+}
+
+.uslugiPopup {
+    width: 393px;
+    height: 420px;
+    position: absolute;
+    box-shadow: 0px 0px 40px #0000001A;
+    top: 50px;
+    padding: 40px;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    opacity: 0;
+    transition: 0.3s;
+    background: white;
+    pointer-events: none;
+}
+
+.uslugiPopupActive {
+    pointer-events: all;
+    opacity: 1;
+}
+
+.uslugiLink {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24.59px;
+    transition: 0.5s;
+    &:hover {
+        color: #391FCF
+    }
+}
+
+$burger-height: 24px;
+$burger-width: 32px;
+$burger-item: 4px;
+$burger-item-offset: $burger-height - $burger-item * 2;
+$burger-item-shadow: -1 * $burger-item - ($burger-item-offset - $burger-item) / 2;
+
+.burgerDecoration {
+    display: none;
+}
+
+.burgerButton {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: $burger-height;
+    width: $burger-width;
+    position: relative;
+    z-index: 3;
+
+    .burgerLine {
+        background: #391FCF;
+        border-radius: $burger-item / 2;
+        height: $burger-item;
+        transition: 0.5s;
+        width: 100%;
+    }
+
+    &.open {
+        .burgerLine:nth-child(1) {
+            transform: translateY(10px) rotate(45deg);
+        }
+
+        .burgerLine:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burgerLine:nth-child(3) {
+            transform: translateY(-10px) rotate(-45deg);
+        }
+    }
+}
+
+@media (max-width: 1440px) {
+    .header {
+        max-width: 1280px;
+    }
+    .nav {
+        gap: 20px
+    }
+}
+
+@media (max-width: 1280px) {
+    .header {
+        max-width: 1024px;
+        height: 100px;
+    }
+    .nav {
+        gap: 20px;
+        font-size: 12px;
+    }
+    .appointment {
+        font-size: 12px;
+    }
+    .number {
+        font-size: 16px;
+    }
+    .btn7 {
+        width: 180px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .burgerDecoration {
+        display: flex;
+    }
+    .header {
+        max-width: 768px;
+        height: 80px;
+    }
+    .nav {
+        display: none;
+    }
+    .appointment {
+        font-size: 16px;
+    }
+    .number {
+        font-size: 18px;
+    }
+    .btn7 {
+        width: 180px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        max-width: 425px;
+        height: 60px;
+        justify-content: start;
+        gap: 20px
+    }
+    .appointment {
+        font-size: 12px;
+    }
+    .phoneNumber {
+        margin-left: auto;
+    }
+    .number {
+        font-size: 12px;
+    }
+    .btn7 {
+        display: none;
+    }
+    .logo {
+        width: 160px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 425px) {
+    .header {
+        max-width: 375px;
+    }
+}
+
+@media (max-width: 375px) {
+    .header {
+        max-width: 325px;
+    }
+    .appointment {
+        line-height: 12px;
+    }
+}
