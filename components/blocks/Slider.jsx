@@ -1,6 +1,6 @@
 import s from '/styles/Home.module.scss'
 import Image from 'next/image'
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 
 export default function Slider() {
   const [currentSlide, setCurrentSlide] = useState(0);

@@ -4,14 +4,40 @@ import Link from 'next/link'
 import { useState } from 'react';
 
 export default function Header () {
-    const [MenuOpen, setMenuOpen] = useState(false);
+    const [MenuOpen, setMenuOpen] = useState(false)
     const [uslugiOpen, setUslugiOpen] = useState(false)
+    const [timeoutId, setTimeoutId] = useState(null)
 
     const toggleBurgerMenu = () => {
         setMenuOpen(!MenuOpen);
     }
-    const toggleUslugi = () => {
-        setUslugiOpen(!uslugiOpen);
+
+    const handleMouseEnter = () => {
+        if (timeoutId) {
+          clearTimeout(timeoutId)
+        }
+        setUslugiOpen(true)
+    }
+    
+    const handleMouseLeave = () => {
+        const newTimeoutId = setTimeout(() => {
+          setUslugiOpen(false)
+        }, 300)
+        setTimeoutId(newTimeoutId)
+    }
+
+    const handlePopupMouseEnter = () => {
+        if (timeoutId) {
+          clearTimeout(timeoutId)
+        }
+        setUslugiOpen(true)
+    }
+    
+    const handlePopupMouseLeave = () => {
+        const newTimeoutId = setTimeout(() => {
+          setUslugiOpen(false)
+        }, 300)
+        setTimeoutId(newTimeoutId)
     }
 
     return (
@@ -35,16 +61,16 @@ export default function Header () {
             height={1000}
             />
             <nav className={s.nav}>
-                <button onClick={toggleUslugi} href={'/'} className={`${s.uslugi} ${s.navLink}`}>Услуги
+                <Link onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} href={'/services'} className={`${s.uslugi} ${s.navLink}`}>Услуги
                     <svg width="11" height="6" viewBox="0 0 11 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0.462891 0.5L5.46289 4.5L10.0933 0.5" stroke="#29292C"/>
                     </svg>
-                </button>
+                </Link>
                 <Link className={s.navLink} href={'/'}>О клинике</Link>
                 <Link className={s.navLink} href={'/'}>Врачи</Link>
                 <Link className={s.navLink} href={'/'}>Отзывы</Link>
                 <Link className={s.navLink} href={'/'}>Контакты</Link>
-                <div className={`${s.uslugiPopup} ${uslugiOpen ? s.uslugiPopupActive : ''}`}>
+                <div onMouseEnter={handlePopupMouseEnter} onMouseLeave={handlePopupMouseLeave} className={`${s.uslugiPopup} ${uslugiOpen ? s.uslugiPopupActive : ''}`}>
                     <Link className={s.uslugiLink} href={'/'}>Поликлиники, лаборатория</Link>
                     <Link className={s.uslugiLink} href={'/'}>Госпитальный центр</Link>
                     <Link className={s.uslugiLink} href={'/'}>Детский центр</Link>

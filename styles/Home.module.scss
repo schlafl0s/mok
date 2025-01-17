@@ -376,6 +376,7 @@ $color: white;
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .switchBtnRight {
@@ -386,6 +387,7 @@ $color: white;
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .switchInactive {
@@ -1284,6 +1286,100 @@ $color: white;
     margin: 20px 0px;
 }
 
+.specialService {
+    height: 400px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.specialServiceBackground {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.specialServiceHeader {
+    width: 80%;
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 55px;
+}
+
+.specialServiceDes {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 22px;
+    text-align: left;
+}
+
+.specialServiceInfo {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding-left: 90px;
+}
+
+.VUHservice {
+    position: absolute;
+    z-index: 3;
+    transform: rotate(180deg);
+    top: 20px;
+    left: 20px;
+    width: 77px;
+    height: 77px;
+}
+
+.button7 {
+    background: #5BE146;
+    text-align: center;
+    font-weight: 700;
+    position: relative;
+    will-change: transform;
+    cursor: pointer;
+}
+  
+.buttonMat7 {
+    color: $color;
+    border: 0px transparent;
+    transition: .3s ease-in-out;
+    transition-delay: .35s;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+  
+  &:before {
+    z-index: -1;
+    content: '';
+    display: block;
+    background: #FEDF43;
+    position: absolute;
+    width: 200%;
+    height: 500%;
+    border-radius: 100%;
+    transition: .36s cubic-bezier(0.4, 0.0, 1, 1);
+  }
+}
+
+.btn7 {
+    z-index: 4;
+    height: 60px;
+    width: 330px;
+    line-height: 27.32px;
+    font-size: 20px;
+    &:before {
+        transform: translate(-110%,-110%) translateZ(0);
+    }
+    &:hover:before {
+        transform: translate(-45%,-34%) translateZ(0)
+    }
+}
+
 
 @media (max-width: 1440px) {
     .main {
@@ -1858,6 +1954,31 @@ $color: white;
     .slideCount {
         bottom: 30px
     }
+    .specialService {
+        height: 250px;
+    }
+    .specialServiceInfo {
+        padding-left: 45px;
+        gap: 20px
+    }
+    .specialServiceDes {
+        font-size: 12px;
+    }
+    .specialServiceHeader {
+        font-size: 25px;
+        line-height: 27px;
+    }
+    .VUHservice {
+        width: 55px;
+        height: 55px;
+        top: 5px;
+        left: 5px;
+    }
+    .btn7 {
+        font-size: 14px;
+        width: 200px;
+        height: 40px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -2098,6 +2219,23 @@ $color: white;
     }
     .newsArticleDate {
         font-size: 12px;
+    }
+    .specialService {
+        height: 485px;
+        align-items: unset;
+    }
+    .specialServiceInfo {
+        padding-left: 45px;
+        padding-top: 45px;
+        gap: 20px
+    }
+    .specialServiceDes {
+        width: 80%;
+        font-size: 14px;
+    }
+    .specialServiceHeader {
+        font-size: 25px;
+        line-height: 27px;
     }
 }
 
