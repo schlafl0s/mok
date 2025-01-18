@@ -6,10 +6,12 @@ import License from '@/components/blocks/License'
 import Appointment from '@/components/blocks/Appointment'
 import News from '@/components/blocks/News'
 import SpecialService from '@/components/blocks/SpecialService'
+import Layout from '@/components/Layout'
 
 export default function Services () {
   return (
-    <main className={s.main}>
+    <Layout>
+      <main className={s.main}>
         <SpecialService />
         <Directions />
         <Specials />
@@ -17,6 +19,7 @@ export default function Services () {
         <License />
         <Appointment />
         <News />
-    </main>
+      </main>
+    </Layout>
   )
 }

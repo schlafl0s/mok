@@ -5,16 +5,19 @@ import WhyUs from '@/components/blocks/WhyUs'
 import Appointment from '@/components/blocks/Appointment'
 import License from '@/components/blocks/License'
 import AboutUs from '@/components/blocks/AboutUs'
+import Layout from '@/components/Layout'
 
 export default function AboutUsPage () {
   return (
-    <main className={s.main}>
-        <AboutUs />
-        <StatsMini />
-        <Specialists />
-        <WhyUs />
-        <Appointment />
-        <License />
-    </main>
+    <Layout>
+      <main className={s.main}>
+          <AboutUs />
+          <StatsMini />
+          <Specialists />
+          <WhyUs />
+          <Appointment />
+          <License />
+      </main>
+    </Layout>
   )
 }

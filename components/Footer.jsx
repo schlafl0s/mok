@@ -2,10 +2,11 @@ import Link from 'next/link'
 import s from '../styles/Footer.module.scss'
 import Image from 'next/image'
 
-export default function Footer () {
+export default function Footer ({ footerCut = false }) {
     return (
         <footer className={s.footer}>
             <div className={s.footerBackground}></div>
+            {!footerCut &&
             <section className={s.contacts}>
                 <h1 className={s.contactsHeader}>Контакты</h1>
                 <div className={s.contactsContainer}>
@@ -56,6 +57,7 @@ export default function Footer () {
                     />
                 </div>
             </section>
+            }
             <section className={s.links}>
                 <div className={s.logoPhone1}>
                     <Image

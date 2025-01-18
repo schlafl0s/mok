@@ -12,23 +12,26 @@ import Reviews from '@/components/blocks/Reviews'
 import License from '@/components/blocks/License'
 import Appointment from '@/components/blocks/Appointment'
 import News from '@/components/blocks/News'
+import Layout from '@/components/Layout'
 
 export default function Home() {
   return (
-    <main className={s.main}>
-      <Slider />
-      <Sale />
-      <Directions />
-      <Specials />
-      <Stats />
-      <Specialists />
-      <Technologies />
-      <WhyUs />
-      <Trust />
-      <Reviews />
-      <License />
-      <Appointment />
-      <News />
-    </main>
+    <Layout>
+      <main className={s.main}>
+        <Slider />
+        <Sale />
+        <Directions />
+        <Specials />
+        <Stats />
+        <Specialists />
+        <Technologies />
+        <WhyUs />
+        <Trust />
+        <Reviews />
+        <License />
+        <Appointment />
+        <News />
+      </main>
+    </Layout>
   )
 }
