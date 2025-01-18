@@ -47,6 +47,61 @@
     left: 0;
 }
 
+.error {
+    position: relative;
+    height: 750px;
+    margin-bottom: 120px;
+}
+
+.errorContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 600px;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 3;
+}
+
+.errorHeader {
+    font-size: 300px;
+    font-weight: 800;
+    line-height: 320px;
+    text-align: left;
+    color: #391FCF;
+    position: relative;
+}
+
+.errorDes1 {
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 31.2px;
+    text-align: center;
+    color: #391FCF;
+}
+.errorDes2 {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 31.2px;
+    text-align: center;
+}
+
+.VUH1 {
+    position: absolute;
+    transform: rotate(90deg);
+    bottom: -20px;
+    left: -50px;
+}
+
+.VUH2 {
+    position: absolute;
+    transform: rotate(-90deg);
+    top: -20px;
+    right: -50px;
+}
+
 $color: white;
 .button0 {
     background: #5BE146;
@@ -111,6 +166,12 @@ $color: white;
     .thanksDes {
         font-size: 24px;
     }
+    .errorDes1 {
+        font-size: 24px;
+    }
+    .errorDes2 {
+        font-size: 20px;
+    }
 }
 
 @media (max-width: 1280px) {
@@ -132,6 +193,35 @@ $color: white;
     }
     .thanksDes {
         font-size: 18px;
+    }
+    .VUH1 {
+        bottom: 0;
+        left: -40px;
+        width: 75px;
+        height: 75px;
+    }
+    .VUH2 {
+        top: 0;
+        right: -40px;
+        width: 75px;
+        height: 75px;
+    }
+    .error {
+        height: 600px;
+    }
+    .errorContainer {
+        width: 450px;
+    }
+    .errorHeader {
+        font-size: 200px;
+        line-height: 240px;
+    }
+    .errorDes1 {
+        font-size: 24px;
+    }
+    .errorDes2 {
+        font-size: 20px;
+        line-height: 20px;
     }
 }
 
@@ -160,6 +250,35 @@ $color: white;
         width: 200px;
         height: 40px;
         font-size: 14px;
+    }
+    .error {
+        height: 400px;
+    }
+    .errorContainer {
+        width: 300px;
+        gap: 10px
+    }
+    .errorHeader {
+        font-size: 140px;
+        line-height: 140px;
+    }
+    .errorDes1 {
+        font-size: 14px;
+    }
+    .errorDes2 {
+        font-size: 12px;
+    }
+    .VUH1 {
+        bottom: -10px;
+        left: -30px;
+        width: 50px;
+        height: 50px;
+    }
+    .VUH2 {
+        top: -10px;
+        right: -30px;
+        width: 50px;
+        height: 50px;
     }
 }
 
@@ -190,6 +309,14 @@ $color: white;
         width: 200px;
         height: 40px;
         font-size: 14px;
+    }
+    .error {
+        height: 750px;
+        margin: 30px 0px 60px;
+    }
+    .errorContainer {
+        justify-content: start;
+        width: 100%;
     }
 }
 
