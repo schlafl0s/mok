@@ -1,5 +1,6 @@
 import s from '/styles/Technical.module.scss'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Error () {
     return (
@@ -12,7 +13,11 @@ export default function Error () {
                     <Image className={s.VUH2} src={'/V.png'} width={100} height={100} />
                 </h1>
                 <span className={s.errorDes2}>Страница не найдена, проверьте адрес ссылки или вернитесь на главную страницу</span>
-                <button className={`${s.button0} ${s.buttonMat0} ${s.btn0}`}>Вернуться на главную</button>
+                <button className={`${s.button0} ${s.buttonMat0} ${s.btn0}`}>
+                    <Link href={'/'}>
+                        Вернуться на главную
+                    </Link>
+                </button>
             </div>
             <picture>
                 <source media="(max-width: 768px)" srcSet="/thanksPhone.png" />

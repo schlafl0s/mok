@@ -148,6 +148,42 @@ $color: white;
     }
 }
 
+.technicalHeader {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 55px;
+    text-align: left;
+    margin: 60px 0px 30px;
+}
+
+.techHeader {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 31.2px;
+    text-align: left;
+    padding-top: 30px;
+}
+
+.techText {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 26px;
+    text-align: left;
+}
+
+.textsContainer {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 60px;
+}
+
+.textContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+}
+
 @media (max-width: 1440px) {
     .main {
         max-width: 1280px;
