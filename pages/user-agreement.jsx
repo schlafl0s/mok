@@ -10,7 +10,7 @@ export default function userAgreement () {
         // Здесь можно сделать запрос к API или загрузить данные
         const data = [
             {
-                title: "1. Общие положения",
+                title: "",
                 texts: [
                 "Настоящая политика обработки персональных данных составлена в соответствии с требованиями Федерального закона от 27.07.2006. №152-ФЗ «О персональных данных» и определяет порядок обработки персональных данных и меры по обеспечению безопасности персональных данных, предпринимаемые Международная открытая клиника (далее – Оператор).",
                 "1.1. Оператор ставит своей важнейшей целью и условием осуществления своей деятельности соблюдение прав и свобод человека и гражданина при обработке его персональных данных, в том числе защиты прав на неприкосновенность частной жизни, личную и семейную тайну.",
@@ -73,15 +73,20 @@ export default function userAgreement () {
       <Layout footerCut={true}>
         <main className={s.main}>
             <h1 className={s.technicalHeader}>Пользовательское соглашение</h1>
-            {content.map((section, index) => (
-            <section key={index} className={s.textContainer}>
-                <h2 className={s.techHeader}>{section.title}</h2>
-                {/* Отображаем все тексты для текущего раздела */}
-                {section.texts.map((text, idx) => (
-                <p key={idx} className={s.techText}>{text}</p>
-                ))}
-            </section>
-            ))}
+            <div className={s.textsContainer}>
+              {content.map((section, index) => (
+                  <section key={index} className={s.textContainer}>
+                  {/* Отображаем заголовок только если он есть */}
+                  {section.title && section.title.trim() !== "" && (
+                      <h2 className={s.techHeader}>{section.title}</h2>
+                  )}
+                  {/* Отображаем все тексты для текущего раздела */}
+                  {section.texts.map((text, idx) => (
+                      <p key={idx} className={s.techText}>{text}</p>
+                  ))}
+                  </section>
+              ))}
+            </div>
         </main>
       </Layout>
     )

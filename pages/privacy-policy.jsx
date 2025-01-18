@@ -54,7 +54,7 @@ export default function PrivacyPolicy () {
                 ]
             },
             {
-                title: "5. Правовые основания обработки персональных данных",
+                title: "",
                 texts: [
                     "5.1. Оператор обрабатывает персональные данные Пользователя только в случае их заполнения и/или отправки Пользователем самостоятельно через специальные формы, расположенные на сайте https://Международная открытая клиника. Заполняя соответствующие формы и/или отправляя свои персональные данные Оператору, Пользователь выражает свое согласие с данной Политикой.",
                     "5.2. Оператор обрабатывает обезличенные данные о Пользователе в случае, если это разрешено в настройках браузера Пользователя (включено сохранение файлов «cookie» и использование технологии JavaScript).",
@@ -75,16 +75,18 @@ export default function PrivacyPolicy () {
             <h1 className={s.technicalHeader}>Политика конфиденциальности</h1>
             <div className={s.textsContainer}>
                 {content.map((section, index) => (
-                <section key={index} className={s.textContainer}>
-                    <h2 className={s.techHeader}>{section.title}</h2>
+                    <section key={index} className={s.textContainer}>
+                    {/* Отображаем заголовок только если он есть */}
+                    {section.title && section.title.trim() !== "" && (
+                        <h2 className={s.techHeader}>{section.title}</h2>
+                    )}
                     {/* Отображаем все тексты для текущего раздела */}
                     {section.texts.map((text, idx) => (
-                    <p key={idx} className={s.techText}>{text}</p>
+                        <p key={idx} className={s.techText}>{text}</p>
                     ))}
-                </section>
+                    </section>
                 ))}
             </div>
-            
         </main>
       </Layout>
     )
