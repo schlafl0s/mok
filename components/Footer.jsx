@@ -96,8 +96,8 @@ export default function Footer ({ footerCut = false }) {
                     <Link href={'/'} className={s.link}>Врачи</Link>
                     <Link href={'/'} className={s.link}>Отзывы</Link>
                     <Link href={'/'} className={s.link}>Контакты</Link>
-                    <Link href={'/'} className={s.link}>Политика конфиденциальности</Link>
-                    <Link href={'/'} className={s.link}>Пользовательское соглашение</Link>
+                    <Link href={'/privacy-policy'} className={s.link}>Политика конфиденциальности</Link>
+                    <Link href={'/user-agreement'} className={s.link}>Пользовательское соглашение</Link>
                 </nav>
                 <nav className={s.navLinks}>
                     <h2 className={s.linksHeader}>КОНТАКТЫ</h2>
