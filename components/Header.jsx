@@ -66,7 +66,7 @@ export default function Header () {
                         <path d="M0.462891 0.5L5.46289 4.5L10.0933 0.5" stroke="#29292C"/>
                     </svg>
                 </Link>
-                <Link className={s.navLink} href={'/'}>О клинике</Link>
+                <Link className={s.navLink} href={'/about-us'}>О клинике</Link>
                 <Link className={s.navLink} href={'/'}>Врачи</Link>
                 <Link className={s.navLink} href={'/'}>Отзывы</Link>
                 <Link className={s.navLink} href={'/'}>Контакты</Link>

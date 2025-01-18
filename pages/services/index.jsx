@@ -7,7 +7,7 @@ import Appointment from '@/components/blocks/Appointment'
 import News from '@/components/blocks/News'
 import SpecialService from '@/components/blocks/SpecialService'
 
-export default function Home() {
+export default function Services () {
   return (
     <main className={s.main}>
         <SpecialService />
