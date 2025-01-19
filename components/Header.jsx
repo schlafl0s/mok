@@ -70,7 +70,7 @@ export default function Header () {
                 </Link>
                 <Link className={s.navLink} href={'/about-us'}>О клинике</Link>
                 <Link className={s.navLink} href={'/'}>Врачи</Link>
-                <Link className={s.navLink} href={'/'}>Отзывы</Link>
+                <Link className={s.navLink} href={'/reviews'}>Отзывы</Link>
                 <Link className={s.navLink} href={'/contacts'}>Контакты</Link>
                 <div onMouseEnter={handlePopupMouseEnter} onMouseLeave={handlePopupMouseLeave} className={`${s.uslugiPopup} ${uslugiOpen ? s.uslugiPopupActive : ''}`}>
                     <Link className={s.uslugiLink} href={'/'}>Поликлиники, лаборатория</Link>

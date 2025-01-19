@@ -15,9 +15,9 @@ export default function AboutUs () {
             <button className={`${s.button0} ${s.buttonMat0} ${s.btn0}`}>Записаться на прием</button>
             </div>
             <picture>
-            <source media="(max-width: 768px)" srcSet="/aboutUsPhone.png" />
-            <source media="(min-width: 769px)" srcSet="/aboutUs.png" />
-            <Image className={s.underHeaderBackground} src="/aboutUs.png" width={2000} height={2000} />
+              <source media="(max-width: 768px)" srcSet="/aboutUsPhone.png" />
+              <source media="(min-width: 769px)" srcSet="/aboutUs.png" />
+              <Image className={s.underHeaderBackground} src="/aboutUs.png" width={2000} height={2000} />
             </picture>
         </div>
     </section>
