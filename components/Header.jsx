@@ -69,7 +69,7 @@ export default function Header () {
                     </svg>
                 </Link>
                 <Link className={s.navLink} href={'/about-us'}>О клинике</Link>
-                <Link className={s.navLink} href={'/'}>Врачи</Link>
+                <Link className={s.navLink} href={'/doctors'}>Врачи</Link>
                 <Link className={s.navLink} href={'/reviews'}>Отзывы</Link>
                 <Link className={s.navLink} href={'/contacts'}>Контакты</Link>
                 <div onMouseEnter={handlePopupMouseEnter} onMouseLeave={handlePopupMouseLeave} className={`${s.uslugiPopup} ${uslugiOpen ? s.uslugiPopupActive : ''}`}>
