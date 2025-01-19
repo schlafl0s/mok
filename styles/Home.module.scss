@@ -2719,6 +2719,18 @@ $color: white;
     .specialistCardWidth {
         width: 31.5%;
     }
+    .doctors {
+        padding: 10px 40px 20px;
+        gap: 15px
+    }
+    .letter {
+        width: 22.7%;
+    }
+    .btn12 {
+        width: 200px;
+        height: 40px;
+        font-size: 14px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -3023,6 +3035,18 @@ $color: white;
         gap: 20px;
         width: 100%;
         padding: 40px 40px;
+    }
+    .doctors {
+        padding: 20px 40px 20px;
+        gap: 15p
+    }
+    .letter {
+        width: 100%;
+    }
+    .btn12 {
+        width: 120px;
+        height: 30px;
+        font-size: 9px;
     }
 }
 
