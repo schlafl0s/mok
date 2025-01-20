@@ -126,7 +126,7 @@ export default function Footer ({ footerCut = false }) {
                 </div>
             </section>
             <section className={s.siteInfo}>
-                <span className={s.siteInfoText}>2024 © Международная открытая клиника. Все права защищены</span>
+                <span className={s.siteInfoText}>2025 © Международная открытая клиника. Все права защищены</span>
                 <div className={s.siteInfoAndLogo}>
                     <span className={s.siteInfoText}>Сайт разработан</span>
                     <Image

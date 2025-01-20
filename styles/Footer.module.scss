@@ -175,7 +175,7 @@
     height: 50px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: end;
     color: #707070;
     position: relative;
     z-index: 3;
@@ -184,13 +184,13 @@
 .siteInfoText {
     font-size: 16px;
     font-weight: 400;
-    line-height: 21.86px;
+    line-height: 18px;
     text-align: left;
 }
 
 .siteInfoAndLogo {
     display: flex;
-    align-items: center;
+    align-items: end;
     gap: 20px
 }
 
@@ -377,6 +377,9 @@
     }
     .navLinks {
         gap: 5px
+    }
+    .siteInfoText {
+        line-height: 14px;
     }
 }
 
