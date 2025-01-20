@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { useState, useEffect } from 'react'
 
 
-export default function Specials () {
+export default function Specials ({ setPopupOpen }) {
     const [currentPage, setCurrentPage] = useState(0);
     const [currentTransition, setCurrentTransition] = useState(0)
 
@@ -38,7 +38,7 @@ export default function Specials () {
                 <div className={s.specialsLeft}>
                     <h2 className={s.specialsLeftHeader}>БЕСПЛАТНАЯ<br /> КОНСУЛЬТАЦИЯ ВРАЧА</h2>
                     <span className={s.specialsLeftText}>по поводу операции для взрослых и детей c 1 по 30 ноября</span>
-                    <button className={`${s.button3} ${s.buttonMat3} ${s.btn3}`}>Получить консультацию</button>
+                    <button onClick={() => setPopupOpen(true)} className={`${s.button3} ${s.buttonMat3} ${s.btn3}`}>Получить консультацию</button>
                     <Image
                     className={s.specialsLeftArrow}
                     src={'/specialsArrowBlue.png'}

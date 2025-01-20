@@ -1,7 +1,34 @@
 import s from '/styles/Home.module.scss'
 import Image from 'next/image'
 
-export default function Specialists () {
+export default function Specialists ({ setPopupOpen }) {
+  function Specialist ({img, experience, name, option1, option2, option3}) {
+    return (
+      <div className={s.specialistCard}>
+        <div className={s.specialistInfo}>
+          <div className={s.experience}>Стаж: {experience}</div>
+          <Image
+            className={s.specialistImg}
+            src={img}
+            width={220}
+            height={220}
+          />
+          <div className={s.specialistInfoText}>
+            <span className={s.specialistName}>
+              {name}
+            </span>
+            <ul className={s.specialistOptions}>
+              <li>{option1}</li>
+              <li>{option2}</li>
+              <li>{option3}</li>
+            </ul>
+          </div>
+        </div>
+        <button onClick={() => setPopupOpen(true)} className={`${s.button1} ${s.buttonMat1} ${s.btn1}`}>Записаться на прием</button>
+      </div>
+    )
+  }
+
     return (
         <section className={s.specialist}>
             <div className={s.specialsUp}>
@@ -37,32 +64,5 @@ export default function Specialists () {
                 </button>
             </div>
         </section>
-    )
-}
-
-function Specialist ({img, experience, name, option1, option2, option3}) {
-    return (
-      <div className={s.specialistCard}>
-        <div className={s.specialistInfo}>
-          <div className={s.experience}>Стаж: {experience}</div>
-          <Image
-            className={s.specialistImg}
-            src={img}
-            width={220}
-            height={220}
-          />
-          <div className={s.specialistInfoText}>
-            <span className={s.specialistName}>
-              {name}
-            </span>
-            <ul className={s.specialistOptions}>
-              <li>{option1}</li>
-              <li>{option2}</li>
-              <li>{option3}</li>
-            </ul>
-          </div>
-        </div>
-        <button className={`${s.button1} ${s.buttonMat1} ${s.btn1}`}>Записаться на прием</button>
-      </div>
     )
 }

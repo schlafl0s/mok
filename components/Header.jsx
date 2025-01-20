@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react';
 
-export default function Header () {
+export default function Header ({setPopupOpen}) {
     const [MenuOpen, setMenuOpen] = useState(false)
     const [uslugiOpen, setUslugiOpen] = useState(false)
     const [timeoutId, setTimeoutId] = useState(null)
@@ -87,7 +87,7 @@ export default function Header () {
                 <span className={s.appointment}>Круглосуточная запись:</span>
                 <span className={s.number}>+7 495 411 28 41</span>
             </div>
-            <button className={`${s.button} ${s.buttonMat} ${s.btn7}`}>Записаться онлайн</button>
+            <button onClick={() => setPopupOpen(true)} className={`${s.button} ${s.buttonMat} ${s.btn7}`}>Записаться онлайн</button>
         </header>
     )
 }

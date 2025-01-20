@@ -13,17 +13,21 @@ import License from '@/components/blocks/License'
 import Appointment from '@/components/blocks/Appointment'
 import News from '@/components/blocks/News'
 import Layout from '@/components/Layout'
+import AppointmentPopup from '@/components/blocks/AppointmentPopup'
+import { useState } from 'react'
 
 export default function Home() {
+  const [popupOpen, setPopupOpen] = useState(false);
+
   return (
     <Layout>
       <main className={s.main}>
-        <Slider />
+        <Slider setPopupOpen={setPopupOpen} />
         <Sale />
         <Directions />
-        <Specials />
-        <Stats />
-        <Specialists />
+        <Specials setPopupOpen={setPopupOpen} />
+        <Stats /> 
+        <Specialists setPopupOpen={setPopupOpen} />
         <Technologies />
         <WhyUs />
         <Trust />
@@ -31,6 +35,7 @@ export default function Home() {
         <License />
         <Appointment />
         <News />
+        <AppointmentPopup popupOpen={popupOpen} setPopupOpen={setPopupOpen} />
       </main>
     </Layout>
   )

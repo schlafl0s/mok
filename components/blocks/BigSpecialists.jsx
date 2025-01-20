@@ -1,7 +1,7 @@
 import s from '/styles/Home.module.scss'
 import Image from 'next/image'
 
-export default function BigSpecialists () {
+export default function BigSpecialists ({ setPopupOpen }) {
     const allDoctors = [
         {name: 'Сергеева Екатерина Александровна', img:'/specialist.png', experience: '3 года', specialty: 'Гинеколог', option2: 'Ведущий врач', option3: 'Кандидат медицинских наук, врач высшей категории'},
         {name: 'Сергеева Екатерина Александровна', img:'/specialist.png', experience: '3 года', specialty: 'Кардиолог', option2: 'Ведущий врач', option3: 'Кандидат медицинских наук, врач высшей категории'},
@@ -10,6 +10,33 @@ export default function BigSpecialists () {
         {name: 'Сергеева Екатерина Александровна', img:'/specialist.png', experience: '3 года', specialty: 'Офтальмолог', option2: 'Ведущий врач', option3: 'Кандидат медицинских наук, врач высшей категории'},
         {name: 'Сергеева Екатерина Александровна', img:'/specialist.png', experience: '3 года', specialty: 'Андролог', option2: 'Ведущий врач', option3: 'Кандидат медицинских наук, врач высшей категории'},
     ]
+
+    function Specialist ({img, experience, name, specialty, option2, option3}) {
+        return (
+          <div className={`${s.specialistCard} ${s.specialistCardWidth}`}>
+            <div className={s.specialistInfo}>
+              <div className={s.experience}>Стаж: {experience}</div>
+              <Image
+                className={s.specialistImg}
+                src={img}
+                width={220}
+                height={220}
+              />
+              <div className={s.specialistInfoText}>
+                <span className={s.specialistName}>
+                  {name}
+                </span>
+                <ul className={s.specialistOptions}>
+                  <li>{specialty}</li>
+                  <li>{option2}</li>
+                  <li>{option3}</li>
+                </ul>
+              </div>
+            </div>
+            <button onClick={() => setPopupOpen(true)} className={`${s.button1} ${s.buttonMat1} ${s.btn1}`}>Записаться на прием</button>
+          </div>
+        )
+    }
 
     return (
         <>
@@ -69,32 +96,5 @@ function Letter ({letter, doctors}) {
                 <span className={s.letterDoctor}>Анестезиолог</span>
             </div>
         </div>
-    )
-}
-
-function Specialist ({img, experience, name, specialty, option2, option3}) {
-    return (
-      <div className={`${s.specialistCard} ${s.specialistCardWidth}`}>
-        <div className={s.specialistInfo}>
-          <div className={s.experience}>Стаж: {experience}</div>
-          <Image
-            className={s.specialistImg}
-            src={img}
-            width={220}
-            height={220}
-          />
-          <div className={s.specialistInfoText}>
-            <span className={s.specialistName}>
-              {name}
-            </span>
-            <ul className={s.specialistOptions}>
-              <li>{specialty}</li>
-              <li>{option2}</li>
-              <li>{option3}</li>
-            </ul>
-          </div>
-        </div>
-        <button className={`${s.button1} ${s.buttonMat1} ${s.btn1}`}>Записаться на прием</button>
-      </div>
     )
 }

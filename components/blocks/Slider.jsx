@@ -2,7 +2,7 @@ import s from '/styles/Home.module.scss'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
 
-export default function Slider() {
+export default function Slider({ setPopupOpen }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentTransition, setCurrentTransition] = useState(0)
 
@@ -34,27 +34,7 @@ export default function Slider() {
     { id: 4, image: '/underHeaderBackground.png', header: 'Консультация хирурга бесплатно' },
   ];
 
-  return (
-    <section className={s.slider}>
-      <div className={s.slides} style={{ transform: `translateX(${currentTransition}%)`}}>
-        {slides.map((slide, index) => (
-          <Slide key={slide.id} slide={slide} isActive={index === currentSlide} />
-        ))}
-      </div>
-      <div className={s.slideCount}>
-        {slides.map((_, index) => (
-          <div
-            onClick={() => goToSlide(index)}
-            key={index}
-            className={`${s.slideCounter} ${currentSlide === index ? s.slideCounterActive : ''}`}
-          />
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function Slide({ slide }) {
+  function Slide({ slide }) {
     return (
     <div className={s.slide}>
         <div className={s.slideInfo}>
@@ -93,7 +73,7 @@ function Slide({ slide }) {
               <span className={s.des}>Консультация хирурга по поводу операции – бесплатно </span>
             </div>
           </div>
-          <button className={`${s.button0} ${s.buttonMat0} ${s.btn0}`}>Записаться на прием</button>
+          <button onClick={() => setPopupOpen(true)} className={`${s.button0} ${s.buttonMat0} ${s.btn0}`}>Записаться на прием</button>
         </div>
         <picture>
           <source media="(max-width: 768px)" srcSet="/underHeaderBackgroundPhone.png" />
@@ -104,4 +84,24 @@ function Slide({ slide }) {
         <Image className={s.VUH} src={'/V.png'} width={100} height={100} />
     </div>
     )
+  }
+
+  return (
+    <section className={s.slider}>
+      <div className={s.slides} style={{ transform: `translateX(${currentTransition}%)`}}>
+        {slides.map((slide, index) => (
+          <Slide key={slide.id} slide={slide} isActive={index === currentSlide} />
+        ))}
+      </div>
+      <div className={s.slideCount}>
+        {slides.map((_, index) => (
+          <div
+            onClick={() => goToSlide(index)}
+            key={index}
+            className={`${s.slideCounter} ${currentSlide === index ? s.slideCounterActive : ''}`}
+          />
+        ))}
+      </div>
+    </section>
+  );
 }

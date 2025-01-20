@@ -2,8 +2,7 @@
     padding-top: 113px;
     position: relative;
     max-width: 1440px;
-    left: 50%;
-    transform: translateX(-50%);
+    margin: 0px auto;
 }
 
 .slider {
@@ -83,7 +82,6 @@ $color: white;
     text-align: center;
     font-weight: 700;
     position: relative;
-    will-change: transform;
     cursor: pointer;
 }
   
@@ -128,7 +126,6 @@ $color: white;
     text-align: center;
     font-weight: 700;
     position: relative;
-    will-change: transform;
     cursor: pointer;
 }
   
@@ -244,7 +241,6 @@ $color: white;
     text-align: center;
     font-weight: 700;
     position: relative;
-    will-change: transform;
     cursor: pointer;
 }
   
@@ -495,7 +491,6 @@ $color: white;
     background: #391FCF;
     font-weight: 700;
     position: relative;
-    will-change: transform;
     cursor: pointer;
 }
   
@@ -1038,7 +1033,6 @@ $color: white;
     text-align: center;
     font-weight: 700;
     position: relative;
-    will-change: transform;
     cursor: pointer;
 }
   
@@ -1178,7 +1172,6 @@ $color: white;
     text-align: center;
     font-weight: 700;
     position: relative;
-    will-change: transform;
     cursor: pointer;
 }
   
@@ -1222,7 +1215,6 @@ $color: white;
     text-align: center;
     font-weight: 700;
     position: relative;
-    will-change: transform;
     cursor: pointer;
 }
   
@@ -1387,7 +1379,6 @@ $color: white;
     text-align: center;
     font-weight: 700;
     position: relative;
-    will-change: transform;
     cursor: pointer;
 }
   
@@ -1454,7 +1445,6 @@ $color: white;
     text-align: center;
     font-weight: 700;
     position: relative;
-    will-change: transform;
     cursor: pointer;
 }
   
@@ -1567,7 +1557,6 @@ $color: white;
     text-align: center;
     font-weight: 700;
     position: relative;
-    will-change: transform;
     cursor: pointer;
     &:hover {
         color: white
@@ -1615,7 +1604,6 @@ $color: white;
     text-align: center;
     font-weight: 700;
     position: relative;
-    will-change: transform;
     cursor: pointer;
     &:hover {
         color: white
@@ -1663,7 +1651,6 @@ $color: white;
     text-align: center;
     font-weight: 700;
     position: relative;
-    will-change: transform;
     cursor: pointer;
     &:hover {
         color: black
@@ -1837,7 +1824,6 @@ $color: white;
     text-align: center;
     font-weight: 700;
     position: relative;
-    will-change: transform;
     cursor: pointer;
     &:hover {
         color: white;
@@ -1945,6 +1931,44 @@ $color: white;
     width: 145px;
 }
 
+.appointmentPopup {
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+    position: fixed!important;
+    z-index: 100;
+    padding: 60px 60px;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 650px;
+    height: 550px;
+    background: #F3F3FB;
+}
+
+.closePopup {
+    background: #E9E8F4;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+.blackBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 100;
+}
+
 @media (max-width: 1440px) {
     .main {
         max-width: 1280px;
@@ -1992,6 +2016,12 @@ $color: white;
     .main {
         max-width: 1024px;
         padding-top: 100px;
+    }
+    .appointmentPopup {
+        width: 500px;
+        height: 450px;
+        padding: 40px 40px;
+        gap: 10px
     }
     .Header {
         font-size: 48px;
@@ -2233,6 +2263,12 @@ $color: white;
     .main {
         max-width: 768px;
         padding-top: 80px;
+    }
+    .appointmentPopup {
+        width: 400px;
+        height: 325px;
+        padding: 30px 30px;
+        gap: 10px
     }
     .slideInfo {
         padding: 30px 0px 0px 30px;
@@ -2738,6 +2774,15 @@ $color: white;
         max-width: 425px;
         padding-top: 60px;
     }
+    .appointmentPopup {
+        width: 400px;
+        height: 385px;
+        padding: 15px 30px;
+    }
+    .closePopup {
+        top: 10px;
+        right: 10px;
+    }
     .XUH {
         display: none;
     }
@@ -3053,6 +3098,16 @@ $color: white;
 @media (max-width: 425px) {
     .slideHeader {
         width: 250px;
+    }
+    .appointmentPopup {
+        width: 320px;
+        height: 385px;
+        padding: 15px 30px;
+        gap: 10px
+    }
+    .closePopup {
+        top: 5px;
+        right: 5px;
     }
     .main {
         max-width: 375px;
