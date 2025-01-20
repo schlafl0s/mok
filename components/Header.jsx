@@ -54,10 +54,10 @@ export default function Header ({setPopupOpen}) {
                     </nav>
                     <nav className={sf.navLinks}>
                         <h2 className={sf.linksHeader}>ПАЦИЕНТАМ</h2>
-                        <Link href={'/'} className={sf.link}>О клинике</Link>
-                        <Link href={'/'} className={sf.link}>Врачи</Link>
-                        <Link href={'/'} className={sf.link}>Отзывы</Link>
-                        <Link href={'/'} className={sf.link}>Контакты</Link>
+                        <Link href={'/about-us'} className={sf.link}>О клинике</Link>
+                        <Link href={'/doctors'} className={sf.link}>Врачи</Link>
+                        <Link href={'/reviews'} className={sf.link}>Отзывы</Link>
+                        <Link href={'/contacts'} className={sf.link}>Контакты</Link>
                         <Link href={'/privacy-policy'} className={sf.link}>Политика конфиденциальности</Link>
                         <Link href={'/user-agreement'} className={sf.link}>Пользовательское соглашение</Link>
                     </nav>

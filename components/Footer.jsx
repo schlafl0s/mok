@@ -92,10 +92,10 @@ export default function Footer ({ footerCut = false }) {
                 </nav>
                 <nav className={s.navLinks}>
                     <h2 className={s.linksHeader}>ПАЦИЕНТАМ</h2>
-                    <Link href={'/'} className={s.link}>О клинике</Link>
-                    <Link href={'/'} className={s.link}>Врачи</Link>
-                    <Link href={'/'} className={s.link}>Отзывы</Link>
-                    <Link href={'/'} className={s.link}>Контакты</Link>
+                    <Link href={'/about-us'} className={s.link}>О клинике</Link>
+                    <Link href={'/doctors'} className={s.link}>Врачи</Link>
+                    <Link href={'/reviews'} className={s.link}>Отзывы</Link>
+                    <Link href={'/contacts'} className={s.link}>Контакты</Link>
                     <Link href={'/privacy-policy'} className={s.link}>Политика конфиденциальности</Link>
                     <Link href={'/user-agreement'} className={s.link}>Пользовательское соглашение</Link>
                 </nav>
