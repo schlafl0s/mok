@@ -190,7 +190,7 @@ $burger-item-shadow: -1 * $burger-item - ($burger-item-offset - $burger-item) / 
     height: $burger-height;
     width: $burger-width;
     position: relative;
-    z-index: 3;
+    z-index: 4;
 
     .burgerLine {
         background: #391FCF;
@@ -203,6 +203,7 @@ $burger-item-shadow: -1 * $burger-item - ($burger-item-offset - $burger-item) / 
     &.open {
         .burgerLine:nth-child(1) {
             transform: translateY(10px) rotate(45deg);
+            background: #FEDF43;
         }
 
         .burgerLine:nth-child(2) {
@@ -211,8 +212,54 @@ $burger-item-shadow: -1 * $burger-item - ($burger-item-offset - $burger-item) / 
 
         .burgerLine:nth-child(3) {
             transform: translateY(-10px) rotate(-45deg);
+            background: #FEDF43;
         }
     }
+}
+
+.phoneMenu {
+    position: fixed;
+    display: flex;
+    top: 0;
+    left: -20px;
+    z-index: 4;
+    width: 100%;
+    height: 100vh;
+    background: #29292C;
+    color: white;
+    padding: 70px 20px 0px;
+    opacity: 0;
+    pointer-events: none;
+    gap: 50px;
+    transition: 1s;
+    &.phoneMenuActive {
+        pointer-events: all;
+        opacity: 1;
+    }
+}
+
+// .phoneMenuActive {
+//     pointer-events: all;
+//     opacity: 1;
+// }
+
+.blackBackground {
+    position: fixed;
+    top: 0;
+    left: -200%;
+    width: 300vw;
+    height: 300vh;
+    z-index: 3;
+    background: rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    transition: opacity 1s ease;
+    pointer-events: none;
+}
+
+.blackBackgroundActive {
+    transition: 1s;
+    opacity: 1;
+    pointer-events: all;
 }
 
 @media (max-width: 1440px) {
@@ -264,6 +311,7 @@ $burger-item-shadow: -1 * $burger-item - ($burger-item-offset - $burger-item) / 
     .btn7 {
         width: 180px;
     }
+    
 }
 
 @media (max-width: 768px) {
@@ -288,6 +336,10 @@ $burger-item-shadow: -1 * $burger-item - ($burger-item-offset - $burger-item) / 
     .logo {
         width: 160px;
         height: 40px;
+    }
+    .phoneMenu {
+        flex-wrap: wrap;
+        gap: 10px
     }
 }
 

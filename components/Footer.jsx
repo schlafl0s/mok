@@ -106,7 +106,7 @@ export default function Footer ({ footerCut = false }) {
                         <span className={s.contactsLinksInfo}>+7 495 411 28 41</span>
                     </span>
                     <span className={s.contactsLinks}>
-                        Электронна почта: 
+                        Электронная почта: 
                         <span className={s.contactsLinksInfo}>mok_klinik@gmail.com</span>
                     </span>
                     <span className={s.contactsLinks}>
