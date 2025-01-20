@@ -1,5 +1,6 @@
 import s from '/styles/Home.module.scss'
 import Image from 'next/image'
+import { notFound } from 'next/navigation';
 import { useState, useEffect } from 'react'
 
 export default function Slider({ setPopupOpen }) {
@@ -34,11 +35,12 @@ export default function Slider({ setPopupOpen }) {
     { id: 4, image: '/underHeaderBackground.png', header: 'Консультация хирурга бесплатно' },
   ];
 
-  function Slide({ slide }) {
+  function Slide({ slide, postHeader }) {
+
     return (
     <div className={s.slide}>
         <div className={s.slideInfo}>
-          <h1 className={s.slideHeader}>{slide.header}</h1>
+          <h1 className={s.slideHeader}>{postHeader}</h1> 
           <div className={s.descriptionContainer}>
             <div className={s.description}>
               <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -104,4 +106,16 @@ export default function Slider({ setPopupOpen }) {
       </div>
     </section>
   );
+}
+
+export async function getServerSideProps (context) {
+  const res = await fetch(`http://mok.admin/wp-json/wp/v2/posts`)
+  const data = await res.json()
+  const postHeader = data[0].title.rendered
+
+  return {
+    props: {
+      postHeader,
+    },
+  };
 }
