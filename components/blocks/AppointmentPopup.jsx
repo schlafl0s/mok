@@ -4,6 +4,42 @@ import { useState } from 'react';
 export default function AppointmentPopup ({ popupOpen, setPopupOpen }) {
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const [success, setSuccess] = useState(false);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        setLoading(true);
+        setError(null);
+        setSuccess(false);
+    
+        try {
+          const response = await fetch('/api/sendToTelegram', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name, phone }),
+          });
+    
+          const result = await response.json();
+    
+          if (response.ok) {
+            setSuccess(true);
+            setName('');
+            setPhone('');
+          } else {
+            setError(result.message);
+          }
+        } catch (error) {
+          console.error('Ошибка отправки:', error);
+          setError('Произошла ошибка при отправке данных');
+        } finally {
+          setLoading(false);
+        }
+    }
 
     const handleNameChange = (e) => setName(e.target.value);
     const handlePhoneChange = (e) => {
@@ -58,7 +94,9 @@ export default function AppointmentPopup ({ popupOpen, setPopupOpen }) {
                     value={phone}
                     onChange={handlePhoneChange}
                     />
-                    <button type='submit' className={`${s.button5} ${s.buttonMat5} ${s.btn5}`}>Записаться</button>
+                    {error && <p style={{ color: 'red', fontSize: '12px', marginTop: '10px' }}>{error}</p>}
+                    {success && <p style={{ color: 'green', fontSize: '12px', marginTop: '10px' }}>Данные отправлены успешно!</p>}
+                    <button type='submit' onClick={handleSubmit} className={`${s.button5} ${s.buttonMat5} ${s.btn5}`}>Записаться</button>
                     <span className={s.appointmentAgree}>Нажимая кнопку, вы даете согласие на обработку персональных данных</span>
                 </form>
                 <button onClick={() => setPopupOpen(false)} className={s.closePopup}>
