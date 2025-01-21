@@ -1,6 +1,5 @@
 import s from '/styles/Home.module.scss'
 import Image from 'next/image'
-import { notFound } from 'next/navigation';
 import { useState, useEffect } from 'react'
 
 export default function Slider({ setPopupOpen }) {

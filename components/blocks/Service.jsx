@@ -1,7 +1,7 @@
 import s from '/styles/Home.module.scss'
 import Image from 'next/image'
 
-export default function Service () {
+export default function Service ({ setPopupOpen }) {
   return (
     <section className={s.slider}>
         <div className={s.slide}>
@@ -12,7 +12,7 @@ export default function Service () {
                 <p className={s.aboutDes}><strong>При этом инновационные методы исследований</strong> позволяют выявить заболевания на ранних стадиях, избежав опасных состояний и осложнений.</p>
                 <p className={s.aboutDes}>МОК предлагает своим пациентам профессиональную лабораторную и аппаратную диагностику с применением новейших методик.</p>
             </div>
-            <button className={`${s.button0} ${s.buttonMat0} ${s.btn0}`}>Записаться на прием</button>
+            <button onClick={() => setPopupOpen(true)} className={`${s.button0} ${s.buttonMat0} ${s.btn0}`}>Записаться на прием</button>
             </div>
             <picture>
             <source media="(max-width: 728px)" srcSet="/servicePhone.png" />

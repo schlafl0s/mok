@@ -1,7 +1,7 @@
 import s from '/styles/Home.module.scss'
 import Image from 'next/image'
 
-export default function ServiceDirections () {
+export default function ServiceDirections ({ setPopupOpen }) {
     return (
         <section className={s.serviceDirections}>
             <h1 className={s.Header}>Наши направления</h1>
@@ -29,7 +29,7 @@ export default function ServiceDirections () {
                             <h2 className={s.serviceDirectionHeader}>Лабораторная диагностика (анализы)</h2>
                             <p className={s.serviceDirectionText}>Все направления исследования биологического материала пациента (кровь, моча, соскобы слизистой оболочки, мокрота и т.д.) при помощи специального оборудования и реактивов</p>
                         </div>
-                        <button className={`${s.button9} ${s.buttonMat9} ${s.btn9}`}>Записаться на прием</button>
+                        <button onClick={() => setPopupOpen(true)} className={`${s.button9} ${s.buttonMat9} ${s.btn9}`}>Записаться на прием</button>
                     </div>
                     <Image
                     className={s.serviceDirectionImg}
@@ -61,7 +61,7 @@ export default function ServiceDirections () {
                             <h2 className={s.serviceDirectionHeader}>Рентген</h2>
                             <p className={s.serviceDirectionText}>Методы визуализации внутренних органов пациента, основанные на способности тканей поглощать рентгеновские лучи</p>
                         </div>
-                        <button className={`${s.button10} ${s.buttonMat10} ${s.btn10}`}>Записаться на прием</button>
+                        <button onClick={() => setPopupOpen(true)} className={`${s.button10} ${s.buttonMat10} ${s.btn10}`}>Записаться на прием</button>
                     </div>
                     <Image
                     className={s.serviceDirectionImg}
@@ -93,7 +93,7 @@ export default function ServiceDirections () {
                             <h2 className={s.serviceDirectionHeader}>Ультразвуковая диагностика (УЗИ) </h2>
                             <p className={s.serviceDirectionText}>Наиболее востребованное и безопасное направление визуализации внутренних органов посредством способности тканей с различной плотностью по-разному пропускать ультразвуковое излучение</p>
                         </div>
-                        <button className={`${s.button11} ${s.buttonMat11} ${s.btn11}`}>Записаться на прием</button>
+                        <button onClick={() => setPopupOpen(true)} className={`${s.button11} ${s.buttonMat11} ${s.btn11}`}>Записаться на прием</button>
                     </div>
                     <Image
                     className={s.serviceDirectionImg}
@@ -125,7 +125,7 @@ export default function ServiceDirections () {
                             <h2 className={s.serviceDirectionHeader}>Эндоскопические исследования</h2>
                             <p className={s.serviceDirectionText}>Способы визуального осмотра внутренних органов в режиме реального времени при помощи миниатюрной видеокамеры, которая вводится в организм через физиологические отверстия или небольшие проколы тканей</p>
                         </div>
-                        <button className={`${s.button10} ${s.buttonMat10} ${s.btn10}`}>Записаться на прием</button>
+                        <button onClick={() => setPopupOpen(true)} className={`${s.button10} ${s.buttonMat10} ${s.btn10}`}>Записаться на прием</button>
                     </div>
                     <Image
                     className={s.serviceDirectionImg}
@@ -157,7 +157,7 @@ export default function ServiceDirections () {
                             <h2 className={s.serviceDirectionHeader}>Функциональная диагностика</h2>
                             <p className={s.serviceDirectionText}>Оценка состояния и функциональной активности органов и систем при помощи инструментального оборудования (электрокардиограмма, спирометрия, электроэнцефалограмма и т.д.)</p>
                         </div>
-                        <button className={`${s.button9} ${s.buttonMat9} ${s.btn9}`}>Записаться на прием</button>
+                        <button onClick={() => setPopupOpen(true)} className={`${s.button9} ${s.buttonMat9} ${s.btn9}`}>Записаться на прием</button>
                     </div>
                     <Image
                     className={s.serviceDirectionImg}
@@ -166,7 +166,6 @@ export default function ServiceDirections () {
                     height={1000}
                     />
                 </div>
-                
             </div>
         </section>
     )

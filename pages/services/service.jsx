@@ -10,21 +10,26 @@ import HowIsItGoing from '@/components/blocks/HowIsItGoing'
 import Prices from '@/components/blocks/Prices'
 import License from '@/components/blocks/License'
 import Consultation from '@/components/blocks/Consultation'
+import AppointmentPopup from '@/components/blocks/AppointmentPopup'
+import { useState } from 'react'
 
 export default function ServicePage () {
+    const [popupOpen, setPopupOpen] = useState(false);
+
     return (
       <Layout>
         <main className={s.main}>
-            <Service />
+            <Service setPopupOpen={setPopupOpen} />
             <Sale />
-            <ServiceDirections />
+            <ServiceDirections setPopupOpen={setPopupOpen} />
             <WhyUs />
             <Appointment />
             <HowIsItGoing />
             <Prices />
             <Consultation />
-            <Specialists />
+            <Specialists setPopupOpen={setPopupOpen} />
             <License />
+            <AppointmentPopup popupOpen={popupOpen} setPopupOpen={setPopupOpen} />
         </main>
       </Layout>
     )
