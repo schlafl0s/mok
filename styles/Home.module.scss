@@ -682,6 +682,18 @@ $color: white;
     background: #F3F3FB;
 }
 
+.fadeIn {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.3s ease-out, transform 0.5s ease-out;
+  }
+  
+.fadeOut {
+    opacity: 0;
+    transform: translateY(20px); /* Сдвигаем вниз */
+    transition: opacity 0.3s ease-out, transform 0.5s ease-out;
+}
+
 .specialistInfo {
     padding: 37.5px 0px 0px 32.5px;
     display: flex;
