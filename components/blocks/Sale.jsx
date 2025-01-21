@@ -5,8 +5,8 @@ export default function Sale () {
     return (
         <section className={s.sale}>
             <picture>
-                <source media="(max-width: 768px)" srcSet="/saleBackgroundPhone.png" />
-                <source media="(min-width: 769px)" srcSet="/saleBackground.png" />
+                <source media="(max-width: 728px)" srcSet="/saleBackgroundPhone.png" />
+                <source media="(min-width: 729px)" srcSet="/saleBackground.png" />
                 <Image
                 className={s.saleBackground}
                 width={2000}

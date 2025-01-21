@@ -296,7 +296,7 @@ $burger-item-shadow: -1 * $burger-item - ($burger-item-offset - $burger-item) / 
         display: flex;
     }
     .header {
-        max-width: 768px;
+        max-width: 728px;
         height: 80px;
     }
     .nav {
@@ -314,7 +314,7 @@ $burger-item-shadow: -1 * $burger-item - ($burger-item-offset - $burger-item) / 
     
 }
 
-@media (max-width: 768px) {
+@media (max-width: 728px) {
     .header {
         max-width: 425px;
         height: 60px;

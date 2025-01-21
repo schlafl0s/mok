@@ -2261,7 +2261,7 @@ $color: white;
 
 @media (max-width: 1024px) {
     .main {
-        max-width: 768px;
+        max-width: 728px;
         padding-top: 80px;
     }
     .appointmentPopup {
@@ -2285,8 +2285,9 @@ $color: white;
         font-size: 14px;
     }
     .btn0 {
-        width: 280px;
-        height: 50px;
+        width: 240px;
+        height: 35px;
+        font-size: 14px;
     }
     .underHeaderBackground {
         width: 140%;
@@ -2769,7 +2770,7 @@ $color: white;
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 728px) {
     .main {
         max-width: 425px;
         padding-top: 60px;

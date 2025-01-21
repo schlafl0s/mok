@@ -9,8 +9,8 @@ export default function License () {
             <h1 className={s.Header}>Лицензии</h1>
             <div className={s.licenseCard}>
                 <picture>
-                    <source media="(max-width: 768px)" srcSet="/licenseBackgroundPhone.png" />
-                    <source media="(min-width: 769px)" srcSet="/licenseBackground.png" />
+                    <source media="(max-width: 728px)" srcSet="/licenseBackgroundPhone.png" />
+                    <source media="(min-width: 729px)" srcSet="/licenseBackground.png" />
                     <Image
                     className={s.licenseBackgroundImg}
                     width={2000}

@@ -88,8 +88,8 @@ export default function Slider({ setPopupOpen }) {
           <button onClick={() => setPopupOpen(true)} className={`${s.button0} ${s.buttonMat0} ${s.btn0}`}>Записаться на прием</button>
         </div>
         <picture>
-          <source media="(max-width: 768px)" srcSet="/underHeaderBackgroundPhone.png" />
-          <source media="(min-width: 769px)" srcSet={slide.image} />
+          <source media="(max-width: 728px)" srcSet="/underHeaderBackgroundPhone.png" />
+          <source media="(min-width: 729px)" srcSet={slide.image} />
           <Image className={s.underHeaderBackground} src={slide.image} width={2000} height={2000} />
         </picture>
         <Image className={s.XUH} src={'/X.png'} width={100} height={100} />

@@ -10,8 +10,8 @@ export default function SpecialService () {
                 <button className={`${s.button7} ${s.buttonMat7} ${s.btn7}`}>Записаться на прием</button>
             </div>
             <picture>
-            <source media="(max-width: 768px)" srcSet="/specialServiceBackgroundPhone.png" />
-            <source media="(min-width: 769px)" srcSet="/specialServiceBackground.png" />
+            <source media="(max-width: 728px)" srcSet="/specialServiceBackgroundPhone.png" />
+            <source media="(min-width: 729px)" srcSet="/specialServiceBackground.png" />
             <Image className={s.specialServiceBackground} src="/specialServiceBackground.png" width={2000} height={2000} />
             </picture>
             <Image className={s.VUHservice} src={'/V.png'} width={100} height={100} />

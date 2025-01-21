@@ -10,8 +10,8 @@ export default function Thanks () {
                 <button className={`${s.button0} ${s.buttonMat0} ${s.btn0}`}>Вернуться на главную</button>
             </div>
             <picture>
-                <source media="(max-width: 768px)" srcSet="/thanksPhone.png" />
-                <source media="(min-width: 769px)" srcSet="/thanks.png" />
+                <source media="(max-width: 728px)" srcSet="/thanksPhone.png" />
+                <source media="(min-width: 729px)" srcSet="/thanks.png" />
                 <Image className={s.thanksImg} src="/thanks.png" width={2000} height={2000} />
             </picture>
         </div>

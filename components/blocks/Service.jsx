@@ -15,8 +15,8 @@ export default function Service () {
             <button className={`${s.button0} ${s.buttonMat0} ${s.btn0}`}>Записаться на прием</button>
             </div>
             <picture>
-            <source media="(max-width: 768px)" srcSet="/servicePhone.png" />
-            <source media="(min-width: 769px)" srcSet="/service.png" />
+            <source media="(max-width: 728px)" srcSet="/servicePhone.png" />
+            <source media="(min-width: 729px)" srcSet="/service.png" />
             <Image className={s.underHeaderBackground} src="/service.png" width={2000} height={2000} />
             </picture>
         </div>
