@@ -941,6 +941,10 @@ $color: white;
     gap: 20px;
 }
 
+.reviewsContainerPhone {
+    display: none;
+}
+
 .review {
     width: 33.3%;
     height: 100%;
@@ -2945,7 +2949,13 @@ $color: white;
     .specialistContainer {
         display: none;
     }
+    .reviewsContainer {
+        display: none;
+    }
     .specialistContainerPhone {
+        display: flex;
+    }
+    .reviewsContainerPhone {
         display: flex;
     }
     .specialistCard {
