@@ -1,12 +1,9 @@
 import TelegramBot from 'node-telegram-bot-api';
-
 // Токен бота, полученный через BotFather
 const token = process.env.TELEGRAM_BOT_TOKEN;  // Лучше использовать переменные окружения
 const chatId = process.env.TELEGRAM_CHAT_ID;  // Также chat_id из Telegram
-
 // Создаем экземпляр бота
 const bot = new TelegramBot(token);
-
 export default async function handler(req, res) {
     if (req.method === 'POST') {
       const { name, phone } = req.body;
