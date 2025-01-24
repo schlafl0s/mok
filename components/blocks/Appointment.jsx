@@ -1,12 +1,48 @@
 import s from '/styles/Home.module.scss'
 import Image from 'next/image'
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 
 export default function Appointment () {
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
-  
+    const [error, setError] = useState(null);
+    const [success, setSuccess] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
+    const router = useRouter();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setSubmitted(true)
+        setError(null);
+        setSuccess(false);
+    
+        try {
+            const response = await fetch('/api/sendToTelegram', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name, phone }),
+            });
+    
+            const result = await response.json();
+    
+            if (response.ok) {
+            setSuccess(true);
+            setName('');
+            setPhone('');
+            router.push('/thanks');
+            } else {
+            setError(result.message);
+            }
+        } catch (error) {
+            console.error('Ошибка отправки:', error);
+            setError('Произошла ошибка при отправке данных');
+        }
+    }
+
     const handleNameChange = (e) => setName(e.target.value);
     const handlePhoneChange = (e) => {
         let value = e.target.value;
@@ -60,18 +96,18 @@ export default function Appointment () {
                 <span className={s.makeAppointmentText}>Оставьте контакты, наш администратор свяжется с вами и запишет на удобную дату</span>
                 <form className={s.appointmentForm}>
                     <input
-                    className={s.appointmentInput}
+                    className={submitted && !name ? s.appointmentError : s.appointmentInput}
                     placeholder='Введите имя'
                     value={name}
                     onChange={handleNameChange}
                     />
                     <input
-                    className={s.appointmentInput}
+                    className={submitted && !phone ? s.appointmentError : s.appointmentInput}
                     placeholder='Введите телефон'
                     value={phone}
                     onChange={handlePhoneChange}
                     />
-                    <button type='submit' className={`${s.button5} ${s.buttonMat5} ${s.btn5}`}>Записаться</button>
+                    <button type='submit' onClick={handleSubmit} className={`${s.button5} ${s.buttonMat5} ${s.btn5}`}>Записаться</button>
                     <span className={s.appointmentAgree}>Нажимая кнопку, вы даете согласие на обработку персональных данных</span>
                 </form>
             </div>
