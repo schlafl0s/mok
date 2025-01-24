@@ -59,6 +59,19 @@ export default function BigSpecialists ({ setPopupOpen }) {
         setPage(page + 1);
     };
     const hasMoreDoctors = currentDoctors.length < allDoctors.length;
+    const groupedSpecialties = allDoctors.reduce((acc, doctor) => {
+        const firstLetter = doctor.specialty[0].toUpperCase();
+        if (!acc[firstLetter]) {
+            acc[firstLetter] = [];
+        }
+        // Добавляем специальность в массив, если её ещё нет
+        if (!acc[firstLetter].includes(doctor.specialty)) {
+            acc[firstLetter].push(doctor.specialty);
+        }
+        return acc;
+    }, {});
+
+    const sortedLetters = Object.keys(groupedSpecialties).sort();
 
     function Specialist ({img, experience, name, specialty, option2, option3}) {
         return (
@@ -87,6 +100,19 @@ export default function BigSpecialists ({ setPopupOpen }) {
         )
     }
 
+    function Letter ({letter, specialties}) {
+        return (
+            <div className={s.letter}>
+                <div className={s.letterLetter}>{letter}</div>
+                <div className={s.letterDoctors}>
+                    {specialties && specialties.map((specialty, index) => (
+                        <span key={index} className={s.letterDoctor}>{specialty}</span>
+                    ))}
+                </div>
+            </div>
+        )
+    }
+
     return (
         <>
         <section className={s.doctors}>
@@ -96,14 +122,13 @@ export default function BigSpecialists ({ setPopupOpen }) {
                 <button className={`${s.button12} ${s.buttonMat12} ${s.btn12}`}>Детские врачи</button>
             </div>
             <div className={s.letters}>
-                <Letter letter={'А'} />
-                <Letter letter={'Б'} />
-                <Letter letter={'В'} />
-                <Letter letter={'Г'} />
-                <Letter letter={'Д'} />
-                <Letter letter={'И'} />
-                <Letter letter={'К'} />
-                <Letter letter={'Л'} />
+                {sortedLetters.map(letter => (
+                    <Letter 
+                        key={letter}
+                        letter={letter}
+                        specialties={groupedSpecialties[letter]}
+                    />
+                ))}
             </div>
             <button className={s.moreButton}>
                 Показать все
@@ -132,19 +157,5 @@ export default function BigSpecialists ({ setPopupOpen }) {
         </section>
         </>
         
-    )
-}
-
-function Letter ({letter, doctors}) {
-    return (
-        <div className={s.letter}>
-            <div className={s.letterLetter}>{letter}</div>
-            <div className={s.letterDoctors}>
-                <span className={s.letterDoctor}>Алголог</span>
-                <span className={s.letterDoctor}>Аллерголог</span>
-                <span className={s.letterDoctor}>Андролог</span>
-                <span className={s.letterDoctor}>Анестезиолог</span>
-            </div>
-        </div>
     )
 }
