@@ -1,5 +1,6 @@
 import s from '/styles/Technical.module.scss'
 import Layout from '@/components/Layout'
+import Head from 'next/head';
 import { useState, useEffect } from 'react';
 
 export default function PrivacyPolicy () {
@@ -70,24 +71,30 @@ export default function PrivacyPolicy () {
     }, []);
 
     return (
-      <Layout footerCut={true}>
-        <main className={s.main}>
-            <h1 className={s.technicalHeader}>Политика конфиденциальности</h1>
-            <div className={s.textsContainer}>
-                {content.map((section, index) => (
-                    <section key={index} className={s.textContainer}>
-                    {/* Отображаем заголовок только если он есть */}
-                    {section.title && section.title.trim() !== "" && (
-                        <h2 className={s.techHeader}>{section.title}</h2>
-                    )}
-                    {/* Отображаем все тексты для текущего раздела */}
-                    {section.texts.map((text, idx) => (
-                        <p key={idx} className={s.techText}>{text}</p>
+        <>
+        <Head>
+            <title>Политика конфиденциальности</title>
+        </Head>
+        <Layout footerCut={true}>
+            <main className={s.main}>
+                <h1 className={s.technicalHeader}>Политика конфиденциальности</h1>
+                <div className={s.textsContainer}>
+                    {content.map((section, index) => (
+                        <section key={index} className={s.textContainer}>
+                        {/* Отображаем заголовок только если он есть */}
+                        {section.title && section.title.trim() !== "" && (
+                            <h2 className={s.techHeader}>{section.title}</h2>
+                        )}
+                        {/* Отображаем все тексты для текущего раздела */}
+                        {section.texts.map((text, idx) => (
+                            <p key={idx} className={s.techText}>{text}</p>
+                        ))}
+                        </section>
                     ))}
-                    </section>
-                ))}
-            </div>
-        </main>
-      </Layout>
+                </div>
+            </main>
+        </Layout>
+        </>
+     
     )
 }

@@ -140,6 +140,9 @@ $color: white;
         transform: translate(-45%,-34%) translateZ(0)
     }
 }
+.btnMenu {
+    display: none
+}
 
 .uslugiPopup {
     width: 393px;
@@ -233,6 +236,7 @@ $burger-item-shadow: -1 * $burger-item - ($burger-item-offset - $burger-item) / 
     gap: 50px;
     transition: 1s;
     &.phoneMenuActive {
+        transition: 1s;
         pointer-events: all;
         opacity: 1;
     }
@@ -334,7 +338,7 @@ $burger-item-shadow: -1 * $burger-item - ($burger-item-offset - $burger-item) / 
     }
     .phoneMenu {
         flex-wrap: wrap;
-        gap: 10px
+        gap: 10px;
     }
 }
 
@@ -350,5 +354,9 @@ $burger-item-shadow: -1 * $burger-item - ($burger-item-offset - $burger-item) / 
     }
     .appointment {
         line-height: 12px;
+    }
+    .btnMenu {
+        display: block;
+        width: 100%;
     }
 }

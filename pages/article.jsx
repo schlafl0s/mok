@@ -3,6 +3,7 @@ import s from '/styles/Technical.module.scss';
 import Layout from '@/components/Layout';
 import Image from 'next/image';
 import News from '@/components/blocks/News';
+import Head from 'next/head';
 
 export default function Article() {
   const [article, setArticle] = useState(null);
@@ -77,6 +78,10 @@ export default function Article() {
   }
 
   return (
+    <>
+    <Head>
+        <title>Статья</title>
+    </Head>
     <Layout footerCut={true}>
       <main className={s.main}>
         <div className={s.articleHead}>
@@ -115,5 +120,6 @@ export default function Article() {
         <News newsName='Вам может быть интересно' />
       </main>
     </Layout>
-  );
+    </>
+  )
 }

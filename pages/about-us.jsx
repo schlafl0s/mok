@@ -8,11 +8,16 @@ import AboutUs from '@/components/blocks/AboutUs'
 import Layout from '@/components/Layout'
 import { useState } from 'react'
 import AppointmentPopup from '@/components/blocks/AppointmentPopup'
+import Head from 'next/head'
 
 export default function AboutUsPage () {
   const [popupOpen, setPopupOpen] = useState(false);
 
   return (
+    <>
+    <Head>
+        <title>О нас</title>
+    </Head>
     <Layout>
       <main className={s.main}>
           <AboutUs setPopupOpen={setPopupOpen} />
@@ -24,5 +29,6 @@ export default function AboutUsPage () {
           <AppointmentPopup popupOpen={popupOpen} setPopupOpen={setPopupOpen} />
       </main>
     </Layout>
+    </>
   )
 }

@@ -14,12 +14,17 @@ import Appointment from '@/components/blocks/Appointment'
 import News from '@/components/blocks/News'
 import Layout from '@/components/Layout'
 import AppointmentPopup from '@/components/blocks/AppointmentPopup'
+import Head from 'next/head'
 import { useState } from 'react'
 
 export default function Home() {
   const [popupOpen, setPopupOpen] = useState(false);
 
   return (
+    <>
+    <Head>
+      <title>Главная</title>
+    </Head>
     <Layout>
       <main className={s.main}>
         <Slider setPopupOpen={setPopupOpen} />
@@ -38,5 +43,7 @@ export default function Home() {
         <AppointmentPopup popupOpen={popupOpen} setPopupOpen={setPopupOpen} />
       </main>
     </Layout>
+    </>
+    
   )
 }

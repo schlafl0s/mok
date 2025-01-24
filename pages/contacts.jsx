@@ -3,9 +3,14 @@ import s from '/styles/Home.module.scss'
 import Appointment from '@/components/blocks/Appointment'
 import Layout from '@/components/Layout'
 import sf from '/styles/Footer.module.scss'
+import Head from 'next/head'
 
 export default function Contacts () {
   return (
+    <>
+    <Head>
+      <title>Контакты</title>
+    </Head>
     <Layout footerCut={true}>
         <main className={s.main}>
             <section className={`${sf.contacts} ${sf.contactsPadding}`}>
@@ -62,5 +67,6 @@ export default function Contacts () {
             <Appointment />
         </main>
     </Layout>
+    </>
   )
 }

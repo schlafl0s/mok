@@ -42,44 +42,45 @@ export default function Header ({setPopupOpen}) {
             <>
             <div className={`${s.phoneMenu} ${PhoneMenuOpen ? s.phoneMenuActive : ''}`}>
                 <nav className={sf.navLinks}>
-                        <h2 className={sf.linksHeader}>УСЛУГИ</h2>
-                        <Link href={'/'} className={sf.link}>Поликлиники, лаборатория</Link>
-                        <Link href={'/'} className={sf.link}>Госпитальный центр</Link>
-                        <Link href={'/'} className={sf.link}>Детский центр</Link>
-                        <Link href={'/'} className={sf.link}>Пластическая хирургия</Link>
-                        <Link href={'/'} className={sf.link}>Центр женского здоровья </Link>
-                        <Link href={'/'} className={sf.link}>Стоматология для взрослых и детей</Link>
-                        <Link href={'/'} className={sf.link}>Центр офтальмологии и хирургии</Link>
-                        <Link href={'/'} className={sf.link}>Центр косметологии</Link>
-                    </nav>
-                    <nav className={sf.navLinks}>
-                        <h2 className={sf.linksHeader}>ПАЦИЕНТАМ</h2>
-                        <Link href={'/about-us'} className={sf.link}>О клинике</Link>
-                        <Link href={'/doctors'} className={sf.link}>Врачи</Link>
-                        <Link href={'/reviews'} className={sf.link}>Отзывы</Link>
-                        <Link href={'/contacts'} className={sf.link}>Контакты</Link>
-                        <Link href={'/privacy-policy'} className={sf.link}>Политика конфиденциальности</Link>
-                        <Link href={'/user-agreement'} className={sf.link}>Пользовательское соглашение</Link>
-                    </nav>
-                    <nav className={sf.navLinks}>
-                        <h2 className={sf.linksHeader}>КОНТАКТЫ</h2>
-                        <span className={sf.contactsLinks}>
-                            Телефон: 
-                            <span className={sf.contactsLinksInfo}>+7 495 411 28 41</span>
-                        </span>
-                        <span className={sf.contactsLinks}>
-                            Электронная почта: 
-                            <span className={sf.contactsLinksInfo}>mok_klinik@gmail.com</span>
-                        </span>
-                        <span className={sf.contactsLinks}>
-                            График: 
-                            <span className={sf.contactsLinksInfo}>круглосуточно</span>
-                        </span>
-                        <span className={sf.contactsLinks}>
-                            Адрес:
-                            <span className={sf.contactsLinksInfo}>г. Москва, ул. Московская, 1</span>
-                        </span>
-                    </nav>
+                    <h2 className={sf.linksHeader}>УСЛУГИ</h2>
+                    <Link href={'/'} className={sf.link}>Поликлиники, лаборатория</Link>
+                    <Link href={'/'} className={sf.link}>Госпитальный центр</Link>
+                    <Link href={'/'} className={sf.link}>Детский центр</Link>
+                    <Link href={'/'} className={sf.link}>Пластическая хирургия</Link>
+                    <Link href={'/'} className={sf.link}>Центр женского здоровья </Link>
+                    <Link href={'/'} className={sf.link}>Стоматология для взрослых и детей</Link>
+                    <Link href={'/'} className={sf.link}>Центр офтальмологии и хирургии</Link>
+                    <Link href={'/'} className={sf.link}>Центр косметологии</Link>
+                </nav>
+                <nav className={sf.navLinks}>
+                    <h2 className={sf.linksHeader}>ПАЦИЕНТАМ</h2>
+                    <Link href={'/about-us'} className={sf.link}>О клинике</Link>
+                    <Link href={'/doctors'} className={sf.link}>Врачи</Link>
+                    <Link href={'/reviews'} className={sf.link}>Отзывы</Link>
+                    <Link href={'/contacts'} className={sf.link}>Контакты</Link>
+                    <Link href={'/privacy-policy'} className={sf.link}>Политика конфиденциальности</Link>
+                    <Link href={'/user-agreement'} className={sf.link}>Пользовательское соглашение</Link>
+                </nav>
+                <nav className={sf.navLinks}>
+                    <h2 className={sf.linksHeader}>КОНТАКТЫ</h2>
+                    <span className={sf.contactsLinks}>
+                        Телефон: 
+                        <span className={sf.contactsLinksInfo}>+7 495 411 28 41</span>
+                    </span>
+                    <span className={sf.contactsLinks}>
+                        Электронная почта: 
+                        <span className={sf.contactsLinksInfo}>mok_klinik@gmail.com</span>
+                    </span>
+                    <span className={sf.contactsLinks}>
+                        График: 
+                        <span className={sf.contactsLinksInfo}>круглосуточно</span>
+                    </span>
+                    <span className={sf.contactsLinks}>
+                        Адрес:
+                        <span className={sf.contactsLinksInfo}>г. Москва, ул. Московская, 1</span>
+                    </span>
+                </nav>
+                <button onClick={() => setPopupOpen(true)} className={`${s.button} ${s.buttonMat} ${s.btn7} ${s.btnMenu}`}>Записаться онлайн</button>
             </div>
             <div onClick={() => setPhoneMenuOpen(!PhoneMenuOpen)} className={`${s.blackBackground} ${PhoneMenuOpen ? s.blackBackgroundActive : ''}`}></div>
             </>

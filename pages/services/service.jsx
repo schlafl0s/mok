@@ -11,12 +11,17 @@ import Prices from '@/components/blocks/Prices'
 import License from '@/components/blocks/License'
 import Consultation from '@/components/blocks/Consultation'
 import AppointmentPopup from '@/components/blocks/AppointmentPopup'
+import Head from 'next/head'
 import { useState } from 'react'
 
 export default function ServicePage () {
     const [popupOpen, setPopupOpen] = useState(false);
 
     return (
+      <>
+      <Head>
+          <title>Детальное описание услуги</title>
+      </Head>
       <Layout>
         <main className={s.main}>
             <Service setPopupOpen={setPopupOpen} />
@@ -32,5 +37,6 @@ export default function ServicePage () {
             <AppointmentPopup popupOpen={popupOpen} setPopupOpen={setPopupOpen} />
         </main>
       </Layout>
+      </>
     )
 }

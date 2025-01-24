@@ -8,12 +8,17 @@ import News from '@/components/blocks/News'
 import SpecialService from '@/components/blocks/SpecialService'
 import Layout from '@/components/Layout'
 import { useState } from 'react'
+import Head from 'next/head'
 import AppointmentPopup from '@/components/blocks/AppointmentPopup'
 
 export default function Services () {
   const [popupOpen, setPopupOpen] = useState(false);
   
   return (
+    <>
+    <Head>
+        <title>Услуги</title>
+    </Head>
     <Layout>
       <main className={s.main}>
         <SpecialService setPopupOpen={setPopupOpen} />
@@ -26,5 +31,6 @@ export default function Services () {
         <AppointmentPopup popupOpen={popupOpen} setPopupOpen={setPopupOpen} />
       </main>
     </Layout>
+    </>
   )
 }
