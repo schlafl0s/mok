@@ -15,11 +15,7 @@ export default async function handler(req, res) {
         return res.status(400).json({ success: false, message: 'Все поля обязательны для заполнения' });
       }
   
-      const message = `
-        Новый запрос:
-        Имя: ${name}
-        Телефон: ${phone}
-      `;
+      const message = `Новый запрос:\nИмя: ${name}\nТелефон: ${phone}`;
   
       console.log('Message to send:', message);  // Логирование отправляемого сообщения
   
