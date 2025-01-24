@@ -50,22 +50,35 @@ export default function BigSpecialists ({ setPopupOpen }) {
     const [page, setPage] = useState(1);
     const [isChildDoctors, setIsChildDoctors] = useState(false);
     const [visibleLetters, setVisibleLetters] = useState(8);
+    const [selectedSpecialty, setSelectedSpecialty] = useState(null);
 
     const specialistsPerPage = 12;
 
     const currentDoctors = allDoctors
         .filter(doctor => doctor.isChild === isChildDoctors)
+        .filter(doctor => !selectedSpecialty || doctor.specialty === selectedSpecialty) // Фильтруем по выбранной специальности
         .slice(0, page * specialistsPerPage);
 
     const handleShowAllLetters = () => {
         setVisibleLetters(Object.keys(groupedSpecialties).length); // Показываем все буквы
     };
+
+    const handleSpecialtyClick = (specialty) => {
+        if (specialty === selectedSpecialty) {
+            setSelectedSpecialty(null); // Если выбранная специальность уже активна, сбрасываем фильтрацию
+        } else {
+            setSelectedSpecialty(specialty); // Иначе выбираем новую специальность
+        }
+    };
+
     const handleShowMore = () => {
         setPage(page + 1);
     };
 
-    const filteredDoctors = allDoctors.filter(doctor => doctor.isChild === isChildDoctors);
-
+    const filteredDoctors = allDoctors
+    .filter(doctor => doctor.isChild === isChildDoctors)  // фильтрация по типу врачей (детские или взрослые)
+    .filter(doctor => !selectedSpecialty || doctor.specialty === selectedSpecialty);
+    
     const hasMoreDoctors = filteredDoctors.length > currentDoctors.length;
 
     const groupedSpecialties = currentDoctors.reduce((acc, doctor) => {
@@ -114,7 +127,13 @@ export default function BigSpecialists ({ setPopupOpen }) {
                 <div className={s.letterLetter}>{letter}</div>
                 <div className={s.letterDoctors}>
                     {specialties && specialties.map((specialty, index) => (
-                        <span key={index} className={s.letterDoctor}>{specialty}</span>
+                        <span
+                        key={index}
+                        className={`${s.letterDoctor} ${specialty === selectedSpecialty ? s.selectedSpecialty : ''}`}
+                        onClick={() => handleSpecialtyClick(specialty)}
+                        >
+                            {specialty}
+                        </span>
                     ))}
                 </div>
             </div>

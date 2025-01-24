@@ -2094,6 +2094,14 @@ $color: white;
     font-weight: 400;
     line-height: 16px;
     text-align: left;
+    transition: 1s;
+    cursor: pointer;
+}
+
+.selectedSpecialty {
+    color: #391FCF;
+    transition: 1s;
+    font-weight: 800;
 }
 
 .moreButton {
