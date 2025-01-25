@@ -66,7 +66,7 @@ export default function Contacts ({ contactInfo }) {
                 <License />
                 <Appointment />
             </main>
-        </Layout>
+        </Layout >
         </>
     )
 }

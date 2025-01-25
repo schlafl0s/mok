@@ -2,12 +2,23 @@ import s from '../styles/Header.module.scss'
 import sf from '../styles/Footer.module.scss'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Header ({setPopupOpen}) {
     const [uslugiOpen, setUslugiOpen] = useState(false)
     const [timeoutId, setTimeoutId] = useState(null)
     const [PhoneMenuOpen, setPhoneMenuOpen] = useState(false)
+    const [contactInfo, setContactInfo] = useState('');
+    
+    useEffect(() => {
+        const fetchContactInfo = async () => {
+            const res = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages/16');
+            const data = await res.json();
+            setContactInfo(data.acf); // Сохраняем данные
+        };
+        
+        fetchContactInfo();
+    }, []);
 
     const handleMouseEnter = () => {
         if (timeoutId) {
@@ -65,11 +76,11 @@ export default function Header ({setPopupOpen}) {
                     <h2 className={sf.linksHeader}>КОНТАКТЫ</h2>
                     <span className={sf.contactsLinks}>
                         Телефон: 
-                        <span className={sf.contactsLinksInfo}>+7 495 411 28 41</span>
+                        <span className={sf.contactsLinksInfo}>{contactInfo.phone}</span>
                     </span>
                     <span className={sf.contactsLinks}>
                         Электронная почта: 
-                        <span className={sf.contactsLinksInfo}>mok_klinik@gmail.com</span>
+                        <span className={sf.contactsLinksInfo}>{contactInfo.email}</span>
                     </span>
                     <span className={sf.contactsLinks}>
                         График: 
@@ -77,7 +88,7 @@ export default function Header ({setPopupOpen}) {
                     </span>
                     <span className={sf.contactsLinks}>
                         Адрес:
-                        <span className={sf.contactsLinksInfo}>г. Москва, ул. Московская, 1</span>
+                        <span className={sf.contactsLinksInfo}>{contactInfo.address}</span>
                     </span>
                 </nav>
                 <button onClick={() => setPopupOpen(true)} className={`${s.button} ${s.buttonMat} ${s.btn7} ${s.btnMenu}`}>Записаться онлайн</button>
@@ -134,7 +145,7 @@ export default function Header ({setPopupOpen}) {
             </nav>
             <div className={s.phoneNumber}>
                 <span className={s.appointment}>Круглосуточная запись:</span>
-                <span className={s.number}>+7 495 411 28 41</span>
+                <span className={s.number}>{contactInfo.phone}</span>
             </div>
             <button onClick={() => setPopupOpen(true)} className={`${s.button} ${s.buttonMat} ${s.btn7}`}>Записаться онлайн</button>
         </header>
