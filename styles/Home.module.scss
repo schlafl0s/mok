@@ -39,7 +39,7 @@
 .aboutUsInfo {
     display: flex;
     flex-direction: column;
-    gap: 35px;
+    gap: 25px;
     padding: 40px 0px 62px 40px;
 }
 
@@ -47,6 +47,9 @@
     width: 650px;
     font-size: 60px;
     z-index: 4;
+}
+.slideHeaderFZ {
+    font-size: 42px;
 }
 
 .description {
@@ -2181,7 +2184,7 @@ $color: white;
         font-size: 56px;
     }
     .aboutUsInfo {
-        gap: 30px;
+        gap: 15px;
         padding: 45px 0px 50px 60px;
     }
     .serviceDirection {
@@ -2467,6 +2470,9 @@ $color: white;
     }
     .slideHeader {
         font-size: 32px;
+    }
+    .slideHeaderFZ {
+        font-size: 28px;
     }
     .des {
         font-size: 14px;
@@ -2791,6 +2797,10 @@ $color: white;
         line-height: 20px;
     }
     .appointmentInput {
+        padding: 5px 15px;
+        font-size: 12px;
+    }
+    .appointmentError {
         padding: 5px 15px;
         font-size: 12px;
     }
@@ -3306,7 +3316,7 @@ $color: white;
     }
     .appointmentPopup {
         width: 320px;
-        height: 385px;
+        height: 360px;
         padding: 15px 30px;
         gap: 10px
     }
