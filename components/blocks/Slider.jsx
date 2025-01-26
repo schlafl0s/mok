@@ -104,12 +104,10 @@ export default function Slider({ setPopupOpen, slideInfo }) {
   return (
     <section className={s.slider}>
       <div className={s.slides} style={{ transform: `translateX(${currentTransition}%)` }}>
-        {slidesData.length > 0 ? (
+        {slidesData.length > 0 && (
           slidesData.map((slide, index) => (
             <Slide key={slide.id} slide={slide} isActive={index === currentSlide} />
           ))
-        ) : (
-          <p>Нет доступных слайдов</p>  // Сообщение, если нет слайдов
         )}
       </div>
       <div className={s.slideCount}>
