@@ -17,7 +17,7 @@ import AppointmentPopup from '@/components/blocks/AppointmentPopup'
 import Head from 'next/head'
 import { useState } from 'react'
 
-export default function Home({ slideInfo }) {
+export default function Home({ slideInfo, saleInfo }) {
   const [popupOpen, setPopupOpen] = useState(false);
 
   return (
@@ -28,7 +28,7 @@ export default function Home({ slideInfo }) {
     <Layout>
       <main className={s.main}>
         <Slider setPopupOpen={setPopupOpen} slideInfo={slideInfo} />
-        <Sale />
+        <Sale saleInfo={saleInfo} />
         <Directions />
         <Specials setPopupOpen={setPopupOpen} />
         <Stats /> 
@@ -48,17 +48,18 @@ export default function Home({ slideInfo }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages/51');
+  const resSlide = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages/51');
+  const dataSlide = await resSlide.json();
+  const slideInfo = dataSlide.acf;
 
-  // Извлекаем данные из ответа
-  const data = await res.json();
+  const resSale = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages/160');
+  const dataSale = await resSale.json();
+  const saleInfo = dataSale.acf;
 
-  // Получаем ACF поля, если они есть
-  const slideInfo = data.acf
   return {
     props: {
-      pageData: data,
       slideInfo: slideInfo,
+      saleInfo: saleInfo,
     },
   };
 }

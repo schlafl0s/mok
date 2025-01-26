@@ -3025,6 +3025,7 @@ $color: white;
         margin: 80px 25px;
         width: 150px;
         height: 35px;
+        font-size: 10px;
     }
     .Header {
         font-size: 28px;
@@ -3371,6 +3372,12 @@ $color: white;
         width: 100%;
         padding: 20px 20px;
     }
+    .btn2 {
+        margin: 80px 20px;
+        width: 135px;
+        height: 30px;
+        font-size: 10px;
+    }
 }
 
 @media (max-width: 375px) {
@@ -3407,5 +3414,11 @@ $color: white;
         font-size: 10px;
         width: 150px;
         line-height: 18px;
+    }
+    .btn2 {
+        margin: 80px 20px;
+        width: 115px;
+        height: 30px;
+        font-size: 10px;
     }
 }
