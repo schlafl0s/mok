@@ -1,68 +1,102 @@
 import s from '/styles/Home.module.scss'
 import Image from 'next/image'
+import { useState, useEffect } from 'react'
 
-export default function Stats () {
-    return (
-        <section className={s.stats}>
-            <div className={s.statsBackground}></div>
-            <div className={s.statsContainer}>
-            <h1 className={s.Header}>Международная открытая клиника</h1>
-            <div className={s.statsCards}>
-                <div className={s.statsCard}>
-                    <Image
-                    className={s.statsImg}
-                    src={'/stats1.png'}
-                    width={80}
-                    height={80}
-                    />
-                    <div className={`${s.statsNumber} ${s.statsNumBlue}`}>60</div>
-                    <span className={s.statsText}>Медицинских специальностей</span>
-                </div>
-                <div className={s.statsCard}>
-                    <Image
-                    className={s.statsImg}
-                    src={'/stats2.png'}
-                    width={80}
-                    height={80}
-                    />
-                    <div className={`${s.statsNumber} ${s.statsNumYellow}`}>75</div>
-                    <span className={s.statsText}>Мест в стационаре госпиталя</span>
-                </div>
-                <div className={s.statsCard}>
-                    <Image
-                    className={s.statsImg}
-                    src={'/stats3.png'}
-                    width={80}
-                    height={80}
-                    />
-                    <span className={`${s.statsNumber} ${s.statsNumGreen}`}>100+</span>
-                    <span className={s.statsText}>Диагностических исследований</span>
-                </div>
-                <div className={s.statsCard}>
-                    <Image
-                    className={s.statsImg}
-                    src={'/stats4.png'}
-                    width={80}
-                    height={80}
-                    />
-                    <span className={`${s.statsNumber} ${s.statsNumBlue}`}>24/7</span>
-                    <span className={s.statsText}>Вызов «скорой помощи» круглосуточно</span>
-                </div>
+export default function Stats() {
+  const [statsData, setStatsData] = useState([]);
+  const [textsStats, setTextsStats] = useState({});
+  
+  // Функция для получения изображения по ID через API
+  const fetchImageUrlById = async (imageId) => {
+    try {
+      const res = await fetch(`http://mok-clinic.local/wp-json/wp/v2/media/${imageId}`);
+      const data = await res.json();
+      return data.source_url;  // Получаем полный URL изображения
+    } catch (error) {
+      console.error("Ошибка при получении изображения:", error);
+      return '';  // Если ошибка, возвращаем пустую строку
+    }
+  };
+
+  // Функция для загрузки данных с API
+  const fetchStatsData = async () => {
+    try {
+      const res = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages?slug=stats');  // Получаем страницу статистики
+      const data = await res.json();
+      const statsInfo = data[0].acf;  // Данные ACF из первого объекта
+
+      // Извлекаем данные для карточек
+      const cardsData = await Promise.all(
+        Object.values(statsInfo.cardsStats).map(async (card) => {
+          const imgSrc = card.cardImg ? await fetchImageUrlById(card.cardImg) : '';
+          return {
+            imgSrc,
+            number: card.cardNumber,
+            text: card.cardText,
+            numberClass: getNumberClass(card.cardNumberColor) // Подбираем класс по цвету
+          };
+        })
+      );
+
+      setStatsData(cardsData);
+      setTextsStats(statsInfo.textsStats); // Тексты для статистики
+
+    } catch (error) {
+      console.error("Ошибка при загрузке данных статистики:", error);
+    }
+  };
+
+  // Функция для выбора CSS-класса по цвету числа
+  const getNumberClass = (color) => {
+    switch (color) {
+      case '#391FCF':
+        return s.statsNumBlue;
+      case '#FEDF43':
+        return s.statsNumYellow;
+      case '#5BE146':
+        return s.statsNumGreen;
+      default:
+        return '';
+    }
+  };
+
+  useEffect(() => {
+    fetchStatsData();
+  }, []);
+
+  return (
+    <section className={s.stats}>
+      <div className={s.statsBackground}></div>
+      <div className={s.statsContainer}>
+        <h1 className={s.Header}>Международная открытая клиника</h1>
+        <div className={s.statsCards}>
+          {statsData.length > 0 && statsData.map((card, index) => (
+            <div key={index} className={s.statsCard}>
+              <Image
+                className={s.statsImg}
+                src={card.imgSrc}
+                width={80}
+                height={80}
+                alt={card.text}
+              />
+              <div className={`${s.statsNumber} ${card.numberClass}`}>{card.number}</div>
+              <span className={s.statsText}>{card.text}</span>
             </div>
-            <div className={s.statsInfoContainer}>
-                <div className={s.statsInfo1}>
-                    <p className={s.statsInfoText}>
-                        <strong>Каждая клиника поддерживает приоритеты компании</strong> – высокий уровень медицинского обслуживания, соблюдение международных стандартов оказания услуг, чуткое отношение к пациентам и забота о них
-                    </p>
-                </div>
-                <div className={s.statsInfo2}>
-                    <p className={s.statsInfoText}>
-                        <strong>Наши специалисты сочетают проверенные временем 
-                        и инновационные</strong> методики диагностики и лечения. Карты пациентов ведутся исключительно в электронном виде, действует система электронных очередей
-                    </p>
-                </div>
-            </div>
-            </div>
-        </section>
-    )
+          ))}
+        </div>
+        <div className={s.statsInfoContainer}>
+          <div className={s.statsInfo1}>
+            <p className={s.statsInfoText}>
+              {textsStats.leftText}
+            </p>
+          </div>
+          <div className={s.statsInfo2}>
+            <p className={s.statsInfoText}>
+              {textsStats.rightText}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }

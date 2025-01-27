@@ -17,9 +17,8 @@ import AppointmentPopup from '@/components/blocks/AppointmentPopup'
 import Head from 'next/head'
 import { useState } from 'react'
 
-export default function Home({ slideInfo, saleInfo, directionsInfo, specialsInfo }) {
+export default function Home({ slideInfo, saleInfo, directionsInfo, specialsInfo, statsInfo }) {
   const [popupOpen, setPopupOpen] = useState(false);
-  //
   return (
     <>
     <Head>
@@ -31,7 +30,7 @@ export default function Home({ slideInfo, saleInfo, directionsInfo, specialsInfo
         <Sale saleInfo={saleInfo} />
         <Directions directionsInfo={directionsInfo} />
         <Specials setPopupOpen={setPopupOpen} specialsInfo={specialsInfo} />
-        <Stats /> 
+        <Stats statsInfo={statsInfo} /> 
         <Specialists setPopupOpen={setPopupOpen} />
         <Technologies />
         <WhyUs />
@@ -60,9 +59,13 @@ export async function getStaticProps() {
   const dataDirections = await resDirections.json();
   const directionsInfo = dataDirections.acf;
 
-  const resSpecials = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages/174');
+  const resSpecials = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages/263');
   const dataSpecials = await resSpecials.json();
   const specialsInfo = dataSpecials.acf;
+  
+  const resStats = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages/370');
+  const dataStats = await resStats.json();
+  const statsInfo = dataStats.acf;
 
   return {
     props: {
@@ -70,6 +73,7 @@ export async function getStaticProps() {
       saleInfo: saleInfo,
       directionsInfo: directionsInfo,
       specialsInfo: specialsInfo,
+      statsInfo: statsInfo
     },
   };
 }
