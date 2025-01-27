@@ -1,6 +1,6 @@
 import s from '/styles/Home.module.scss'
 import Image from 'next/image'
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 
 export default function Technologies({ technologiesInfo }) {
   const fetchImageUrlById = async (imageId) => {
@@ -36,10 +36,9 @@ export default function Technologies({ technologiesInfo }) {
     <section className={s.technologies}>
       <h1 className={s.Header}>Технологии и оборудование</h1>
       <div className={s.technologiesContainer}>
-        <div className={s.technologiesMiniContainer}>
-          {/* Первая половина карточек */}
-          {technologies.slice(0, 2).map((technology, index) => (
-            <div key={index} className={s.technology}>
+        {technologies.length > 0 && technologies.map((technology, index) => (
+          <div key={index} className={s.technologiesMiniContainer}>
+            <div className={s.technology}>
               <Image
                 className={s.technologyImg}
                 src={technology.imgUrl || '/default-image.png'} // Если нет изображения, показываем дефолтное
@@ -56,31 +55,8 @@ export default function Technologies({ technologiesInfo }) {
                 </ul>
               </div>
             </div>
-          ))}
-        </div>
-
-        <div className={s.technologiesMiniContainer}>
-          {/* Вторая половина карточек */}
-          {technologies.slice(2, 4).map((technology, index) => (
-            <div key={index} className={s.technology}>
-              <Image
-                className={s.technologyImg}
-                src={technology.imgUrl || '/default-image.png'} // Если нет изображения, показываем дефолтное
-                width={1000}
-                height={1000}
-                alt={technology.header}
-              />
-              <div className={s.technologyInfo}>
-                <h2 className={s.technologyName}>{technology.header}</h2>
-                <ul className={s.technologyText}>
-                  {Object.values(technology.Options).map((option, idx) => (
-                    option && <li key={idx}>{option}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </section>
   );

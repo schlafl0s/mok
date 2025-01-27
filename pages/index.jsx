@@ -17,7 +17,7 @@ import AppointmentPopup from '@/components/blocks/AppointmentPopup'
 import Head from 'next/head'
 import { useState } from 'react'
 
-export default function Home({ slideInfo, saleInfo, directionsInfo, specialsInfo, statsInfo }) {
+export default function Home({ slideInfo, saleInfo, directionsInfo, specialsInfo, statsInfo, technologiesInfo }) {
   const [popupOpen, setPopupOpen] = useState(false);
   return (
     <>
@@ -32,7 +32,7 @@ export default function Home({ slideInfo, saleInfo, directionsInfo, specialsInfo
         <Specials setPopupOpen={setPopupOpen} specialsInfo={specialsInfo} />
         <Stats statsInfo={statsInfo} /> 
         <Specialists setPopupOpen={setPopupOpen} />
-        <Technologies />
+        <Technologies technologiesInfo={technologiesInfo} />
         <WhyUs />
         <Trust />
         <Reviews />
@@ -67,13 +67,18 @@ export async function getStaticProps() {
   const dataStats = await resStats.json();
   const statsInfo = dataStats.acf;
 
+  const resTechnologies = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages/409');
+  const dataTechnologies = await resTechnologies.json();
+  const technologiesInfo = dataTechnologies.acf;
+
   return {
     props: {
       slideInfo: slideInfo,
       saleInfo: saleInfo,
       directionsInfo: directionsInfo,
       specialsInfo: specialsInfo,
-      statsInfo: statsInfo
+      statsInfo: statsInfo,
+      technologiesInfo: technologiesInfo,
     },
   };
 }
