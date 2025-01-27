@@ -75,6 +75,10 @@ export async function getStaticProps() {
   const dataWhyUs = await resWhyUs.json();
   const whyUsInfo = dataWhyUs.acf;
 
+  const resTrust = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages/506');
+  const dataTrust = await resTrust.json();
+  const trustInfo = dataTrust.acf;
+
   return {
     props: {
       slideInfo: slideInfo,
@@ -84,6 +88,7 @@ export async function getStaticProps() {
       statsInfo: statsInfo,
       technologiesInfo: technologiesInfo,
       whyUsInfo: whyUsInfo,
+      trustInfo: trustInfo,
     },
   };
 }
