@@ -33,7 +33,7 @@ export default function Stats() {
             imgSrc,
             number: card.cardNumber,
             text: card.cardText,
-            numberClass: getNumberClass(card.cardNumberColor) // Подбираем класс по цвету
+            numberColor: card.cardNumberColor // Храним цвет, который передается с сервера
           };
         })
       );
@@ -43,20 +43,6 @@ export default function Stats() {
 
     } catch (error) {
       console.error("Ошибка при загрузке данных статистики:", error);
-    }
-  };
-
-  // Функция для выбора CSS-класса по цвету числа
-  const getNumberClass = (color) => {
-    switch (color) {
-      case '#391FCF':
-        return s.statsNumBlue;
-      case '#FEDF43':
-        return s.statsNumYellow;
-      case '#5BE146':
-        return s.statsNumGreen;
-      default:
-        return '';
     }
   };
 
@@ -79,7 +65,12 @@ export default function Stats() {
                 height={80}
                 alt={card.text}
               />
-              <div className={`${s.statsNumber} ${card.numberClass}`}>{card.number}</div>
+              <div 
+                className={s.statsNumber} 
+                style={{ color: card.numberColor }}  // Применяем цвет напрямую через стиль
+              >
+                {card.number}
+              </div>
               <span className={s.statsText}>{card.text}</span>
             </div>
           ))}
