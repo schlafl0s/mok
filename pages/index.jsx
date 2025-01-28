@@ -17,7 +17,7 @@ import AppointmentPopup from '@/components/blocks/AppointmentPopup'
 import Head from 'next/head'
 import { useState } from 'react'
 
-export default function Home({ slideInfo, saleInfo, directionsInfo, specialsInfo, statsInfo, technologiesInfo, whyUsInfo }) {
+export default function Home({ slideInfo, saleInfo, directionsInfo, specialsInfo, statsInfo, technologiesInfo, whyUsInfo, specialistsInfo }) {
   const [popupOpen, setPopupOpen] = useState(false);
   return (
     <>
@@ -31,7 +31,7 @@ export default function Home({ slideInfo, saleInfo, directionsInfo, specialsInfo
         <Directions directionsInfo={directionsInfo} />
         <Specials setPopupOpen={setPopupOpen} specialsInfo={specialsInfo} />
         <Stats statsInfo={statsInfo} /> 
-        <Specialists setPopupOpen={setPopupOpen} />
+        <Specialists setPopupOpen={setPopupOpen} specialistsInfo={specialistsInfo} />
         <Technologies technologiesInfo={technologiesInfo} />
         <WhyUs whyUsInfo={whyUsInfo} />
         <Trust />
@@ -78,6 +78,18 @@ export async function getStaticProps() {
   const resTrust = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages/506');
   const dataTrust = await resTrust.json();
   const trustInfo = dataTrust.acf;
+  
+  const resSpecialists = await fetch('http://mok-clinic.local/wp-json/wp/v2/posts?categories=4')
+  const dataSpecialists = await resSpecialists.json()
+
+  const specialistsInfo = dataSpecialists.map(item => ({
+    experience: item.acf.doctor.experience,
+    name: item.acf.doctor.name,
+    specialty: item.acf.doctor.specialty,
+    option1: item.acf.doctor.description1,
+    option2: item.acf.doctor.description2,
+    imgId: item.acf.doctor.img,  // Здесь храним только ID изображения
+  }))
 
   return {
     props: {
@@ -89,6 +101,7 @@ export async function getStaticProps() {
       technologiesInfo: technologiesInfo,
       whyUsInfo: whyUsInfo,
       trustInfo: trustInfo,
+      specialistsInfo: specialistsInfo,
     },
   };
 }
