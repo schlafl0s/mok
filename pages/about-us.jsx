@@ -10,7 +10,7 @@ import { useState } from 'react'
 import AppointmentPopup from '@/components/blocks/AppointmentPopup'
 import Head from 'next/head'
 
-export default function AboutUsPage () {
+export default function AboutUsPage ({ statsInfo, whyUsInfo, specialistsInfo, aboutInfo }) {
   const [popupOpen, setPopupOpen] = useState(false);
 
   return (
@@ -20,10 +20,10 @@ export default function AboutUsPage () {
     </Head>
     <Layout>
       <main className={s.main}>
-          <AboutUs setPopupOpen={setPopupOpen} />
-          <StatsMini />
-          <Specialists setPopupOpen={setPopupOpen} />
-          <WhyUs />
+          <AboutUs setPopupOpen={setPopupOpen} aboutInfo={aboutInfo} />
+          <StatsMini statsInfo={statsInfo} />
+          <Specialists setPopupOpen={setPopupOpen} specialistsInfo={specialistsInfo} />
+          <WhyUs whyUsInfo={whyUsInfo} />
           <Appointment />
           <License />
           <AppointmentPopup popupOpen={popupOpen} setPopupOpen={setPopupOpen} />
@@ -31,4 +31,38 @@ export default function AboutUsPage () {
     </Layout>
     </>
   )
+}
+
+export async function getStaticProps() {
+  const resAbout = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages/665');
+  const dataAbout = await resAbout.json();
+  const aboutInfo = dataAbout.acf;
+
+  const resStats = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages/370');
+  const dataStats = await resStats.json();
+  const statsInfo = dataStats.acf;
+  
+  const resWhyUs = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages/462');
+  const dataWhyUs = await resWhyUs.json();
+  const whyUsInfo = dataWhyUs.acf;
+  
+  const resSpecialists = await fetch('http://mok-clinic.local/wp-json/wp/v2/posts?categories=4&per_page=100')
+  const dataSpecialists = await resSpecialists.json()
+  const specialistsInfo = dataSpecialists.map(item => ({
+    experience: item.acf.doctor.experience,
+    name: item.acf.doctor.name,
+    specialty: item.acf.doctor.specialty,
+    option1: item.acf.doctor.description1,
+    option2: item.acf.doctor.description2,
+    imgId: item.acf.doctor.img,  // Здесь храним только ID изображения
+  }))
+
+  return {
+    props: {
+      statsInfo: statsInfo,
+      whyUsInfo: whyUsInfo,
+      specialistsInfo: specialistsInfo,
+      aboutInfo: aboutInfo,
+    },
+  };
 }
