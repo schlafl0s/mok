@@ -55,14 +55,3 @@ export default function AboutUs({ setPopupOpen, aboutInfo }) {
     </section>
   );
 }
-
-export async function getStaticProps() {
-  const resAbout = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages/665');
-  const dataAbout = await resAbout.json();
-  const aboutInfo = dataAbout.acf;
-  return {
-    props: {
-      aboutInfo: aboutInfo,
-    },
-  };
-}

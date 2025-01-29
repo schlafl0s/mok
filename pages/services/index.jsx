@@ -11,7 +11,7 @@ import { useState } from 'react'
 import Head from 'next/head'
 import AppointmentPopup from '@/components/blocks/AppointmentPopup'
 
-export default function Services () {
+export default function Services ({ reviewsInfo, specialsInfo, directionsInfo, specialServiceInfo }) {
   const [popupOpen, setPopupOpen] = useState(false);
   
   return (
@@ -21,10 +21,10 @@ export default function Services () {
     </Head>
     <Layout>
       <main className={s.main}>
-        <SpecialService setPopupOpen={setPopupOpen} />
-        <Directions />
-        <Specials setPopupOpen={setPopupOpen} />
-        <Reviews />
+        <SpecialService setPopupOpen={setPopupOpen} specialServiceInfo={specialServiceInfo} />
+        <Directions directionsInfo={directionsInfo} />
+        <Specials setPopupOpen={setPopupOpen} specialsInfo={specialsInfo} />
+        <Reviews reviewsInfo={reviewsInfo} />
         <License />
         <Appointment />
         <News />
@@ -33,4 +33,36 @@ export default function Services () {
     </Layout>
     </>
   )
+}
+
+export async function getStaticProps() {
+  const resSpecialService = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages/682');
+  const dataSpecialService = await resSpecialService.json();
+  const specialServiceInfo = dataSpecialService.acf;
+
+  const resDirections = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages/174');
+  const dataDirections = await resDirections.json();
+  const directionsInfo = dataDirections.acf;
+
+  const resSpecials = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages/263');
+  const dataSpecials = await resSpecials.json();
+  const specialsInfo = dataSpecials.acf;
+
+  const resReviews = await fetch('http://mok-clinic.local/wp-json/wp/v2/posts?categories=5&per_page=100')
+  const dataReviews = await resReviews.json()
+  const reviewsInfo = dataReviews.map(item => ({
+    text: item.acf.review.text,
+    author: item.acf.review.author,
+    doctor: item.acf.review.doctor,
+    stars: item.acf.review.stars,
+  }))
+
+  return {
+    props: {
+      specialServiceInfo: specialServiceInfo,
+      directionsInfo: directionsInfo,
+      specialsInfo: specialsInfo,
+      reviewsInfo: reviewsInfo,
+    },
+  };
 }
