@@ -17,7 +17,7 @@ import AppointmentPopup from '@/components/blocks/AppointmentPopup'
 import Head from 'next/head'
 import { useState } from 'react'
 
-export default function Home({ slideInfo, saleInfo, directionsInfo, specialsInfo, statsInfo, technologiesInfo, whyUsInfo, specialistsInfo }) {
+export default function Home({ slideInfo, saleInfo, directionsInfo, specialsInfo, statsInfo, technologiesInfo, whyUsInfo, specialistsInfo, reviewsInfo }) {
   const [popupOpen, setPopupOpen] = useState(false);
   return (
     <>
@@ -35,7 +35,7 @@ export default function Home({ slideInfo, saleInfo, directionsInfo, specialsInfo
         <Technologies technologiesInfo={technologiesInfo} />
         <WhyUs whyUsInfo={whyUsInfo} />
         <Trust />
-        <Reviews />
+        <Reviews reviewsInfo={reviewsInfo} />
         <License />
         <Appointment />
         <News />
@@ -81,7 +81,6 @@ export async function getStaticProps() {
   
   const resSpecialists = await fetch('http://mok-clinic.local/wp-json/wp/v2/posts?categories=4')
   const dataSpecialists = await resSpecialists.json()
-
   const specialistsInfo = dataSpecialists.map(item => ({
     experience: item.acf.doctor.experience,
     name: item.acf.doctor.name,
@@ -89,6 +88,15 @@ export async function getStaticProps() {
     option1: item.acf.doctor.description1,
     option2: item.acf.doctor.description2,
     imgId: item.acf.doctor.img,  // Здесь храним только ID изображения
+  }))
+
+  const resReviews = await fetch('http://mok-clinic.local/wp-json/wp/v2/posts?categories=5')
+  const dataReviews = await resReviews.json()
+  const reviewsInfo = dataReviews.map(item => ({
+    text: item.acf.review.text,
+    author: item.acf.review.author,
+    doctor: item.acf.review.doctor,
+    stars: item.acf.review.stars,
   }))
 
   return {
@@ -102,6 +110,7 @@ export async function getStaticProps() {
       whyUsInfo: whyUsInfo,
       trustInfo: trustInfo,
       specialistsInfo: specialistsInfo,
+      reviewsInfo: reviewsInfo,
     },
   };
 }
