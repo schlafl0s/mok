@@ -8,7 +8,7 @@ import { useState } from 'react'
 import AppointmentPopup from '@/components/blocks/AppointmentPopup'
 import Head from 'next/head'
 
-export default function AboutUsPage () {
+export default function AboutUsPage ({ reviewsInfo, specialistsInfo }) {
   const [popupOpen, setPopupOpen] = useState(false);
   
   return (
@@ -18,8 +18,8 @@ export default function AboutUsPage () {
     </Head>
     <Layout>
       <main className={s.main}>
-            <BigSpecialists setPopupOpen={setPopupOpen} />
-            <Reviews />
+            <BigSpecialists setPopupOpen={setPopupOpen} specialistsInfo={specialistsInfo} />
+            <Reviews reviewsInfo={reviewsInfo} />
             <Appointment />
             <License />
             <AppointmentPopup popupOpen={popupOpen} setPopupOpen={setPopupOpen} />
@@ -27,4 +27,45 @@ export default function AboutUsPage () {
     </Layout>
     </>
   )
+}
+
+export async function getStaticProps() {
+  const resSpecialists = await fetch('http://mok-clinic.local/wp-json/wp/v2/posts?categories=4&per_page=100');
+  const dataSpecialists = await resSpecialists.json();
+
+  const specialistsInfo = await Promise.all(dataSpecialists.map(async (item) => {
+    // Получаем данные врача
+    const specialist = {
+      experience: item.acf.doctor.experience,
+      name: item.acf.doctor.name,
+      specialty: item.acf.doctor.specialty,
+      option1: item.acf.doctor.description1,
+      option2: item.acf.doctor.description2,
+      imgId: item.acf.doctor.img,  // ID изображения
+      isChild: item.acf.doctor.isChild,
+    };
+
+    // Получаем изображение для врача по его imgId
+    const imgResponse = await fetch(`http://mok-clinic.local/wp-json/wp/v2/media/${specialist.imgId}`);
+    const imgData = await imgResponse.json();
+    specialist.img = imgData.source_url;  // URL изображения
+
+    return specialist;
+  }));
+
+  const resReviews = await fetch('http://mok-clinic.local/wp-json/wp/v2/posts?categories=5')
+  const dataReviews = await resReviews.json()
+  const reviewsInfo = dataReviews.map(item => ({
+    text: item.acf.review.text,
+    author: item.acf.review.author,
+    doctor: item.acf.review.doctor,
+    stars: item.acf.review.stars,
+  }))
+
+  return {
+    props: {
+      specialistsInfo: specialistsInfo,
+      reviewsInfo: reviewsInfo,
+    },
+  };
 }
