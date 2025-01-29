@@ -53,7 +53,7 @@ export async function getStaticProps() {
     return specialist;
   }));
 
-  const resReviews = await fetch('http://mok-clinic.local/wp-json/wp/v2/posts?categories=5')
+  const resReviews = await fetch('http://mok-clinic.local/wp-json/wp/v2/posts?categories=5&per_page=100')
   const dataReviews = await resReviews.json()
   const reviewsInfo = dataReviews.map(item => ({
     text: item.acf.review.text,

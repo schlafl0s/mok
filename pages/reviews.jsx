@@ -6,7 +6,7 @@ import News from '@/components/blocks/News'
 import Layout from '@/components/Layout'
 import Head from 'next/head'
 
-export default function AboutUsPage () {
+export default function AboutUsPage ({ reviewsInfo }) {
   return (
     <>
     <Head>
@@ -14,7 +14,7 @@ export default function AboutUsPage () {
     </Head>
     <Layout>
       <main className={s.main}>
-            <BigReviews />
+            <BigReviews reviewsInfo={reviewsInfo} />
             <License />
             <Appointment />
             <News />
@@ -22,4 +22,21 @@ export default function AboutUsPage () {
     </Layout>
     </>
   )
+}
+
+export async function getStaticProps() {
+  const resReviews = await fetch('http://mok-clinic.local/wp-json/wp/v2/posts?categories=5&per_page=100')
+  const dataReviews = await resReviews.json()
+  const reviewsInfo = dataReviews.map(item => ({
+    text: item.acf.review.text,
+    author: item.acf.review.author,
+    doctor: item.acf.review.doctor,
+    stars: item.acf.review.stars,
+  }))
+
+  return {
+    props: {
+      reviewsInfo: reviewsInfo,
+    },
+  };
 }

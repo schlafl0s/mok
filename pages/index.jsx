@@ -79,7 +79,7 @@ export async function getStaticProps() {
   const dataTrust = await resTrust.json();
   const trustInfo = dataTrust.acf;
   
-  const resSpecialists = await fetch('http://mok-clinic.local/wp-json/wp/v2/posts?categories=4')
+  const resSpecialists = await fetch('http://mok-clinic.local/wp-json/wp/v2/posts?categories=4&per_page=100')
   const dataSpecialists = await resSpecialists.json()
   const specialistsInfo = dataSpecialists.map(item => ({
     experience: item.acf.doctor.experience,
@@ -90,7 +90,7 @@ export async function getStaticProps() {
     imgId: item.acf.doctor.img,  // Здесь храним только ID изображения
   }))
 
-  const resReviews = await fetch('http://mok-clinic.local/wp-json/wp/v2/posts?categories=5')
+  const resReviews = await fetch('http://mok-clinic.local/wp-json/wp/v2/posts?categories=5&per_page=100')
   const dataReviews = await resReviews.json()
   const reviewsInfo = dataReviews.map(item => ({
     text: item.acf.review.text,
