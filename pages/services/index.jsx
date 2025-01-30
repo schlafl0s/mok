@@ -11,7 +11,7 @@ import { useState } from 'react'
 import Head from 'next/head'
 import AppointmentPopup from '@/components/blocks/AppointmentPopup'
 
-export default function Services ({ reviewsInfo, specialsInfo, directionsInfo, specialServiceInfo }) {
+export default function Services ({ reviewsInfo, specialsInfo, directionsInfo, specialServiceInfo, articlesInfo }) {
   const [popupOpen, setPopupOpen] = useState(false);
   
   return (
@@ -27,7 +27,7 @@ export default function Services ({ reviewsInfo, specialsInfo, directionsInfo, s
         <Reviews reviewsInfo={reviewsInfo} />
         <License />
         <Appointment />
-        <News />
+        <News articlesInfo={articlesInfo} />
         <AppointmentPopup popupOpen={popupOpen} setPopupOpen={setPopupOpen} />
       </main>
     </Layout>
@@ -57,12 +57,26 @@ export async function getStaticProps() {
     stars: item.acf.review.stars,
   }))
 
+  const res = await fetch('http://mok-clinic.local/wp-json/wp/v2/posts?categories=6&per_page=100');
+  const posts = await res.json();
+
+  const articlesInfo = posts.map((post) => {
+    const article = post.acf?.article?.miniArticle || {};
+    return {
+      id: post.id,
+      miniHeader: article.miniHeader,
+      miniDate: article.miniData,
+      miniImg: article.miniImg,
+    };
+  });
+
   return {
     props: {
       specialServiceInfo: specialServiceInfo,
       directionsInfo: directionsInfo,
       specialsInfo: specialsInfo,
       reviewsInfo: reviewsInfo,
+      articlesInfo: articlesInfo,
     },
   };
 }

@@ -5,121 +5,135 @@ import Image from 'next/image';
 import News from '@/components/blocks/News';
 import Head from 'next/head';
 
-export default function Article() {
-  const [article, setArticle] = useState(null);
+export default function Article({ articlesInfo, articleData }) {
+    const { header, date, content } = articleData;
+    const [images, setImages] = useState({});
+    const [formattedContent, setFormattedContent] = useState([]);
 
-  // Функция для имитации получения данных
-  const fetchData = async () => {
-    // Пример данных статьи
-    const data = {
-      date: "2025-01-18", // Дата публикации
-      title: "Российские ученые ищут действенные способы лечения от рака", // Название статьи
-      content: [
-        {
-            type: "image",
-            src: "/underHeaderBackground.png"
-          },
-        {
-          type: "header",
-          content: "Осенью 2024 года в лондонском издательстве «Эльзевир» увидела свет монография, написанная международным коллективом авторов под общей редакцией доктора наук А.А. Буздина. "
-        },
-        {
-            type: "text",
-            content: "Осенью 2024 года в лондонском издательстве «Эльзевир» увидела свет монография, написанная международным коллективом авторов под общей редакцией доктора наук А.А. Буздина. Книга посвящена анализу данных, собранных в результате молекулярно-генетического тестирования опухолевых клеток."
-        },
-        {
-            type: "text",
-            content: "В работе над монографией принял участие руководитель Онкоцентра «СМ-Клиника», врач-онколог, гематолог, радиотерапевт высшей категории, профессор, д.м.н., Отличник здравоохранения РФ Александр Павлович Серяков, активно занимающийся исследованием широких возможностей молекулярно-генетического тестирования опухолевых клеток. А.П. Серяков стал одним из авторов главы, посвященной оценке алгоритма индивидуального типирования чувствительности онкопрепаратов, основанного на экспрессии генов и путей их активации в опухолевой ткани. Клиническая эффективность подхода ранее была отмечена в различных исследованиях."
-        },
-        {
-            type: "text",
-            content: "Следует отметить, что Онкологический Центр «СМ-Клиника» на протяжении нескольких лет тесно сотрудничает с лабораторной платформой «Онкобокс», возможности которой позволяют подбирать индивидуальное лечение для пациентов – в частности, таргетную терапию и иммунотерапию, «прицельно» воздействующие на опухоль. Использование этих видов терапии дает высокие результаты лечения онкобольных с различными злокачественными новообразованиями, включая редкие – такие, например, как мезотелиома брюшины."
-        },
-        {
-            type: "text",
-            content: "Специалисты «СМ-Клиника» вместе с сотрудниками платформы «Онкобокс» продолжают научную работу, результатами которой становятся статьи в ведущих периодических научных изданиях и отдельные монографии."
-        },
-        {
-            type: "header",
-            content: "Осенью 2024 года в лондонском издательстве «Эльзевир» увидела свет монография, написанная международным коллективом авторов под общей редакцией доктора наук А.А. Буздина. "
-        },
-        {
-            type: "image",
-            src: "/underHeaderBackground.png"
-        },
-        {
-            type: "text",
-            content: "Осенью 2024 года в лондонском издательстве «Эльзевир» увидела свет монография, написанная международным коллективом авторов под общей редакцией доктора наук А.А. Буздина. Книга посвящена анализу данных, собранных в результате молекулярно-генетического тестирования опухолевых клеток."
-        },
-        {
-            type: "text",
-            content: "В работе над монографией принял участие руководитель Онкоцентра «СМ-Клиника», врач-онколог, гематолог, радиотерапевт высшей категории, профессор, д.м.н., Отличник здравоохранения РФ Александр Павлович Серяков, активно занимающийся исследованием широких возможностей молекулярно-генетического тестирования опухолевых клеток. А.П. Серяков стал одним из авторов главы, посвященной оценке алгоритма индивидуального типирования чувствительности онкопрепаратов, основанного на экспрессии генов и путей их активации в опухолевой ткани. Клиническая эффективность подхода ранее была отмечена в различных исследованиях."
-        },
-        {
-            type: "text",
-            content: "Следует отметить, что Онкологический Центр «СМ-Клиника» на протяжении нескольких лет тесно сотрудничает с лабораторной платформой «Онкобокс», возможности которой позволяют подбирать индивидуальное лечение для пациентов – в частности, таргетную терапию и иммунотерапию, «прицельно» воздействующие на опухоль. Использование этих видов терапии дает высокие результаты лечения онкобольных с различными злокачественными новообразованиями, включая редкие – такие, например, как мезотелиома брюшины."
-        },
-        {
-            type: "text",
-            content: "Специалисты «СМ-Клиника» вместе с сотрудниками платформы «Онкобокс» продолжают научную работу, результатами которой становятся статьи в ведущих периодических научных изданиях и отдельные монографии."
-        },
-      ]
+    // Запрос картинок для новостей
+    const fetchImageUrl = async (imageId) => {
+        try {
+            const res = await fetch(`http://mok-clinic.local/wp-json/wp/v2/media/${imageId}`);
+            const data = await res.json();
+            return data.source_url;
+        } catch (error) {
+            console.error("Error fetching image URL:", error);
+            return '';
+        }
     };
 
-    setArticle(data);
-  };
+    useEffect(() => {
+        // Обработка контента
+        const formatContent = () => {
+            const formatted = Object.values(content).map(item => {
+                if (item.text) {
+                    const texts = item.text.split('<br />').map(text => text.trim()).filter(Boolean);
+                    return {
+                        ...item,
+                        formattedText: texts,
+                    };
+                }
+                return item;
+            }).filter(Boolean);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+            setFormattedContent(formatted);
+        };
 
-  if (!article) {
-    return null;
-  }
+        if (content) {
+            formatContent();
+        }
 
-  return (
-    <>
-    <Head>
-        <title>Статья</title>
-    </Head>
-    <Layout footerCut={true}>
-      <main className={s.main}>
-        <div className={s.articleHead}>
-          <h1 className={s.articleTitle}>{article.title}</h1>
-          <p className={s.articleDate}>{article.date}</p>
-        </div>
-
-        {/* Контент статьи */}
-        <div className={s.articleDataContainer}>
-          {article.content.map((block, index) => {
-            switch (block.type) {
-              case "header":
-                return (
-                  <h2 key={index} className={s.articleHeader}>
-                    {block.content}
-                  </h2>
-                );
-              case "text":
-                return (
-                  <p key={index} className={s.articleText}>
-                    {block.content}
-                  </p>
-                );
-              case "image":
-                return (
-                    <Image
-                    className={s.articleImage}
-                    src={block.src}
-                    width={2000}
-                    height={2000}
-                    />
-                );
+        // Запросить картинки для всех блоков контента
+        const fetchAllImages = async () => {
+            const imageUrls = {};
+            if (content && typeof content === 'object') {
+                for (const blockKey in content) {
+                    const block = content[blockKey];
+                    if (block.img) {
+                        const imageUrl = await fetchImageUrl(block.img);
+                        imageUrls[block.img] = imageUrl;
+                    }
+                }
             }
-          })}
-        </div>
-        <News newsName='Вам может быть интересно' />
-      </main>
-    </Layout>
-    </>
-  )
+            setImages(imageUrls);
+        };
+
+        if (content) {
+            fetchAllImages();
+        }
+    }, [content]);
+
+    return (
+        <>
+            <Head>
+                <title>{header}</title>
+            </Head>
+            <Layout footerCut={true}>
+                <main className={s.main}>
+                    <div className={s.articleHead}>
+                        <h1 className={s.articleTitle}>{header}</h1>
+                        <p className={s.articleDate}>{date}</p>
+                    </div>
+
+                    {/* Контент статьи */}
+                    <div className={s.articleDataContainer}>
+                        {formattedContent && formattedContent.map((block, index) => {
+                            if (!block || (!block.header2 && !block.formattedText && !block.img)) return null;
+
+                            return (
+                                <div key={index} className={s.articleBlock}>
+                                    {block.header2 && <h2 className={s.articleHeader}>{block.header2}</h2>}
+                                    {block.formattedText && block.formattedText.map((text, idx) => (
+                                        <p key={idx} className={s.articleText}>{text}</p>
+                                    ))}
+                                    {block.img && images[block.img] && (
+                                        <Image
+                                            className={s.articleImage}
+                                            src={images[block.img]}
+                                            width={1200}
+                                            height={800}
+                                            alt={block.header2 || 'Article Image'}
+                                        />
+                                    )}
+                                </div>
+                            );
+                        })}
+                    </div>
+                    <News newsName="Вам может быть интересно" articlesInfo={articlesInfo} />
+                </main>
+            </Layout>
+        </>
+    );
+}
+
+export async function getServerSideProps({ params }) {
+    const res = await fetch('http://mok-clinic.local/wp-json/wp/v2/posts?categories=6&per_page=100');
+    const posts = await res.json();
+    const { id } = params;
+    const resOne = await fetch(`http://mok-clinic.local/wp-json/wp/v2/posts/${id}`);
+    const post = await resOne.json();
+
+    const articleData = {
+        id: post.id,
+        header: post.acf?.article?.articlePage?.header || '',
+        date: post.acf?.article?.articlePage?.date || '',
+        content: post.acf?.article?.articlePage?.content || {},
+    };
+
+    const articlesInfo = posts.map((post) => {
+        const article = post.acf?.article?.miniArticle || {};
+        return {
+            id: post.id,
+            miniHeader: article.miniHeader,
+            miniDate: article.miniData,
+            miniImg: article.miniImg,
+        };
+    });
+
+    return {
+        props: {
+            articlesInfo,
+            articleData,
+        },
+    };
 }
