@@ -302,6 +302,7 @@ $color: white;
 .direction {
     width: calc(25% - 15px);
     height: 347px;
+    box-sizing: border-box;
     background: #F3F3FB;
     display: flex;
     gap: 20px;
@@ -1316,11 +1317,12 @@ $color: white;
 
 .newsArticle {
     height: 448px;
-    width: 100%;
+    width: 33%;
     display: flex;
     flex-direction: column;
     gap: 20px;
     padding: 33px;
+    box-sizing: border-box;
     background: #F3F3FB;
     cursor: pointer;
 }
@@ -3216,6 +3218,9 @@ $color: white;
     }
     .btn5 {
         height: 55px;
+    }
+    .newsArticle {
+        width: 100%;
     }
     .newsArticleImg {
         height: 150px;

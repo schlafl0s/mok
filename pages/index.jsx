@@ -17,7 +17,7 @@ import AppointmentPopup from '@/components/blocks/AppointmentPopup'
 import Head from 'next/head'
 import { useState } from 'react'
 
-export default function Home({ slideInfo, saleInfo, directionsInfo, specialsInfo, statsInfo, technologiesInfo, whyUsInfo, specialistsInfo, reviewsInfo }) {
+export default function Home({ slideInfo, saleInfo, directionsInfo, specialsInfo, statsInfo, technologiesInfo, whyUsInfo, specialistsInfo, reviewsInfo, articlesInfo }) {
   const [popupOpen, setPopupOpen] = useState(false);
   return (
     <>
@@ -38,7 +38,7 @@ export default function Home({ slideInfo, saleInfo, directionsInfo, specialsInfo
         <Reviews reviewsInfo={reviewsInfo} />
         <License />
         <Appointment />
-        <News />
+        <News articlesInfo={articlesInfo} />
         <AppointmentPopup popupOpen={popupOpen} setPopupOpen={setPopupOpen} />
       </main>
     </Layout>
@@ -47,6 +47,20 @@ export default function Home({ slideInfo, saleInfo, directionsInfo, specialsInfo
 }
 
 export async function getStaticProps() {
+  const res = await fetch('http://mok-clinic.local/wp-json/wp/v2/posts?categories=6&per_page=100');
+  const posts = await res.json();
+
+  // Обработка данных статей
+  const articlesInfo = posts.map((post) => {
+    const article = post.acf?.article?.miniArticle || {};
+    return {
+      id: post.id,
+      miniHeader: article.miniHeader,
+      miniDate: article.miniData,
+      miniImg: article.miniImg,
+    };
+  });
+
   const resSlide = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages/51');
   const dataSlide = await resSlide.json();
   const slideInfo = dataSlide.acf;
@@ -111,6 +125,7 @@ export async function getStaticProps() {
       trustInfo: trustInfo,
       specialistsInfo: specialistsInfo,
       reviewsInfo: reviewsInfo,
+      articlesInfo: articlesInfo,
     },
   };
 }
