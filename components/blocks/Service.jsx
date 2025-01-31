@@ -1,23 +1,64 @@
 import s from '/styles/Home.module.scss'
 import Image from 'next/image'
+import { useState, useEffect } from 'react';
 
-export default function Service ({ setPopupOpen }) {
+export default function Service ({ setPopupOpen, servicePageInfo }) {
+  const { header, text, btn, img, imgPhone } = servicePageInfo.bannerService
+  const [imgUrl, setImgUrl] = useState('');
+  const [imgPhoneUrl, setImgPhoneUrl] = useState('');
+  const [formattedText, setFormattedText] = useState([]);
+
+  // Функция для получения URL изображения по ID
+  const fetchImageUrl = async (imageId) => {
+    try {
+      const res = await fetch(`http://mok-clinic.local/wp-json/wp/v2/media/${imageId}`);
+      const data = await res.json();
+      return data.source_url; // Получаем URL изображения
+    } catch (error) {
+      console.error("Ошибка при получении изображения:", error);
+      return '';
+    }
+  };
+
+  useEffect(() => {
+    const loadImages = async () => {
+      if (img) {
+        setImgUrl(await fetchImageUrl(img));  // Загружаем изображение для десктопа
+      }
+      if (imgPhone) {
+        setImgPhoneUrl(await fetchImageUrl(imgPhone));  // Загружаем изображение для телефона
+      }
+    };
+
+    const formatText = () => {
+      if (text) {
+        const formatted = text.split('<br />')
+          .map(str => str.trim())
+          .filter(Boolean);
+        setFormattedText(formatted);
+      }
+    };
+
+    formatText();
+    loadImages();
+  }, [img, imgPhone, text]);
+
   return (
     <section className={s.slider}>
         <div className={s.slide}>
             <div className={s.aboutUsInfo}>
-            <h1 className={s.serviceHeader}>Анализы и диагностика в МОК</h1>
+            <h1 className={s.serviceHeader}>{header}</h1>
             <div className={s.descriptionContainer}>
-                <p className={s.aboutDes}><strong>Медицинская диагностика</strong> – это комплекс мер, направленных на выявление и идентификацию состояний организма для постановки окончательного диагноза. Только проведя полноценную диагностику, специалист может назначить объективное и эффективное лечение, воздействующее на причину патологии, а не только на ее симптомы.</p>
-                <p className={s.aboutDes}><strong>При этом инновационные методы исследований</strong> позволяют выявить заболевания на ранних стадиях, избежав опасных состояний и осложнений.</p>
-                <p className={s.aboutDes}>МОК предлагает своим пациентам профессиональную лабораторную и аппаратную диагностику с применением новейших методик.</p>
+              {formattedText.map((line, idx) => (
+                <p key={idx} className={s.aboutDes}>{line}</p>
+              ))}
             </div>
-            <button onClick={() => setPopupOpen(true)} className={`${s.button0} ${s.buttonMat0} ${s.btn0}`}>Записаться на прием</button>
+            <button onClick={() => setPopupOpen(true)} className={`${s.button0} ${s.buttonMat0} ${s.btn0}`}>{btn}</button>
             </div>
             <picture>
-            <source media="(max-width: 728px)" srcSet="/servicePhone.png" />
-            <source media="(min-width: 729px)" srcSet="/service.png" />
-            <Image className={s.underHeaderBackground} src="/service.png" width={2000} height={2000} />
+            <source media="(max-width: 728px)" srcSet={imgPhoneUrl} />
+            <source media="(min-width: 729px)" srcSet={imgUrl} />
+            <Image className={s.underHeaderBackground} src={imgUrl} width={2000} height={2000} />
             </picture>
         </div>
     </section>
