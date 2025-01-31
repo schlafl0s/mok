@@ -9,6 +9,32 @@ export default function Header ({setPopupOpen}) {
     const [timeoutId, setTimeoutId] = useState(null)
     const [PhoneMenuOpen, setPhoneMenuOpen] = useState(false)
     const [contactInfo, setContactInfo] = useState('');
+    const [services, setServices] = useState([]);
+
+    useEffect(() => {
+        // Функция загрузки данных
+        const fetchServices = async () => {
+          try {
+            const response = await fetch('http://mok-clinic.local/wp-json/wp/v2/posts?categories=7&per_page=100');
+            if (!response.ok) throw new Error('Ошибка загрузки данных');
+            const data = await response.json();
+    
+            // Фильтруем и мапим только опубликованные услуги
+            const mappedServices = data
+              .filter(item => item.status === 'publish')
+              .map(item => ({
+                title: item.acf.title,
+                id: item.id,
+              }));
+    
+            setServices(mappedServices);
+          } catch (error) {
+            console.error('Ошибка загрузки услуг:', error);
+          }
+        };
+    
+        fetchServices();
+    }, []);
     
     useEffect(() => {
         const fetchContactInfo = async () => {
@@ -54,14 +80,15 @@ export default function Header ({setPopupOpen}) {
             <div className={`${s.phoneMenu} ${PhoneMenuOpen ? s.phoneMenuActive : ''}`}>
                 <nav className={sf.navLinks}>
                     <h2 className={sf.linksHeader}>УСЛУГИ</h2>
-                    <Link href={'/'} className={sf.link}>Поликлиники, лаборатория</Link>
-                    <Link href={'/'} className={sf.link}>Госпитальный центр</Link>
-                    <Link href={'/'} className={sf.link}>Детский центр</Link>
-                    <Link href={'/'} className={sf.link}>Пластическая хирургия</Link>
-                    <Link href={'/'} className={sf.link}>Центр женского здоровья </Link>
-                    <Link href={'/'} className={sf.link}>Стоматология для взрослых и детей</Link>
-                    <Link href={'/'} className={sf.link}>Центр офтальмологии и хирургии</Link>
-                    <Link href={'/'} className={sf.link}>Центр косметологии</Link>
+                    <div className={sf.navLinksServices}>
+                        {services.map((service, index) => (
+                            <>
+                            <Link key={index} className={sf.link} href={`/services/${service.id}`}>
+                                {service.title}
+                            </Link>
+                            </>
+                        ))}
+                    </div>
                 </nav>
                 <nav className={sf.navLinks}>
                     <h2 className={sf.linksHeader}>ПАЦИЕНТАМ</h2>
@@ -133,14 +160,13 @@ export default function Header ({setPopupOpen}) {
                 <Link className={s.navLink} href={'/reviews'}>Отзывы</Link>
                 <Link className={s.navLink} href={'/contacts'}>Контакты</Link>
                 <div onMouseEnter={handlePopupMouseEnter} onMouseLeave={handlePopupMouseLeave} className={`${s.uslugiPopup} ${uslugiOpen ? s.uslugiPopupActive : ''}`}>
-                    <Link className={s.uslugiLink} href={'/'}>Поликлиники, лаборатория</Link>
-                    <Link className={s.uslugiLink} href={'/'}>Госпитальный центр</Link>
-                    <Link className={s.uslugiLink} href={'/'}>Детский центр</Link>
-                    <Link className={s.uslugiLink} href={'/'}>Пластическая хирургия</Link>
-                    <Link className={s.uslugiLink} href={'/'}>Центр женского здоровья </Link>
-                    <Link className={s.uslugiLink} href={'/'}>Стоматология для взрослых и детей</Link>
-                    <Link className={s.uslugiLink} href={'/'}>Центр офтальмологии и хирургии</Link>
-                    <Link className={s.uslugiLink} href={'/'}>Центр косметологии</Link>
+                    {services.map((service, index) => (
+                        <>
+                        <Link key={index} className={s.uslugiLink} href={`/services/${service.id}`}>
+                            {service.title}
+                        </Link>
+                        </>
+                    ))}
                 </div>
             </nav>
             <div className={s.phoneNumber}>

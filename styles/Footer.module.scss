@@ -147,6 +147,29 @@
     height: 30%;
 }
 
+.navLinksServices2 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+}
+
+.navLinksServicesFooter {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    gap: 20px;
+    width: 100%;
+    height: 250px;
+}
+
+.navLinksServices {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow-y: auto;
+}
+
 .link {
     font-size: 18px;
     font-weight: 400;
@@ -316,6 +339,12 @@
     .navLinks {
         gap: 10px
     }
+    .navLinksServices {
+        gap: 10px
+    }
+    .navLinksServicesFooter {
+        gap: 10px
+    }
     .siteInfo {
         margin-top: 30px;
     }
@@ -346,6 +375,12 @@
     }
     .navLinks {
         width: 47.5%;
+    }
+    .navLinksServices {
+        width: 100%;
+    }
+    .navLinksServicesFooter {
+        width: 100%;
     }
     .contactsLinks {
         flex-direction: row;
@@ -379,6 +414,12 @@
     .navLinks {
         gap: 5px
     }
+    .navLinksServices {
+        gap: 5px
+    }
+    .navLinksServicesFooter {
+        gap: 5px
+    }
     .siteInfoText {
         line-height: 14px;
     }
@@ -403,6 +444,14 @@
         width: 47%;
         gap: 5px
     }
+    .navLinksServices {
+        width: 100%;
+        gap: 5px
+    }
+    .navLinksServicesFooter {
+        width: 100%;
+        gap: 5px
+    }
 }
 
 @media (max-width: 375px) {
@@ -415,5 +464,13 @@
     .navLinks {
         width: 45%;
         gap: 5px
+    }
+    .navLinksServices {
+        width: 100%;
+        gap: 5px
+    }
+    .navLinksServicesFooter {
+        width: 100%;
+        gap: 5px;
     }
 }

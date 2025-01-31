@@ -5,6 +5,32 @@ import { useEffect, useState } from 'react'
 
 export default function Footer ({ footerCut = false }) {
     const [contactInfo, setContactInfo] = useState('');
+    const [services, setServices] = useState([]);
+
+    useEffect(() => {
+        // Функция загрузки данных
+        const fetchServices = async () => {
+          try {
+            const response = await fetch('http://mok-clinic.local/wp-json/wp/v2/posts?categories=7&per_page=100');
+            if (!response.ok) throw new Error('Ошибка загрузки данных');
+            const data = await response.json();
+    
+            // Фильтруем и мапим только опубликованные услуги
+            const mappedServices = data
+              .filter(item => item.status === 'publish')
+              .map(item => ({
+                title: item.acf.title,
+                id: item.id,
+              }));
+    
+            setServices(mappedServices);
+          } catch (error) {
+            console.error('Ошибка загрузки услуг:', error);
+          }
+        };
+    
+        fetchServices();
+    }, []);
 
     useEffect(() => {
         const fetchContactInfo = async () => {
@@ -92,16 +118,17 @@ export default function Footer ({ footerCut = false }) {
                         <span className={s.info}>Сайт не является публичной офертойПервичное посещение пациентов до 18 лет осуществляется только в присутствии законного представителя</span>
                     </div>
                 </div>
-                <nav className={s.navLinks}>
+                <nav className={s.navLinksServices2}>
                     <h2 className={s.linksHeader}>УСЛУГИ</h2>
-                    <Link href={'/'} className={s.link}>Поликлиники, лаборатория</Link>
-                    <Link href={'/'} className={s.link}>Госпитальный центр</Link>
-                    <Link href={'/'} className={s.link}>Детский центр</Link>
-                    <Link href={'/'} className={s.link}>Пластическая хирургия</Link>
-                    <Link href={'/'} className={s.link}>Центр женского здоровья </Link>
-                    <Link href={'/'} className={s.link}>Стоматология для взрослых и детей</Link>
-                    <Link href={'/'} className={s.link}>Центр офтальмологии и хирургии</Link>
-                    <Link href={'/'} className={s.link}>Центр косметологии</Link>
+                    <div className={s.navLinksServicesFooter}>
+                        {services.map((service, index) => (
+                            <>
+                            <Link key={index} className={s.link} href={`/services/${service.id}`}>
+                                {service.title}
+                            </Link>
+                            </>
+                        ))}
+                    </div>
                 </nav>
                 <nav className={s.navLinks}>
                     <h2 className={s.linksHeader}>ПАЦИЕНТАМ</h2>
