@@ -52,6 +52,7 @@ export async function getServerSideProps({ params }) {
     bannerService: post.acf?.bannerService || {},
     directions: post.acf?.directions || {},
     howIsItGoing: post.acf?.howIsItGoing || {},
+    prices: post.acf?.prices || {},
   };
 
   const resSale = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages/160');
