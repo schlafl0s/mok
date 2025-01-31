@@ -6,8 +6,8 @@ import WhyUs from '@/components/blocks/WhyUs'
 import Appointment from '@/components/blocks/Appointment'
 import Specialists from '@/components/blocks/Specialists'
 import ServiceDirections from '@/components/blocks/serviceDirections'
-import HowIsItGoing from '@/components/blocks/HowIsItGoing'
 import Prices from '@/components/blocks/Prices'
+import HowIsItGoing from '@/components/blocks/HowIsItGoing'
 import License from '@/components/blocks/License'
 import Consultation from '@/components/blocks/Consultation'
 import AppointmentPopup from '@/components/blocks/AppointmentPopup'
@@ -50,6 +50,8 @@ export async function getServerSideProps({ params }) {
     id: post.id,
     title: post.acf?.title || '',
     bannerService: post.acf?.bannerService || {},
+    directions: post.acf?.directions || {},
+    howIsItGoing: post.acf?.howIsItGoing || {},
   };
 
   const resSale = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages/160');
