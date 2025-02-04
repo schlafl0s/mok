@@ -7,6 +7,7 @@ export default function License() {
   const [legalPdfUrl, setLegalPdfUrl] = useState(''); // Для второго файла (правовая информация)
   const [mediaId, setMediaId] = useState(null);
   const [legalMediaId, setLegalMediaId] = useState(null);
+  const [mouseOn, setMouseOn] = useState(false)
 
   useEffect(() => {
     // Функция для получения данных страницы (с ID для медиафайлов)
@@ -87,7 +88,7 @@ export default function License() {
       <div className={s.licenseBackground}></div>
       <div className={s.licenseContainer}>
         <h1 className={s.Header}>Лицензии</h1>
-        <div className={s.licenseCard}>
+        <div className={s.licenseCard} onMouseEnter={() => setMouseOn(true)} onMouseLeave={() => setMouseOn(false)}>
           <picture>
             <source media="(max-width: 728px)" srcSet="/licenseBackgroundPhone.png" />
             <source media="(min-width: 729px)" srcSet="/licenseBackground.png" />
@@ -98,6 +99,7 @@ export default function License() {
             />
           </picture>
           <Image
+            style={mouseOn ? { transform: 'rotate(90deg)', transition: '0.3s' } : {}}
             className={s.licenseX}
             src={'/X.png'}
             width={77}

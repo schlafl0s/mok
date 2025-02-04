@@ -13,6 +13,7 @@ import Consultation from '@/components/blocks/Consultation'
 import AppointmentPopup from '@/components/blocks/AppointmentPopup'
 import Head from 'next/head'
 import { useState } from 'react'
+import Bread from '@/components/blocks/Bread'
 
 export default function ServicePage ({ saleInfo, specialistsInfo, whyUsInfo, servicePageInfo }) {
     const [popupOpen, setPopupOpen] = useState(false);
@@ -24,6 +25,7 @@ export default function ServicePage ({ saleInfo, specialistsInfo, whyUsInfo, ser
       </Head>
       <Layout>
         <main className={s.main}>
+            <Bread first={'Услуги'} firstLink={'/services'} second={servicePageInfo.title}/>
             <Service setPopupOpen={setPopupOpen} servicePageInfo={servicePageInfo} />
             <Sale saleInfo={saleInfo} />
             <ServiceDirections setPopupOpen={setPopupOpen} servicePageInfo={servicePageInfo} />

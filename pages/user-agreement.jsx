@@ -1,3 +1,4 @@
+import Bread from '@/components/blocks/Bread';
 import s from '/styles/Technical.module.scss'
 import Layout from '@/components/Layout'
 import Head from 'next/head';
@@ -31,6 +32,7 @@ export default function userAgreement ({ policyInfo }) {
         </Head>
         <Layout footerCut={true}>
             <main className={s.main}>
+                <Bread first={'Пользовательское соглашение'} firstLink={'/user-agreement'}/>
                 <h1 className={s.technicalHeader}>Пользовательское соглашение</h1>
                 <div className={s.textsContainer}>
                     {content.map((section, index) => (

@@ -79,7 +79,7 @@ export default function Header ({setPopupOpen}) {
             <>
             <div className={`${s.phoneMenu} ${PhoneMenuOpen ? s.phoneMenuActive : ''}`}>
                 <nav className={sf.navLinks}>
-                    <h2 className={sf.linksHeader}>УСЛУГИ</h2>
+                    <Link href={'/services'} className={sf.linksHeader}>УСЛУГИ</Link>
                     <div className={sf.navLinksServices}>
                         {services.map((service, index) => (
                             <>

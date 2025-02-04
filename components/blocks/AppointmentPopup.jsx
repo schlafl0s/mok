@@ -1,6 +1,7 @@
 import s from "/styles/Home.module.scss"
 import { useState } from 'react';
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function AppointmentPopup ({ popupOpen, setPopupOpen }) {
     const [name, setName] = useState('');
@@ -94,8 +95,8 @@ export default function AppointmentPopup ({ popupOpen, setPopupOpen }) {
                     value={phone}
                     onChange={handlePhoneChange}
                     />
-                    <button type='submit' onClick={handleSubmit} className={`${s.button5} ${s.buttonMat5} ${s.btn5}`}>Записаться</button>
-                    <span className={s.appointmentAgree}>Нажимая кнопку, вы даете согласие на обработку персональных данных</span>
+                    <button type='submit' onClick={handleSubmit} className={`${s.button5} ${s.buttonMat5} ${s.btn5}`}>Записаться</button>  
+                    <Link href={'/user-agreement'} className={s.appointmentAgree}>Нажимая кнопку, вы даете согласие на обработку персональных данных</Link>
                 </form>
                 <button onClick={() => setPopupOpen(false)} className={s.closePopup}>
                     <svg className={s.closePopupIcon} width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">

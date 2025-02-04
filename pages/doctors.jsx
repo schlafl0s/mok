@@ -7,6 +7,7 @@ import BigSpecialists from '@/components/blocks/BigSpecialists'
 import { useState } from 'react'
 import AppointmentPopup from '@/components/blocks/AppointmentPopup'
 import Head from 'next/head'
+import Bread from '@/components/blocks/Bread'
 
 export default function AboutUsPage ({ reviewsInfo, specialistsInfo }) {
   const [popupOpen, setPopupOpen] = useState(false);
@@ -18,6 +19,7 @@ export default function AboutUsPage ({ reviewsInfo, specialistsInfo }) {
     </Head>
     <Layout>
       <main className={s.main}>
+            <Bread first={'Врачи'} firstLink={'/doctors'}/>
             <BigSpecialists setPopupOpen={setPopupOpen} specialistsInfo={specialistsInfo} />
             <Reviews reviewsInfo={reviewsInfo} />
             <Appointment />

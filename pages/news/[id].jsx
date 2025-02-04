@@ -4,6 +4,7 @@ import Layout from '@/components/Layout';
 import Image from 'next/image';
 import News from '@/components/blocks/News';
 import Head from 'next/head';
+import Bread from '@/components/blocks/Bread';
 
 export default function Article({ articlesInfo, articleData }) {
     const { header, date, content } = articleData;
@@ -70,11 +71,11 @@ export default function Article({ articlesInfo, articleData }) {
             </Head>
             <Layout footerCut={true}>
                 <main className={s.main}>
+                    <Bread first={articleData.header} firstLink={`/news/${articleData.id}`}/>
                     <div className={s.articleHead}>
                         <h1 className={s.articleTitle}>{header}</h1>
                         <p className={s.articleDate}>{date}</p>
                     </div>
-
                     {/* Контент статьи */}
                     <div className={s.articleDataContainer}>
                         {formattedContent && formattedContent.map((block, index) => {

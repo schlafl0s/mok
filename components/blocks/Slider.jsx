@@ -6,6 +6,7 @@ export default function Slider({ setPopupOpen, slideInfo }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentTransition, setCurrentTransition] = useState(0);
   const [slidesData, setSlidesData] = useState([]);
+  const [mouseOn, setMouseOn] = useState(false)
 
   // Функция для получения изображения по ID через API
   const fetchImageUrlById = async (imageId) => {
@@ -95,14 +96,12 @@ export default function Slider({ setPopupOpen, slideInfo }) {
           <source media="(min-width: 729px)" srcSet={slide.imgUrl || slide.imgPhoneUrl} />
           <Image className={s.underHeaderBackground} src={slide.imgUrl} width={2000} height={2000} />
         </picture>
-
-        <Image className={s.VUH} src={'/V.png'} width={100} height={100} />
       </div>
     );
   }
 
   return (
-    <section className={s.slider}>
+    <section className={s.slider} onMouseEnter={() => setMouseOn(true)} onMouseLeave={() => setMouseOn(false)}>
       <div className={s.slides} style={{ transform: `translateX(${currentTransition}%)` }}>
         {slidesData.length > 0 && (
           slidesData.map((slide, index) => (
@@ -119,6 +118,7 @@ export default function Slider({ setPopupOpen, slideInfo }) {
           />
         ))}
       </div>
+      <Image className={s.VUH} style={mouseOn ? { transform: 'rotate(180deg)', transition: '0.3s' } : {}}  src={'/V.png'} width={100} height={100} />
     </section>
   );
 }

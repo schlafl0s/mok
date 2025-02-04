@@ -9,6 +9,7 @@ import Layout from '@/components/Layout'
 import { useState } from 'react'
 import AppointmentPopup from '@/components/blocks/AppointmentPopup'
 import Head from 'next/head'
+import Bread from '@/components/blocks/Bread'
 
 export default function AboutUsPage ({ statsInfo, whyUsInfo, specialistsInfo, aboutInfo }) {
   const [popupOpen, setPopupOpen] = useState(false);
@@ -20,6 +21,7 @@ export default function AboutUsPage ({ statsInfo, whyUsInfo, specialistsInfo, ab
     </Head>
     <Layout>
       <main className={s.main}>
+          <Bread first={'О компании'} firstLink={'/about-us'}/>
           <AboutUs setPopupOpen={setPopupOpen} aboutInfo={aboutInfo} />
           <StatsMini statsInfo={statsInfo} />
           <Specialists setPopupOpen={setPopupOpen} specialistsInfo={specialistsInfo} />

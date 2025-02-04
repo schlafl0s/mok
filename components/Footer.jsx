@@ -115,7 +115,7 @@ export default function Footer ({ footerCut = false }) {
                     />
                     <div className={s.infoContainer}>
                         <span className={s.info}>Лицензия № Л041-01137-77/00368259 от 19.09.2019 г.</span>
-                        <span className={s.info}>Сайт не является публичной офертойПервичное посещение пациентов до 18 лет осуществляется только в присутствии законного представителя</span>
+                        <span className={s.info}>Сайт не является публичной офертой Первичное посещение пациентов до 18 лет осуществляется только в присутствии законного представителя</span>
                     </div>
                 </div>
                 <nav className={s.navLinksServices2}>
@@ -169,12 +169,14 @@ export default function Footer ({ footerCut = false }) {
                 <span className={s.siteInfoText}>2025 © Международная открытая клиника. Все права защищены</span>
                 <div className={s.siteInfoAndLogo}>
                     <span className={s.siteInfoText}>Сайт разработан</span>
-                    <Image
-                    className={s.traffLogo}
-                    src={'/traffLogo.png'}
-                    width={500}
-                    height={500}
-                    />
+                    <Link href={'https://traff-agency.ru/'} className={s.traffLogoLink}>
+                        <Image
+                        className={s.traffLogo}
+                        src={'/traffLogo.png'}
+                        width={500}
+                        height={500}
+                        />
+                    </Link>
                 </div>
             </section>
         </footer>

@@ -44,7 +44,7 @@ export default function Service ({ setPopupOpen, servicePageInfo }) {
   }, [img, imgPhone, text]);
 
   return (
-    <section className={s.slider}>
+    <section className={s.sliderService}>
         <div className={s.slide}>
             <div className={s.aboutUsInfo}>
             <h1 className={s.serviceHeader}>{header}</h1>

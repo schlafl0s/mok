@@ -5,6 +5,7 @@ import License from '@/components/blocks/License'
 import News from '@/components/blocks/News'
 import Layout from '@/components/Layout'
 import Head from 'next/head'
+import Bread from '@/components/blocks/Bread'
 
 export default function AboutUsPage ({ reviewsInfo, articlesInfo }) {
   return (
@@ -14,6 +15,7 @@ export default function AboutUsPage ({ reviewsInfo, articlesInfo }) {
     </Head>
     <Layout>
       <main className={s.main}>
+            <Bread first={'Отзывы'} firstLink={'/reviews'}/>
             <BigReviews reviewsInfo={reviewsInfo} />
             <License />
             <Appointment />

@@ -10,6 +10,7 @@ import Layout from '@/components/Layout'
 import { useState } from 'react'
 import Head from 'next/head'
 import AppointmentPopup from '@/components/blocks/AppointmentPopup'
+import Bread from '@/components/blocks/Bread'
 
 export default function Services ({ reviewsInfo, specialsInfo, directionsInfo, specialServiceInfo, articlesInfo }) {
   const [popupOpen, setPopupOpen] = useState(false);
@@ -21,6 +22,7 @@ export default function Services ({ reviewsInfo, specialsInfo, directionsInfo, s
     </Head>
     <Layout>
       <main className={s.main}>
+        <Bread first={'Услуги'} firstLink={'/services'} />
         <SpecialService setPopupOpen={setPopupOpen} specialServiceInfo={specialServiceInfo} />
         <Directions directionsInfo={directionsInfo} />
         <Specials setPopupOpen={setPopupOpen} specialsInfo={specialsInfo} />

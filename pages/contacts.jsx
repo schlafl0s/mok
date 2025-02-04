@@ -4,6 +4,7 @@ import Appointment from '@/components/blocks/Appointment'
 import Layout from '@/components/Layout'
 import sf from '/styles/Footer.module.scss'
 import Head from 'next/head'
+import Bread from '@/components/blocks/Bread'
 
 export default function Contacts ({ contactInfo }) {
     return (
@@ -13,6 +14,7 @@ export default function Contacts ({ contactInfo }) {
         </Head>
         <Layout footerCut={true}>
             <main className={s.main}>
+                <Bread first={'Контакты'} firstLink={'/contacts'}/>
                 <section className={`${sf.contacts} ${sf.contactsPadding}`}>
                 <h1 className={`${sf.contactsHeader} ${sf.contactsBlackColor}`}>Контакты</h1>
                 <div className={sf.contactsContainer}>

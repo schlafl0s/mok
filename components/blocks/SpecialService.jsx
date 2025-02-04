@@ -7,6 +7,7 @@ export default function SpecialService({ setPopupOpen, specialServiceInfo }) {
 
   const [imgUrl, setImgUrl] = useState('');
   const [imgPhoneUrl, setImgPhoneUrl] = useState('');
+  const [mouseOn, setMouseOn] = useState(false)
 
   // Функция для получения URL изображения по ID
   const fetchImageUrl = async (imageId) => {
@@ -33,7 +34,7 @@ export default function SpecialService({ setPopupOpen, specialServiceInfo }) {
   }, [img, imgPhone]);
 
   return (
-    <div className={s.specialService}>
+    <div className={s.specialService} onMouseEnter={() => setMouseOn(true)} onMouseLeave={() => setMouseOn(false)}>
       <div className={s.specialServiceInfo}>
         <h1 className={s.specialServiceHeader}>{header}</h1>
         <span className={s.specialServiceDes}>{text}</span>
@@ -51,7 +52,7 @@ export default function SpecialService({ setPopupOpen, specialServiceInfo }) {
           height={2000}
         />
       </picture>
-      {/* <Image className={s.VUHservice} src={'/V.png'} width={100} height={100} /> */}
+      <Image className={s.VUHservice} style={mouseOn ? { transform: 'rotate(360deg)', transition: '0.3s' } : {transform: 'rotate(180deg)'}} src={'/V.png'} width={100} height={100} />
     </div>
   );
 }

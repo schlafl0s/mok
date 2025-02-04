@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
 import s from '/styles/Home.module.scss';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 export default function Appointment() {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [appointmentImgUrl, setAppointmentImgUrl] = useState('');
+  const [mouseOn, setMouseOn] = useState(false)
   const router = useRouter();
 
   // Функция для получения данных страницы (с ID для изображения appointmentImg)
@@ -119,8 +119,9 @@ export default function Appointment() {
           />
         )}
       </div>
-      <div className={s.makeAppointment}>
+      <div onMouseEnter={() => setMouseOn(true)} onMouseLeave={() => setMouseOn(false)} className={s.makeAppointment}>
         <Image
+          style={mouseOn ? { transform: 'rotate(180deg)', transition: '0.3s' } : {}}
           className={s.greenArrow}
           src={'/greenArrow.png'}
           width={77}
@@ -144,9 +145,9 @@ export default function Appointment() {
           <button type="submit" onClick={handleSubmit} className={`${s.button5} ${s.buttonMat5} ${s.btn5}`}>
             Записаться
           </button>
-          <span className={s.appointmentAgree}>
+          <Link href={'/user-agreement'} className={s.appointmentAgree}>
             Нажимая кнопку, вы даете согласие на обработку персональных данных
-          </span>
+          </Link>
         </form>
       </div>
     </section>

@@ -1,3 +1,4 @@
+import Bread from '@/components/blocks/Bread';
 import s from '/styles/Technical.module.scss'
 import Layout from '@/components/Layout'
 import Head from 'next/head';
@@ -31,6 +32,7 @@ export default function PrivacyPolicy ({ policyInfo }) {
         </Head>
         <Layout footerCut={true}>
             <main className={s.main}>
+                <Bread first={'Политика конфиденциальности'} firstLink={'/privacy-policy'}/>
                 <h1 className={s.technicalHeader}>Политика конфиденциальности</h1>
                 <div className={s.textsContainer}>
                     {content.map((section, index) => (
