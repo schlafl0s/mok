@@ -11,7 +11,7 @@ export default function Slider({ setPopupOpen, slideInfo }) {
   // Функция для получения изображения по ID через API
   const fetchImageUrlById = async (imageId) => {
     try {
-      const res = await fetch(`http://mok-clinic.local/wp-json/wp/v2/media/${imageId}`);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/media/${imageId}`);
       const data = await res.json();
       return data.source_url;  // Получаем полный URL изображения
     } catch (error) {

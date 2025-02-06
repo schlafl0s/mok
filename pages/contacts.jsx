@@ -74,7 +74,7 @@ export default function Contacts ({ contactInfo }) {
 }
 
 export async function getStaticProps() {
-    const res = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages/16');
+    const res = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/pages/16`);
   
     // Извлекаем данные из ответа
     const data = await res.json();

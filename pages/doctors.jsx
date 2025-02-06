@@ -32,7 +32,7 @@ export default function AboutUsPage ({ reviewsInfo, specialistsInfo }) {
 }
 
 export async function getStaticProps() {
-  const resSpecialists = await fetch('http://mok-clinic.local/wp-json/wp/v2/posts?categories=4&per_page=100');
+  const resSpecialists = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/posts?categories=4&per_page=100`);
   const dataSpecialists = await resSpecialists.json();
 
   const specialistsInfo = await Promise.all(dataSpecialists.map(async (item) => {
@@ -48,14 +48,14 @@ export async function getStaticProps() {
     };
 
     // Получаем изображение для врача по его imgId
-    const imgResponse = await fetch(`http://mok-clinic.local/wp-json/wp/v2/media/${specialist.imgId}`);
+    const imgResponse = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/media/${specialist.imgId}`);
     const imgData = await imgResponse.json();
     specialist.img = imgData.source_url;  // URL изображения
 
     return specialist;
   }));
 
-  const resReviews = await fetch('http://mok-clinic.local/wp-json/wp/v2/posts?categories=5&per_page=100')
+  const resReviews = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/posts?categories=5&per_page=100`)
   const dataReviews = await resReviews.json()
   const reviewsInfo = dataReviews.map(item => ({
     text: item.acf.review.text,

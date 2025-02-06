@@ -12,7 +12,7 @@ export default function WhyUs() {
   // Функция для запроса изображения по ID
   const fetchImageUrlById = async (imageId) => {
     try {
-      const res = await fetch(`http://mok-clinic.local/wp-json/wp/v2/media/${imageId}`);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/media/${imageId}`);
       const data = await res.json();
       return data.source_url;  // URL изображения
     } catch (error) {
@@ -24,7 +24,7 @@ export default function WhyUs() {
   // Функция для получения данных с API
   const fetchWhyUsData = async () => {
     try {
-      const res = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages/462');
+      const res = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/pages/462`);
       const data = await res.json();
       
       const whyUsWithImages = await Promise.all(Object.values(data.acf.whyUs).map(async (slide) => {

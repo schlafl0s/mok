@@ -8,7 +8,7 @@ export default function StatsMini () {const [statsData, setStatsData] = useState
   // Функция для получения изображения по ID через API
   const fetchImageUrlById = async (imageId) => {
     try {
-      const res = await fetch(`http://mok-clinic.local/wp-json/wp/v2/media/${imageId}`);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/media/${imageId}`);
       const data = await res.json();
       return data.source_url;  // Получаем полный URL изображения
     } catch (error) {
@@ -20,7 +20,7 @@ export default function StatsMini () {const [statsData, setStatsData] = useState
   // Функция для загрузки данных с API
   const fetchStatsData = async () => {
     try {
-      const res = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages?slug=stats');  // Получаем страницу статистики
+      const res = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/pages?slug=stats`);  // Получаем страницу статистики
       const data = await res.json();
       const statsInfo = data[0].acf;  // Данные ACF из первого объекта
 

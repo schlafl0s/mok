@@ -47,7 +47,7 @@ export default function Home({ slideInfo, saleInfo, directionsInfo, specialsInfo
 }
 
 export async function getStaticProps() {
-  const res = await fetch('http://mok-clinic.local/wp-json/wp/v2/posts?categories=6&per_page=100');
+  const res = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/posts?categories=6&per_page=100`);
   const posts = await res.json();
 
   // Обработка данных статей
@@ -61,39 +61,39 @@ export async function getStaticProps() {
     };
   });
 
-  const resSlide = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages/51');
+  const resSlide = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/pages/51`);
   const dataSlide = await resSlide.json();
   const slideInfo = dataSlide.acf;
 
-  const resSale = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages/160');
+  const resSale = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/pages/160`);
   const dataSale = await resSale.json();
   const saleInfo = dataSale.acf;
 
-  const resDirections = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages/174');
+  const resDirections = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/pages/174`);
   const dataDirections = await resDirections.json();
   const directionsInfo = dataDirections.acf;
 
-  const resSpecials = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages/263');
+  const resSpecials = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/pages/263`);
   const dataSpecials = await resSpecials.json();
   const specialsInfo = dataSpecials.acf;
   
-  const resStats = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages/370');
+  const resStats = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/pages/370`);
   const dataStats = await resStats.json();
   const statsInfo = dataStats.acf;
 
-  const resTechnologies = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages/409');
+  const resTechnologies = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/pages/409`);
   const dataTechnologies = await resTechnologies.json();
   const technologiesInfo = dataTechnologies.acf;
   
-  const resWhyUs = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages/462');
+  const resWhyUs = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/pages/462`);
   const dataWhyUs = await resWhyUs.json();
   const whyUsInfo = dataWhyUs.acf;
 
-  const resTrust = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages/506');
+  const resTrust = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/pages/506`);
   const dataTrust = await resTrust.json();
   const trustInfo = dataTrust.acf;
   
-  const resSpecialists = await fetch('http://mok-clinic.local/wp-json/wp/v2/posts?categories=4&per_page=100')
+  const resSpecialists = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/posts?categories=4&per_page=100`)
   const dataSpecialists = await resSpecialists.json()
   const specialistsInfo = dataSpecialists.map(item => ({
     experience: item.acf.doctor.experience,
@@ -104,7 +104,7 @@ export async function getStaticProps() {
     imgId: item.acf.doctor.img,  // Здесь храним только ID изображения
   }))
 
-  const resReviews = await fetch('http://mok-clinic.local/wp-json/wp/v2/posts?categories=5&per_page=100')
+  const resReviews = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/posts?categories=5&per_page=100`)
   const dataReviews = await resReviews.json()
   const reviewsInfo = dataReviews.map(item => ({
     text: item.acf.review.text,

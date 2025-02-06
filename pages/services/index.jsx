@@ -38,19 +38,19 @@ export default function Services ({ reviewsInfo, specialsInfo, directionsInfo, s
 }
 
 export async function getStaticProps() {
-  const resSpecialService = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages/682');
+  const resSpecialService = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/pages/682`);
   const dataSpecialService = await resSpecialService.json();
   const specialServiceInfo = dataSpecialService.acf;
 
-  const resDirections = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages/174');
+  const resDirections = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/pages/174`);
   const dataDirections = await resDirections.json();
   const directionsInfo = dataDirections.acf;
 
-  const resSpecials = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages/263');
+  const resSpecials = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/pages/263`);
   const dataSpecials = await resSpecials.json();
   const specialsInfo = dataSpecials.acf;
 
-  const resReviews = await fetch('http://mok-clinic.local/wp-json/wp/v2/posts?categories=5&per_page=100')
+  const resReviews = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/posts?categories=5&per_page=100`)
   const dataReviews = await resReviews.json()
   const reviewsInfo = dataReviews.map(item => ({
     text: item.acf.review.text,
@@ -59,7 +59,7 @@ export async function getStaticProps() {
     stars: item.acf.review.stars,
   }))
 
-  const res = await fetch('http://mok-clinic.local/wp-json/wp/v2/posts?categories=6&per_page=100');
+  const res = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/posts?categories=6&per_page=100`);
   const posts = await res.json();
 
   const articlesInfo = posts.map((post) => {

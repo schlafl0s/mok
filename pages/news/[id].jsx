@@ -14,7 +14,7 @@ export default function Article({ articlesInfo, articleData }) {
     // Запрос картинок для новостей
     const fetchImageUrl = async (imageId) => {
         try {
-            const res = await fetch(`http://mok-clinic.local/wp-json/wp/v2/media/${imageId}`);
+            const res = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/media/${imageId}`);
             const data = await res.json();
             return data.source_url;
         } catch (error) {
@@ -108,10 +108,10 @@ export default function Article({ articlesInfo, articleData }) {
 }
 
 export async function getServerSideProps({ params }) {
-    const res = await fetch('http://mok-clinic.local/wp-json/wp/v2/posts?categories=6&per_page=100');
+    const res = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/posts?categories=6&per_page=100`);
     const posts = await res.json();
     const { id } = params;
-    const resOne = await fetch(`http://mok-clinic.local/wp-json/wp/v2/posts/${id}`);
+    const resOne = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/posts/${id}`);
     const post = await resOne.json();
 
     const articleData = {

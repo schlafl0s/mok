@@ -15,7 +15,7 @@ export default function Header ({setPopupOpen}) {
         // Функция загрузки данных
         const fetchServices = async () => {
           try {
-            const response = await fetch('http://mok-clinic.local/wp-json/wp/v2/posts?categories=7&per_page=100');
+            const response = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/posts?categories=7&per_page=100`);
             if (!response.ok) throw new Error('Ошибка загрузки данных');
             const data = await response.json();
     
@@ -38,7 +38,7 @@ export default function Header ({setPopupOpen}) {
     
     useEffect(() => {
         const fetchContactInfo = async () => {
-            const res = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages/16');
+            const res = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/pages/16`);
             const data = await res.json();
             setContactInfo(data.acf); // Сохраняем данные
         };

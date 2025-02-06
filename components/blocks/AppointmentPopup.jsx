@@ -6,16 +6,12 @@ import Link from "next/link";
 export default function AppointmentPopup ({ popupOpen, setPopupOpen }) {
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
-    const [error, setError] = useState(null);
-    const [success, setSuccess] = useState(false);
     const [submitted, setSubmitted] = useState(false);
     const router = useRouter();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setSubmitted(true)
-        setError(null);
-        setSuccess(false);
     
         try {
           const response = await fetch('/api/sendToTelegram', {
@@ -29,16 +25,12 @@ export default function AppointmentPopup ({ popupOpen, setPopupOpen }) {
           const result = await response.json();
     
           if (response.ok) {
-            setSuccess(true);
             setName('');
             setPhone('');
             router.push('/thanks');
-          } else {
-            setError(result.message);
           }
         } catch (error) {
           console.error('Ошибка отправки:', error);
-          setError('Произошла ошибка при отправке данных');
         }
     }
 

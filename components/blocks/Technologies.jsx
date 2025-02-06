@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 export default function Technologies({ technologiesInfo }) {
   const fetchImageUrlById = async (imageId) => {
     try {
-      const res = await fetch(`http://mok-clinic.local/wp-json/wp/v2/media/${imageId}`);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/media/${imageId}`);
       const data = await res.json();
       return data.source_url;  // Получаем полный URL изображения
     } catch (error) {

@@ -16,14 +16,14 @@ export default function Appointment() {
   useEffect(() => {
     const fetchPageData = async () => {
       try {
-        const response = await fetch('http://mok-clinic.local/wp-json/wp/v2/pages/561');
+        const response = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/pages/561`);
         const data = await response.json();
 
         const appointmentImgId = data.acf?.images?.appointmentImg; // ID изображения appointmentImg
 
         if (appointmentImgId) {
           // Запрашиваем данные по медиафайлу с этим ID
-          const imgResponse = await fetch(`http://mok-clinic.local/wp-json/wp/v2/media/${appointmentImgId}`);
+          const imgResponse = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/media/${appointmentImgId}`);
           const imgData = await imgResponse.json();
 
           if (imgData.source_url) {
@@ -45,8 +45,6 @@ export default function Appointment() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitted(true);
-    setError(null);
-    setSuccess(false);
 
     try {
       const response = await fetch('/api/sendToTelegram', {
@@ -60,16 +58,12 @@ export default function Appointment() {
       const result = await response.json();
 
       if (response.ok) {
-        setSuccess(true);
         setName('');
         setPhone('');
         router.push('/thanks');
-      } else {
-        setError(result.message);
       }
     } catch (error) {
       console.error('Ошибка отправки:', error);
-      setError('Произошла ошибка при отправке данных');
     }
   };
 
