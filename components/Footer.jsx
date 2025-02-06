@@ -60,7 +60,7 @@ export default function Footer ({ footerCut = false }) {
                         <svg className={s.contactArrow} width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M19.6777 0.5C20.5062 0.5 21.1777 1.17157 21.1777 2L21.1777 15.5C21.1777 16.3284 20.5062 17 19.6777 17C18.8493 17 18.1777 16.3284 18.1777 15.5L18.1777 3.5L6.17773 3.5C5.34931 3.5 4.67773 2.82843 4.67773 2C4.67773 1.17157 5.34931 0.5 6.17773 0.5L19.6777 0.5ZM0.939405 18.617L18.6171 0.93934L20.7384 3.06066L3.06073 20.7383L0.939405 18.617Z" fill="white"/>
                         </svg>
-                        <span className={s.contactInfoType}>Электронна почта:</span>
+                        <span className={s.contactInfoType}>Электронная почта:</span>
                         <span className={s.contactInfo}>{contactInfo.email}</span>
                     </div>
                     <div className={`${s.contact} ${s.contactColorYellow}`}>
