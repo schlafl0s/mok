@@ -13,7 +13,7 @@ export default function License() {
     // Функция для получения данных страницы (с ID для медиафайлов)
     const fetchPageData = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/pages/549`);
+        const response = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/pages/549`);
         const data = await response.json();
 
         // Получаем ID для первого файла (лицензии) и второго файла (правовой информации)
@@ -44,7 +44,7 @@ export default function License() {
     if (mediaId !== null) {
       const fetchPdfUrl = async () => {
         try {
-          const response = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/media/${mediaId}`);
+          const response = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/media/${mediaId}`);
           const data = await response.json();
 
           if (data.source_url) {
@@ -66,7 +66,7 @@ export default function License() {
     if (legalMediaId !== null) {
       const fetchLegalPdfUrl = async () => {
         try {
-          const response = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/media/${legalMediaId}`);
+          const response = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/media/${legalMediaId}`);
           const data = await response.json();
 
           if (data.source_url) {

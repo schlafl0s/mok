@@ -27,7 +27,7 @@ export default function AboutUsPage ({ reviewsInfo, articlesInfo }) {
 }
 
 export async function getStaticProps() {
-  const resReviews = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/posts?categories=5&per_page=100`)
+  const resReviews = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/posts?categories=5&per_page=100`)
   const dataReviews = await resReviews.json()
   const reviewsInfo = dataReviews.map(item => ({
     text: item.acf.review.text,
@@ -36,7 +36,7 @@ export async function getStaticProps() {
     stars: item.acf.review.stars,
   }))
 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/posts?categories=6&per_page=100`);
+  const res = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/posts?categories=6&per_page=100`);
   const posts = await res.json();
 
   const articlesInfo = posts.map((post) => {

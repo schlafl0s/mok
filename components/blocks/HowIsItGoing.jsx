@@ -12,7 +12,7 @@ export default function HowIsItGoing({ servicePageInfo }) {
     
     const fetchImageUrl = async (imageId) => {
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/media/${imageId}`);
+            const res = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/media/${imageId}`);
             const data = await res.json();
             return data.source_url;  // Получаем URL изображения
         } catch (error) {

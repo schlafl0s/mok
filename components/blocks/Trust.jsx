@@ -8,7 +8,7 @@ export default function Trust() {
   // Функция для запроса изображения по ID
   const fetchImageUrlById = async (imageId) => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/media/${imageId}`);
+      const res = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/media/${imageId}`);
       const data = await res.json();
       return data.source_url;  // URL изображения
     } catch (error) {
@@ -20,7 +20,7 @@ export default function Trust() {
   // Функция для получения данных с API
   const fetchTrustData = async () => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/pages/506`); // API для страницы с ID 506
+      const res = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/pages/506`); // API для страницы с ID 506
       const data = await res.json();
 
       // Извлекаем ID изображений из объекта `acf.trust`

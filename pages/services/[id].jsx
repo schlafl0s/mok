@@ -45,7 +45,7 @@ export default function ServicePage ({ saleInfo, specialistsInfo, whyUsInfo, ser
 
 export async function getServerSideProps({ params }) {
   const { id } = params;
-  const resOne = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/posts/${id}`);
+  const resOne = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/posts/${id}`);
   const post = await resOne.json();
 
   const servicePageInfo = {
@@ -57,15 +57,15 @@ export async function getServerSideProps({ params }) {
     prices: post.acf?.prices || {},
   };
 
-  const resSale = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/pages/160`);
+  const resSale = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/pages/160`);
   const dataSale = await resSale.json();
   const saleInfo = dataSale.acf;
   
-  const resWhyUs = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/pages/462`);
+  const resWhyUs = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/pages/462`);
   const dataWhyUs = await resWhyUs.json();
   const whyUsInfo = dataWhyUs.acf;
   
-  const resSpecialists = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/posts?categories=4&per_page=100`)
+  const resSpecialists = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/posts?categories=4&per_page=100`)
   const dataSpecialists = await resSpecialists.json()
   const specialistsInfo = dataSpecialists.map(item => ({
     experience: item.acf.doctor.experience,

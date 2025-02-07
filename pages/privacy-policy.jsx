@@ -56,7 +56,7 @@ export default function PrivacyPolicy ({ policyInfo }) {
 
 export async function getStaticProps() {
     // Делаем запрос к API для получения данных
-    const resPolicy = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/pages/701`);
+    const resPolicy = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/pages/701`);
     const dataPolicy = await resPolicy.json();
     const policyInfo = dataPolicy.acf;
 

@@ -16,14 +16,14 @@ export default function Appointment() {
   useEffect(() => {
     const fetchPageData = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/pages/561`);
+        const response = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/pages/561`);
         const data = await response.json();
 
         const appointmentImgId = data.acf?.images?.appointmentImg; // ID изображения appointmentImg
 
         if (appointmentImgId) {
           // Запрашиваем данные по медиафайлу с этим ID
-          const imgResponse = await fetch(`${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/media/${appointmentImgId}`);
+          const imgResponse = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/media/${appointmentImgId}`);
           const imgData = await imgResponse.json();
 
           if (imgData.source_url) {
