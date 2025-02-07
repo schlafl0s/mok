@@ -1,5 +1,6 @@
 import s from '/styles/Technical.module.scss'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Thanks () {
     return (
@@ -7,7 +8,7 @@ export default function Thanks () {
             <div className={s.thanksContainer}>
                 <h1 className={s.thanksHeader}>Спасибо</h1>
                 <span className={s.thanksDes}>за вашу заявку, ожидайте звонка менеджера</span>
-                <button className={`${s.button0} ${s.buttonMat0} ${s.btn0}`}>Вернуться на главную</button>
+                <Link href={'/'} className={`${s.button0} ${s.buttonMat0} ${s.btn0}`}>Вернуться на главную</Link>
             </div>
             <picture>
                 <source media="(max-width: 728px)" srcSet="/thanksPhone.png" />
