@@ -10,7 +10,7 @@
     position: relative;
     width: 100%;
     overflow: hidden;
-    height: 500px;
+    height: 600px;
 }
 
 .sliderService {
@@ -2620,7 +2620,14 @@ $color: white;
     }
     .slideInfo {
         padding: 30px 0px 0px 30px;
-        gap: 20px
+        gap: 10px
+    }
+    .svgSlider {
+        width: 15px;
+        height: 15px;
+        display: flex;
+        justify-content: center;
+        align-self: center;
     }
     .aboutUsInfo {
         gap: 20px;
@@ -2635,18 +2642,19 @@ $color: white;
         font-size: 28px;
     }
     .des {
-        font-size: 14px;
+        font-size: 10px;
+        width: 50%;
     }
     .btn0 {
-        width: 240px;
+        width: 180px;
         height: 35px;
-        font-size: 14px;
+        font-size: 12px;
     }
     .underHeaderBackground {
         width: 100%;
     }
     .slider {
-        height: 400px;
+        height: 300px;
     }
     .sliderService {
         height: 400px;
@@ -3178,7 +3186,7 @@ $color: white;
         font-size: 14px;
     }
     .descriptionContainer {
-        gap: 10px
+        gap: 5px
     }
     .letters {
         gap: 10px;

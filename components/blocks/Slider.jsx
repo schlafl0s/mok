@@ -54,10 +54,10 @@ export default function Slider({ setPopupOpen, slideInfo }) {
     setCurrentTransition(index * -100);
   };
 
-  useEffect(() => {
-    const interval = setInterval(nextSlide, 5000);
-    return () => clearInterval(interval);
-  }, [currentSlide]);
+  // useEffect(() => {
+  //   const interval = setInterval(nextSlide, 5000);
+  //   return () => clearInterval(interval);
+  // }, [currentSlide]);
 
   function Slide({ slide }) {
     return (
@@ -71,7 +71,7 @@ export default function Slider({ setPopupOpen, slideInfo }) {
             {Object.values(slide.description).map((des, index) => (
               des ? (
                 <div key={index} className={s.description}>
-                  <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg className={s.svgSlider} width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="11.6692" cy="11.6101" r="10.3887" stroke="#391FCF" strokeWidth="0.865725" />
                     <path d="M11.6689 6.84814V16.3711" stroke="#391FCF" strokeWidth="0.865725" />
                     <path d="M6.9082 11.6094H16.4312" stroke="#391FCF" strokeWidth="0.865725" />
