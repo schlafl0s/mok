@@ -151,7 +151,7 @@ export default function Specials({ setPopupOpen }) {
         </div>
 
         <div className={s.specialsRight}>
-          <div className={s.specialsSmallBlock1}>
+          <div onClick={() => setPopupOpen(true)} className={s.specialsSmallBlock1}>
             <h2 className={`${s.specialsSmallName} ${currentSlide?.rightUpSpecial?.isWhiteColor ? s.whiteText : ''}`}>
               {currentSlide?.rightUpSpecial?.header}
             </h2>
@@ -160,7 +160,7 @@ export default function Specials({ setPopupOpen }) {
               <Image className={s.specialsBackground} src={currentSlide?.rightUpSpecial?.imgUrl} width={2000} height={2000} />
             )}
           </div>
-          <div className={s.specialsSmallBlock2}>
+          <div onClick={() => setPopupOpen(true)} className={s.specialsSmallBlock2}>
             <h2 className={`${s.specialsSmallName} ${currentSlide?.rightDownSpecial?.isWhiteColor ? s.whiteText : ''}`}>
               {currentSlide?.rightDownSpecial?.header}
             </h2>

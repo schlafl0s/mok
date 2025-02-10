@@ -27,7 +27,7 @@ export default function Home({ slideInfo, saleInfo, directionsInfo, specialsInfo
     <Layout>
       <main className={s.main}>
         <Slider setPopupOpen={setPopupOpen} slideInfo={slideInfo} />
-        <Sale saleInfo={saleInfo} />
+        <Sale saleInfo={saleInfo} setPopupOpen={setPopupOpen} />
         <Directions directionsInfo={directionsInfo} />
         <Specials setPopupOpen={setPopupOpen} specialsInfo={specialsInfo} />
         <Stats statsInfo={statsInfo} /> 

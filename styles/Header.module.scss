@@ -197,7 +197,7 @@ $burger-item-shadow: -1 * $burger-item - ($burger-item-offset - $burger-item) / 
     height: $burger-height;
     width: $burger-width;
     position: relative;
-    z-index: 4;
+    z-index: 10;
 
     .burgerLine {
         background: #391FCF;
@@ -229,7 +229,7 @@ $burger-item-shadow: -1 * $burger-item - ($burger-item-offset - $burger-item) / 
     display: flex;
     top: 0;
     left: -20px;
-    z-index: 4;
+    z-index: 9;
     width: 100%;
     height: 100vh;
     background: #29292C;
@@ -238,12 +238,12 @@ $burger-item-shadow: -1 * $burger-item - ($burger-item-offset - $burger-item) / 
     opacity: 0;
     pointer-events: none;
     gap: 50px;
-    transition: 1s;
-    &.phoneMenuActive {
-        transition: 1s;
-        pointer-events: all;
-        opacity: 1;
-    }
+    transition: opacity 0.5s ease;
+}
+
+.phoneMenuActive {
+    opacity: 1;
+    pointer-events: all;
 }
 
 .blackBackground {
@@ -252,15 +252,14 @@ $burger-item-shadow: -1 * $burger-item - ($burger-item-offset - $burger-item) / 
     left: -200%;
     width: 300vw;
     height: 300vh;
-    z-index: 3;
-    background: rgba(0, 0, 0, 0.8);
+    z-index: 8;
     opacity: 0;
-    transition: opacity 1s ease;
+    background: rgba(0, 0, 0, 0.8);
+    transition: opacity 0.5s ease;
     pointer-events: none;
 }
 
 .blackBackgroundActive {
-    transition: 1s;
     opacity: 1;
     pointer-events: all;
 }
@@ -306,10 +305,10 @@ $burger-item-shadow: -1 * $burger-item - ($burger-item-offset - $burger-item) / 
         display: none;
     }
     .appointment {
-        font-size: 16px;
+        font-size: 14px;
     }
     .number {
-        font-size: 18px;
+        font-size: 14px;
     }
     .btn7 {
         width: 180px;
@@ -336,6 +335,10 @@ $burger-item-shadow: -1 * $burger-item - ($burger-item-offset - $burger-item) / 
     .btn7 {
         display: none;
     }
+    .btnMenu {
+        display: block;
+        width: 100%;
+    }
     .logo {
         width: 160px;
         height: 40px;
@@ -357,7 +360,11 @@ $burger-item-shadow: -1 * $burger-item - ($burger-item-offset - $burger-item) / 
         max-width: 325px;
     }
     .appointment {
-        line-height: 12px;
+        line-height: 9px;
+        font-size: 9px;
+    }
+    .number {
+        font-size: 12px;
     }
     .btnMenu {
         display: block;

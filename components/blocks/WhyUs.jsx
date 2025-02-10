@@ -33,6 +33,8 @@ export default function WhyUs() {
           header: slide.header,
           text: slide.text,
           imgUrl: imgUrl,
+          arrowColor: slide.arrowColor,
+          isBlackText: slide.isBlackText,
         };
       }));
 
@@ -149,6 +151,8 @@ export default function WhyUs() {
             img={whyUs.imgUrl}
             header={whyUs.header}
             text={whyUs.text}
+            arrowColor={whyUs.arrowColor}
+            isBlackText={whyUs.isBlackText}
           />
         ))}
       </div>
@@ -161,6 +165,8 @@ export default function WhyUs() {
           img={getWhyUsForCurrentIndex().imgUrl}
           header={getWhyUsForCurrentIndex().header}
           text={getWhyUsForCurrentIndex().text}
+          arrowColor={getWhyUsForCurrentIndex().arrowColor}
+          isBlackText={getWhyUsForCurrentIndex().isBlackText}
         />
       </div>
       <div className={s.switcherPhone}>
@@ -207,12 +213,16 @@ export default function WhyUs() {
   );
 }
 
-const WhyUsCard = ({ img, header, text }) => {
+const WhyUsCard = ({ img, header, text, arrowColor, isBlackText }) => {
+  const [mouseOn, setMouseOn] = useState(false)
   return (
-    <div className={s.whyUsCard}>
+    <div className={s.whyUsCard} onMouseEnter={() => setMouseOn(true)} onMouseLeave={() => setMouseOn(false)}>
       {img && <Image className={s.whyUsImg} src={img} alt={header} width={600} height={400} />}
-      <h3 className={s.whyUsHeader}>{header}</h3>
-      <p className={s.whyUsText}>{text}</p>
+      <h3 style={{ color: isBlackText ? '#000' : '#fff' }} className={s.whyUsHeader}>{header}</h3>
+      <p style={{ color: isBlackText ? '#000' : '#fff' }} className={s.whyUsText}>{text}</p>
+      <svg style={mouseOn ? { transform: 'rotate(180deg)', transition: '0.3s' } : {}} className={s.whyUsArrow} xmlns="http://www.w3.org/2000/svg" width="108" height="107" viewBox="0 0 108 107" fill="none">
+        <path d="M34.7138 54.4435L52.5899 54.4435L52.5899 72.3196L52.5899 76.3196L56.5899 76.3196L62.839 76.3196H66.839L66.839 72.3196L66.839 44.1944L66.839 40.1944L62.839 40.1944L34.7138 40.1944L30.7138 40.1944L30.7138 44.1944L30.7138 50.4435L30.7138 54.4435L34.7138 54.4435Z" fill={arrowColor} stroke={arrowColor} stroke-width="8"/>
+      </svg>
     </div>
   );
 };

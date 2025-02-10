@@ -8,7 +8,7 @@ export default function Thanks () {
             <div className={s.thanksContainer}>
                 <h1 className={s.thanksHeader}>Спасибо</h1>
                 <span className={s.thanksDes}>за вашу заявку, ожидайте звонка менеджера</span>
-                <Link href={'/'} className={`${s.button0} ${s.buttonMat0} ${s.btn0}`}>Вернуться на главную</Link>
+                <button className={`${s.button0} ${s.buttonMat0} ${s.btn0}`}><Link href={'/'}>Вернуться на главную</Link></button>
             </div>
             <picture>
                 <source media="(max-width: 728px)" srcSet="/thanksPhone.png" />

@@ -33,7 +33,7 @@ export default function AboutUs({ setPopupOpen, aboutInfo }) {
   }, [img, imgPhone]);
 
   return (
-    <section className={s.slider}>
+    <section className={s.sliderAboutUs}>
       <div className={s.slide}>
         <div className={s.aboutUsInfo}>
           <h1 className={`${s.slideHeader} ${s.slideHeaderFZ}`}>{header}</h1>

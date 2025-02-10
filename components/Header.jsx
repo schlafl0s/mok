@@ -73,20 +73,36 @@ export default function Header ({setPopupOpen}) {
         }, 300)
         setTimeoutId(newTimeoutId)
     }
+    useEffect(() => {
+        const menu = document.querySelector(`.${s.phoneMenu}`);
+        const background = document.querySelector(`.${s.blackBackground}`);
+    
+        if (PhoneMenuOpen) {
+            // Плавное открытие
+            requestAnimationFrame(() => {
+                menu.classList.add(s.phoneMenuActive);
+                background.classList.add(s.blackBackgroundActive);
+            });
+        } else {
+            // Плавное закрытие
+            requestAnimationFrame(() => {
+                menu.classList.remove(s.phoneMenuActive);
+                background.classList.remove(s.blackBackgroundActive);
+            });
+        }
+    }, [PhoneMenuOpen]);
 
     function PhoneMenu () {
         return (
             <>
-            <div className={`${s.phoneMenu} ${PhoneMenuOpen ? s.phoneMenuActive : ''}`}>
+            <div className={`${s.phoneMenu}`}>
                 <nav className={sf.navLinks}>
                     <Link href={'/services'} className={sf.linksHeader}>УСЛУГИ</Link>
-                    <div className={sf.navLinksServices}>
+                    <div className={sf.navLinksServicesFooter}>
                         {services.map((service, index) => (
-                            <>
                             <Link key={index} className={sf.link} href={`/services/${service.id}`}>
                                 {service.title}
                             </Link>
-                            </>
                         ))}
                     </div>
                 </nav>
@@ -99,14 +115,14 @@ export default function Header ({setPopupOpen}) {
                     <Link href={'/privacy-policy'} className={sf.link}>Политика конфиденциальности</Link>
                     <Link href={'/user-agreement'} className={sf.link}>Пользовательское соглашение</Link>
                 </nav>
-                <nav className={sf.navLinks}>
+                <nav className={`${sf.navLinks} ${sf.navLinksMedia}`}>
                     <h2 className={sf.linksHeader}>КОНТАКТЫ</h2>
                     <span className={sf.contactsLinks}>
                         Телефон: 
                         <span className={sf.contactsLinksInfo}>{contactInfo.phone}</span>
                     </span>
                     <span className={sf.contactsLinks}>
-                        Электронная почта: 
+                        <span className={sf.contactsLinksText}>Электронная почта:</span>
                         <span className={sf.contactsLinksInfo}>{contactInfo.email}</span>
                     </span>
                     <span className={sf.contactsLinks}>
@@ -120,7 +136,7 @@ export default function Header ({setPopupOpen}) {
                 </nav>
                 <button onClick={() => setPopupOpen(true)} className={`${s.button} ${s.buttonMat} ${s.btn7} ${s.btnMenu}`}>Записаться онлайн</button>
             </div>
-            <div onClick={() => setPhoneMenuOpen(!PhoneMenuOpen)} className={`${s.blackBackground} ${PhoneMenuOpen ? s.blackBackgroundActive : ''}`}></div>
+            <div onClick={() => setPhoneMenuOpen(!PhoneMenuOpen)} className={`${s.blackBackground}`}></div>
             </>
         )
     }
@@ -128,7 +144,7 @@ export default function Header ({setPopupOpen}) {
     return (
         <>
         <header className={s.header}>
-            {PhoneMenuOpen && <PhoneMenu />}
+            <PhoneMenu />
             <div className={s.headerBackground}></div>
             <div className={`${s.burgerDecoration} ${PhoneMenuOpen ? s.open : ''}`}>
                 <button

@@ -20,6 +20,13 @@
     overflow: hidden;
     height: 650px;
 }
+.sliderAboutUs {
+    display: flex;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    height: 650px;
+}
 
 .slides {
     display: flex;
@@ -458,6 +465,7 @@ $color: white;
     padding: 50px 0px 0px 60px;
     position: relative;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .specialsSmallBlock2 {
@@ -470,6 +478,7 @@ $color: white;
     padding: 50px 0px 0px 60px;
     position: relative;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .specialsSmallName {
@@ -490,7 +499,7 @@ $color: white;
     font-size: 30px;
     line-height: 33px;
     font-weight: 800;
-    width: 250px;
+    width: 220px;
     z-index: 2;
 }
 
@@ -602,7 +611,7 @@ $color: white;
     position: absolute;
     background: #E9E8F4;
     width: 400%;
-    height: 100%;
+    height: 102%;
     top: 0;
     left: -200%;
     z-index: 1;
@@ -875,11 +884,13 @@ $color: white;
 }
 
 .whyUsHeader {
-    font-size: 30px;
+    font-size: 26px;
     font-weight: 800;
     line-height: 33px;
     text-align: left;
+    position: relative;
     z-index: 3;
+    text-transform: uppercase;
 }
 
 .whyUsText {
@@ -887,24 +898,19 @@ $color: white;
     font-weight: 400;
     line-height: 23.4px;
     text-align: left;
+    position: relative;
     z-index: 3;
     width: 330px;
 }
 
-.whyUsArrow1 {
+.whyUsArrow {
     position: absolute;
-    z-index: 3;
-    top: 5px;
-    right: 5px;
-    transform: rotate(180deg);
-}
-
-.whyUsArrow2 {
-    position: absolute;
-    z-index: 3;
-    top: 5px;
-    right: 5px;
-    transform: rotate(90deg);
+    z-index: 5;
+    width: 100px;
+    height: 100px;
+    top: -15px;
+    right: -15px;
+    transition: 0.3s;
 }
 
 .trust {
@@ -1102,6 +1108,8 @@ $color: white;
 
 .licenseX {
     position: absolute;
+    width: 66px;
+    height: 66px;
     transition: 0.3s;
     top: 30px;
     right: 33%;
@@ -1574,12 +1582,14 @@ $color: white;
     font-weight: 800;
     line-height: 26.4px;
     text-align: left;
+    text-transform: uppercase;
 }
 .serviceDirectionText {
     font-size: 16px;
     font-weight: 400;
     line-height: 20.8px;
     text-align: left;
+    color: #706B8D;
 }
 
 .serviceDirectionInfo {
@@ -1792,7 +1802,7 @@ $color: white;
     transition: 0.5s;
 }
 .howHeader {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 800;
     line-height: 24px;
     text-align: left;
@@ -1811,7 +1821,7 @@ $color: white;
   
 .howText {
     color: #706B8D;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 24px;
     text-align: left;
@@ -2390,6 +2400,9 @@ $color: white;
     .sliderService {
         height: 500px;
     }
+    .sliderAboutUs {
+        height: 500px;
+    }
     .XUH {
         right: 350px;
     }
@@ -2494,12 +2507,21 @@ $color: white;
     .specialistCardWidth {
         width: 32%;
     }
+    .specialsBlocks {
+        height: 400px;
+    }
 }
 
 @media (max-width: 1024px) {
     .main {
         max-width: 728px;
         padding-top: 80px;
+    }
+    .whyUsArrow {
+        width: 75x;
+        height: 75px;
+        top: -10px;
+        right: -25px;
     }
     .appointmentPopup {
         width: 400px;
@@ -2517,6 +2539,8 @@ $color: white;
     }
     .slideHeader {
         font-size: 32px;
+        line-height: 40px;
+        width: 50%;
     }
     .slideHeaderFZ {
         font-size: 28px;
@@ -2538,8 +2562,15 @@ $color: white;
     .sliderService {
         height: 400px;
     }
+    .sliderAboutUs {
+        height: 400px;
+    }
+    .slideCounter {
+        width: 10px;
+        height: 10px;
+    }
     .sale {
-        height: 150px;
+        height: 100px;
         margin: 40px 0px 60px;
     }
     .btn2 {
@@ -2581,7 +2612,8 @@ $color: white;
         margin-bottom: 30px;
     }
     .specialsBlocks {
-        height: 300px;
+        height: 220px;
+        gap: 10px
     }
     .specialsLeftArrow {
         width: 50px;
@@ -2594,38 +2626,41 @@ $color: white;
         height: 35px;
         left: 10px;
     }
+    .specialsRight {
+        gap: 10px
+    }
     .specialsSmallName {
-        font-size: 18px;
+        font-size: 15px;
     }
     .specialsSmallText {
-        font-size: 12px;
+        font-size: 10px;
     }
     .specialsLeft {
-        padding: 75px 0px 0px 30px;
+        padding: 30px 0px 0px 30px;
         gap: 15px
     }
     .specialsLeftHeader {
-        font-size: 18px;
+        font-size: 15px;
         line-height: 24px;
     }
     .specialsLeftText {
-        font-size: 14px;
+        font-size: 10px;
         line-height: 14px;
         width: 55%;
     }
     .specialsSmallBlock1 {
-        padding: 25px 0px 0px 20px;
-        gap: 5px
+        padding: 20px 0px 0px 30px;
+        gap: 0px
     }
     .specialsSmallBlock2 {
-        padding: 25px 0px 0px 20px;
-        gap: 5px
+        padding: 20px 0px 0px 30px;
+        gap: 0px
     }
     .btn3 {
         margin-top: 10px;
-        font-size: 14px;
-        width: 200px;
-        height: 40px;
+        font-size: 10px;
+        width: 160px;
+        height: 30px;
     }
     .stats {
         margin: 60px 0px;
@@ -2734,7 +2769,7 @@ $color: white;
         padding: 25px 20px;
     }
     .whyUsHeader {
-        font-size: 18px;
+        font-size: 16px;
     }
     .whyUsText {
         width: 200px;
@@ -2795,29 +2830,37 @@ $color: white;
     }
     .licenseCard {
         margin-top: 30px;
-        height: 280px;
+        height: 160px;
     }
     .licenseInfo {
         padding: 40px;
         gap: 30px
     }
     .licenseText {
-        font-size: 15px;
+        font-size: 12px;
+        line-height: 15px;
         width: 375px;
         text-align: left;
     }
     .licenseBtns {
         gap: 20px
     }
+    .licenseInfo {
+        gap: 20px
+    }
     .btn4 {
-        width: 200px;
-        font-size: 14px;
-        height: 45px;
+        width: 180px;
+        font-size: 10px;
+        height: 30px;
     }
     .btn6 {
-        width: 200px;
-        height: 45px;
-        font-size: 14px;
+        width: 180px;
+        font-size: 10px;
+        height: 30px;
+    }
+    .licenseX {
+        width: 40px;
+        height: 40px;
     }
     .appointment {
         margin: 30px 0px;
@@ -2914,6 +2957,12 @@ $color: white;
         top: 5px;
         left: 5px;
     }
+    .VUH {
+        width: 55px;
+        height: 55px;
+        bottom: 5px;
+        right: 5px;
+    }
     .btn7 {
         font-size: 14px;
         width: 200px;
@@ -2938,8 +2987,15 @@ $color: white;
     }
     .serviceDirection {
         width: 32.4%;
-        height: 320px;
+        height: 220px;
         padding: 20px 20px;
+    }
+    .serviceDirectionMiniImg {
+        width: 30px;
+        height: 30px;
+    }
+    .serviceDirectionsContainer {
+        margin-top: 15px;
     }
       
     .serviceDirectionsContainer .serviceDirection:nth-child(4),
@@ -2950,29 +3006,30 @@ $color: white;
         gap: 10px
     }
     .serviceDirectionHeader {
-        font-size: 16px;
+        font-size: 12px;
+        line-height: 12px;
     }
     .serviceDirectionText {
-        font-size: 10px;
-        line-height: 14px;
+        font-size: 8px;
+        line-height: 10px;
     }
     .serviceDirectionInfoText {
-        gap: 10px
+        gap: 15px
     }
     .btn9 {
-        width: 150px;
-        height: 40px;
-        font-size: 12px;
+        width: 130px;
+        height: 30px;
+        font-size: 10px;
     }
     .btn10 {
-        width: 150px;
-        height: 40px;
-        font-size: 12px;
+        width: 130px;
+        height: 30px;
+        font-size: 10px;
     }
     .btn11 {
-        width: 150px;
-        height: 40px;
-        font-size: 12px;
+        width: 130px;
+        height: 30px;
+        font-size: 10px;
     }
     .howImg {
         width: 100%;
@@ -3002,12 +3059,27 @@ $color: white;
         gap: 15px
     }
     .letter {
-        width: 22.7%;
+        width: 23.8%;
+        min-height: 150px;
     }
     .btn12 {
         width: 200px;
         height: 40px;
         font-size: 14px;
+    }
+    .descriptionContainer {
+        gap: 10px
+    }
+    .letters {
+        gap: 10px;
+    }
+    .letterLetter {
+        width: 25px;
+        height: 25px;
+        font-size: 15px;
+    }
+    .moreButton {
+        font-size: 12px;
     }
 }
 
@@ -3035,6 +3107,9 @@ $color: white;
         height: 590px;
     }
     .sliderService {
+        height: 590px;
+    }
+    .sliderAboutUs {
         height: 590px;
     }
     .underHeaderBackground {
@@ -3234,8 +3309,11 @@ $color: white;
     .review {
         width: 100%;
     }
+    .licenseCard {
+        height: 270px;
+    }
     .licenseX {
-        display: none;
+        right: 10%
     }
     .licenseBtns {
         flex-direction: column;
@@ -3243,7 +3321,7 @@ $color: white;
     }
     .licenseText {
         font-size: 12px;
-        width: 200px;
+        width: 190px;
         line-height: 16px;
     }
     .licenseInfo {
@@ -3308,7 +3386,42 @@ $color: white;
         height: 275px;
         padding: 20px 20px;
     }
-      
+    .serviceDirectionMiniImg {
+        width: 60px;
+        height: 60px;
+    }
+
+    .btn9 {
+        width: 150px;
+        height: 40px;
+        font-size: 12px;
+    }
+    .btn10 {
+        width: 150px;
+        height: 40px;
+        font-size: 12px;
+    }
+    .btn11 {
+        width: 150px;
+        height: 40px;
+        font-size: 12px;
+    }
+    .serviceDirectionMiniImg {
+        width: 45px;
+        height: 45px;
+    }
+    .serviceDirectionHeader {
+        font-size: 16px;
+        line-height: 20px;
+    }
+    .serviceDirectionText {
+        font-size: 12px;
+        line-height: 14px;
+    }
+    .serviceDirectionsContainer {
+        margin-top: 30px;
+    }
+    
     .serviceDirectionsContainer .serviceDirection:nth-child(4),
     .serviceDirectionsContainer .serviceDirection:nth-child(5) {
         width: 100%; /* Для нижних двух блоков задаём более широкие блоки */
@@ -3364,6 +3477,9 @@ $color: white;
     .whyUsContainerPhone {
         display: flex;
     }
+    .statsInfoContainer {
+        gap: 20px
+    }
 }
 
 @media (max-width: 425px) {
@@ -3396,9 +3512,6 @@ $color: white;
     }
     .statsText {
         line-height: 14px;
-    }
-    .statsInfoContainer {
-        gap: 5px
     }
     .serviceDirection {
         width: 100%;
@@ -3461,9 +3574,6 @@ $color: white;
     .stats {
         height: 680px;
         margin-top: 30px;
-    }
-    .statsInfoContainer {
-        gap: 5px
     }
     .specialistCard {
         padding: 0px 0px 0px 10px;

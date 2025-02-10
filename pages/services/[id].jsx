@@ -27,7 +27,7 @@ export default function ServicePage ({ saleInfo, specialistsInfo, whyUsInfo, ser
         <main className={s.main}>
             <Bread first={'Услуги'} firstLink={'/services'} second={servicePageInfo.title}/>
             <Service setPopupOpen={setPopupOpen} servicePageInfo={servicePageInfo} />
-            <Sale saleInfo={saleInfo} />
+            <Sale setPopupOpen={setPopupOpen} saleInfo={saleInfo} />
             <ServiceDirections setPopupOpen={setPopupOpen} servicePageInfo={servicePageInfo} />
             <WhyUs whyUsInfo={whyUsInfo} />
             <Appointment />

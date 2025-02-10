@@ -10,7 +10,7 @@ export default function ServiceDirections ({ setPopupOpen, servicePageInfo }) {
                 <div className={s.serviceDirection}>
                     <div className={s.serviceDirectionInfo}>
                         <div className={s.serviceDirectionInfoText}>
-                            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg className={s.serviceDirectionMiniImg} width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_816_32863)">
                                 <rect width="60" height="60" rx="30" fill="white"/>
                                 <g clip-path="url(#clip1_816_32863)">
@@ -42,7 +42,7 @@ export default function ServiceDirections ({ setPopupOpen, servicePageInfo }) {
                 <div className={s.serviceDirection}>
                     <div className={s.serviceDirectionInfo}>
                         <div className={s.serviceDirectionInfoText}>
-                            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg className={s.serviceDirectionMiniImg} width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_816_32863)">
                                 <rect width="60" height="60" rx="30" fill="white"/>
                                 <g clip-path="url(#clip1_816_32863)">
@@ -74,7 +74,7 @@ export default function ServiceDirections ({ setPopupOpen, servicePageInfo }) {
                 <div className={s.serviceDirection}>
                     <div className={s.serviceDirectionInfo}>
                         <div className={s.serviceDirectionInfoText}>
-                            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg className={s.serviceDirectionMiniImg} width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_816_32863)">
                                 <rect width="60" height="60" rx="30" fill="white"/>
                                 <g clip-path="url(#clip1_816_32863)">
@@ -106,7 +106,7 @@ export default function ServiceDirections ({ setPopupOpen, servicePageInfo }) {
                 <div className={s.serviceDirection}>
                     <div className={s.serviceDirectionInfo}>
                         <div className={s.serviceDirectionInfoText}>
-                            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg className={s.serviceDirectionMiniImg} width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_816_32863)">
                             <rect width="60" height="60" rx="30" fill="white"/>
                             <g clip-path="url(#clip1_816_32863)">
@@ -138,7 +138,7 @@ export default function ServiceDirections ({ setPopupOpen, servicePageInfo }) {
                 <div className={s.serviceDirection}>
                     <div className={s.serviceDirectionInfo}>
                         <div className={s.serviceDirectionInfoText}>
-                            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg className={s.serviceDirectionMiniImg} width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_816_32863)">
                                 <rect width="60" height="60" rx="30" fill="white"/>
                                 <g clip-path="url(#clip1_816_32863)">

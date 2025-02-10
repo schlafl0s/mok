@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link';
 import { useState, useEffect } from 'react'
 
-export default function Sale ({ saleInfo }) {
+export default function Sale ({ saleInfo, setPopupOpen }) {
   const { img, imgPhone, btn, linkBtn } = saleInfo.sale;
 
   const [imgUrl, setImgUrl] = useState('');
@@ -47,10 +47,8 @@ export default function Sale ({ saleInfo }) {
       </picture>
       
       {btn && (
-        <button className={`${s.button2} ${s.buttonMat2} ${s.btn2}`}>
-          <Link href={linkBtn || '/contacts'}>
+        <button onClick={() => setPopupOpen(true)} className={`${s.button2} ${s.buttonMat2} ${s.btn2}`}>
             {btn}
-          </Link>
         </button>
       )}
     </section>
