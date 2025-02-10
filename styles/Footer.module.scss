@@ -189,23 +189,23 @@
 .contactsLinks {
     font-size: 18px;
     font-weight: 400;
-    line-height: 7px;
+    line-height: 10px;
     text-align: left;
     display: flex;
-    height: 45px;
+    height: 35px;
     width: 100%;
     flex-direction: column;
 }
 .contactsLinksText {
-    width: 140px;
+    width: 175px;
 }
 
 .contactsLinksInfo {
     font-size: 18px;
     font-weight: 700;
-    line-height: 30px;
+    line-height: 40px;
     text-align: left;
-    height: 30px;
+    height: 35px;
 }
 
 .siteInfo {
@@ -359,6 +359,7 @@
     }
     .contactsLinksInfo {
         font-size: 10px;
+        line-height: 20px;
     }
     .navLinks {
         gap: 10px
@@ -415,6 +416,7 @@
     }
     .contactsLinksInfo {
         width: 100%;
+        line-height: 35px;
     }
     .logoPhone1 {
         display: flex;
@@ -459,6 +461,9 @@
     }
     .contactsLinks {
         height: 25px;
+    }
+    .contactsLinksText {
+        width: 130px;
     }
 }
 

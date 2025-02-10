@@ -7,6 +7,7 @@ export default function AboutUs({ setPopupOpen, aboutInfo }) {
 
   const [imgUrl, setImgUrl] = useState('');
   const [imgPhoneUrl, setImgPhoneUrl] = useState('');
+  const [mouseOn, setMouseOn] = useState(false)
 
   // Функция для получения URL изображения по ID
   const fetchImageUrl = async (imageId) => {
@@ -33,10 +34,10 @@ export default function AboutUs({ setPopupOpen, aboutInfo }) {
   }, [img, imgPhone]);
 
   return (
-    <section className={s.sliderAboutUs}>
+    <section className={s.sliderAboutUs} onMouseEnter={() => setMouseOn(true)} onMouseLeave={() => setMouseOn(false)}>
       <div className={s.slide}>
         <div className={s.aboutUsInfo}>
-          <h1 className={`${s.slideHeader} ${s.slideHeaderFZ}`}>{header}</h1>
+          <h1 className={s.slideHeaderAboutUs}>{header}</h1>
           <div className={s.descriptionContainer}>
             <p className={s.aboutDes}>{text1}</p>
             {text2 && <p className={s.aboutDes}>{text2}</p>}
@@ -51,6 +52,9 @@ export default function AboutUs({ setPopupOpen, aboutInfo }) {
           <source media="(min-width: 729px)" srcSet={imgUrl} />
           <Image className={s.underHeaderBackground} src={imgUrl || "/aboutUs.png"} width={2000} height={2000} alt="About Us Image" />
         </picture>
+        <svg style={mouseOn ? { transform: 'rotate(270deg)', transition: '0.3s' } : {}} className={s.aboutUsArrow} xmlns="http://www.w3.org/2000/svg" width="108" height="107" viewBox="0 0 108 107" fill="none">
+          <path d="M34.7138 54.4435L52.5899 54.4435L52.5899 72.3196L52.5899 76.3196L56.5899 76.3196L62.839 76.3196H66.839L66.839 72.3196L66.839 44.1944L66.839 40.1944L62.839 40.1944L34.7138 40.1944L30.7138 40.1944L30.7138 44.1944L30.7138 50.4435L30.7138 54.4435L34.7138 54.4435Z" fill='#51C33F' stroke='#51C33F' stroke-width="8"/>
+        </svg>
       </div>
     </section>
   );

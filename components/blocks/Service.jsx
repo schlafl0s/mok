@@ -7,6 +7,7 @@ export default function Service ({ setPopupOpen, servicePageInfo }) {
   const [imgUrl, setImgUrl] = useState('');
   const [imgPhoneUrl, setImgPhoneUrl] = useState('');
   const [formattedText, setFormattedText] = useState([]);
+  const [mouseOn, setMouseOn] = useState(false)
 
   // Функция для получения URL изображения по ID
   const fetchImageUrl = async (imageId) => {
@@ -44,7 +45,7 @@ export default function Service ({ setPopupOpen, servicePageInfo }) {
   }, [img, imgPhone, text]);
 
   return (
-    <section className={s.sliderService}>
+    <section className={s.sliderService} onMouseEnter={() => setMouseOn(true)} onMouseLeave={() => setMouseOn(false)}>
         <div className={s.slide}>
             <div className={s.aboutUsInfo}>
             <h1 className={s.serviceHeader}>{header}</h1>
@@ -60,6 +61,9 @@ export default function Service ({ setPopupOpen, servicePageInfo }) {
             <source media="(min-width: 729px)" srcSet={imgUrl} />
             <Image className={s.underHeaderBackground} src={imgUrl} width={2000} height={2000} />
             </picture>
+            <svg style={mouseOn ? { transform: 'rotate(360deg)', transition: '0.3s' } : {}} className={s.serviceArrow} xmlns="http://www.w3.org/2000/svg" width="108" height="107" viewBox="0 0 108 107" fill="none">
+              <path d="M34.7138 54.4435L52.5899 54.4435L52.5899 72.3196L52.5899 76.3196L56.5899 76.3196L62.839 76.3196H66.839L66.839 72.3196L66.839 44.1944L66.839 40.1944L62.839 40.1944L34.7138 40.1944L30.7138 40.1944L30.7138 44.1944L30.7138 50.4435L30.7138 54.4435L34.7138 54.4435Z" fill='#391FCF' stroke='#391FCF' stroke-width="8"/>
+            </svg>
         </div>
     </section>
   );
