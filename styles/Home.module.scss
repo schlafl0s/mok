@@ -218,6 +218,17 @@ $color: white;
     z-index: 2;
     transition: 0.3s;
 }
+.VUHphone {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 45px;
+    height: 45px;
+    z-index: 2;
+    display: none;
+    transition: 0.3s;
+    transform: rotate(90deg);
+}
 
 .slideCount {
     display: flex;
@@ -355,7 +366,7 @@ $color: white;
 .directionDes {
     position: relative;
     z-index: 2;
-    color: black;
+    color: #706B8D;
     font-size: 16px;
     line-height: 20px;
     font-weight: 400;
@@ -1463,6 +1474,16 @@ $color: white;
     height: 77px;
 }
 
+.VUHservicePhone {
+    position: absolute;
+    z-index: 3;
+    transition: 0.3s;
+    top: 10px;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+}
+
 .button7 {
     background: #5BE146;
     text-align: center;
@@ -1834,6 +1855,8 @@ $color: white;
     line-height: 24px;
     text-align: left;
     width: 75%;
+    display: flex;
+    align-items: center;
 }
 .howImg {
     width: 35%;
@@ -1859,7 +1882,7 @@ $color: white;
 }
 .howTextUnactive {
     color: #706B8D;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 0px;
     text-align: left;
@@ -2402,7 +2425,6 @@ $color: white;
     }
     .directionDes {
         font-size: 12px;
-        font-weight: 700;
         line-height: 16px;
     }
     .btn2 {
@@ -2651,16 +2673,18 @@ $color: white;
     }
     .direction {
         gap: 10px;
-        height: 200px;
+        height: 175px;
+        width: calc(25% - 10px);
     }
     .directionsContainer {
         margin-top: 30px;
+        gap: 10px
     }
     .Header {
         font-size: 32px;
     }
     .directionName {
-        width: 120px;
+        width: 90%;
         font-size: 12px;
         line-height: 14px;
     }
@@ -2755,6 +2779,7 @@ $color: white;
     }
     .statsInfoText {
         font-size: 12px;
+        line-height: 16px;
         width: 100%;
     }
     .specialist {
@@ -2831,7 +2856,7 @@ $color: white;
         margin-top: 30px;
     }
     .whyUsCard {
-        height: 220px;
+        height: 180px;
         gap: 10px;
         padding: 25px 20px;
     }
@@ -2839,9 +2864,9 @@ $color: white;
         font-size: 16px;
     }
     .whyUsText {
-        width: 200px;
+        width: 175px;
         font-size: 10px;
-        line-height: 15px;
+        line-height: 11px;
     }
     .switchBtnLeft {
         width: 30px;
@@ -2867,8 +2892,9 @@ $color: white;
         height: 50%;
     }
     .trustItem {
-        height: 115px;
+        height: 75px;
         width: 16.66%;
+        padding: 14px 8px;
     }
     .reviews {
         margin: 60px 0px;
@@ -2892,7 +2918,7 @@ $color: white;
         margin: 60px 0px 0px 0px;
     }
     .licenseContainer {
-        padding: 60px 0px;
+        padding: 30px 0px 60px;
         height: 100%;
     }
     .licenseCard {
@@ -2931,7 +2957,10 @@ $color: white;
     }
     .appointment {
         margin: 30px 0px;
-        height: 300px;
+        height: 336px;
+    }
+    .appointmentMedia {
+        height: 285px;
     }
     .makeAppointment {
         padding: 15px 40px;
@@ -2939,7 +2968,7 @@ $color: white;
     }
     .makeAppointment2 {
         gap: 15px;
-        padding: 20px 20px;
+        padding: 30px 40px;
     }
     .greenArrow {
         width: 50px;
@@ -2953,8 +2982,12 @@ $color: white;
         font-size: 24px;
     }
     .makeAppointmentHeader2 {
-        font-size: 18px;
-        line-height: 20px;
+        font-size: 24px;
+        line-height: 28px;
+    }
+    .makeAppointmentText2 {
+        font-size: 10px;
+        line-height: 16px;
     }
     .appointmentInput {
         padding: 5px 15px;
@@ -2965,15 +2998,15 @@ $color: white;
         font-size: 12px;
     }
     .btn5 {
-        font-size: 14px;
+        font-size: 10px;
         height: 35px;
     }
     .appointmentForm {
         gap: 10px
     }
     .appointmentAgree {
-        font-size: 10px;
-        line-height: 10px;
+        font-size: 7px;
+        line-height: 7px;
     }
     .news {
         margin: 60px 0px;
@@ -3005,7 +3038,7 @@ $color: white;
         bottom: 30px
     }
     .specialService {
-        height: 250px;
+        height: 200px;
     }
     .specialServiceInfo {
         padding-left: 45px;
@@ -3017,10 +3050,11 @@ $color: white;
     .specialServiceHeader {
         font-size: 25px;
         line-height: 27px;
+        width: 100%;
     }
     .VUHservice {
-        width: 55px;
-        height: 55px;
+        width: 45px;
+        height: 45px;
         top: 5px;
         left: 5px;
     }
@@ -3036,7 +3070,7 @@ $color: white;
         height: 40px;
     }
     .bigReview {
-        width: 31.5%;
+        width: 32.4%;
         padding: 20px 20px;
         gap: 10px;
     }
@@ -3099,17 +3133,26 @@ $color: white;
         font-size: 10px;
     }
     .howImg {
-        width: 100%;
+        height: 100%;
+        width: 40%;
+    }
+    .howHidden {
+        padding: 15px;
+    }
+    .howNum {
+        padding: 20px;
+        width: 30px;
+        height: 30px;
+    }
+    .howHeader {
+        font-size: 12px;
+        line-height: 16px;
     }
     .howInfo {
         width: 100%;
         display: flex;
         flex-direction: column;
         gap: 15px
-    }
-    .howContainer {
-        flex-direction: column;
-        margin-top: 30px;
     }
     .how {
         margin: 60px 0px;
@@ -3160,12 +3203,37 @@ $color: white;
     .aboutUsInfo {
         gap: 20px
     }
+    .statsInfo2 {
+        height: 70%;
+    }
+    .statsInfo1 {
+        height: 70%;
+    }
+    .howContainer {
+        margin-top: 20px;
+    }
+    .reviewsContainer {
+        gap: 10px
+    }
+    .bigReviewsContainer {
+        gap: 10px;
+    }
 }
 
 @media (max-width: 728px) {
     .main {
         max-width: 425px;
         padding-top: 60px;
+    }
+    .VUHservice {
+        display: none;
+    }
+    .VUHservicePhone {
+        display: block;
+    }
+    .howContainer {
+        flex-direction: column;
+        margin-top: 30px;
     }
     .appointmentPopup {
         width: 400px;
@@ -3252,7 +3320,7 @@ $color: white;
     .directionName {
         font-size: 16px;
         line-height: 18px;
-        width: 60%;
+        width: 90%;
     }
     .directionDes {
         font-size: 12px;
@@ -3262,6 +3330,7 @@ $color: white;
     .specialsBlocks {
         flex-direction: column;
         height: 100%;
+        gap: 20px
     }
     .specialsLeft {
         width: 100%;
@@ -3272,6 +3341,7 @@ $color: white;
     .specialsRight {
         width: 100%;
         height: 240px;
+        gap: 20px
     }
     .specialsLeftArrow {
         width: 35px;
@@ -3381,6 +3451,7 @@ $color: white;
     }
     .whyUsText {
         font-size: 12px;
+        width: 60%;
     }
     .trustItem {
         width: 33.33%;
@@ -3443,17 +3514,18 @@ $color: white;
         align-items: unset;
     }
     .specialServiceInfo {
-        padding-left: 45px;
-        padding-top: 45px;
+        padding-left: 25px;
+        padding-top: 25px;
         gap: 20px
     }
     .specialServiceDes {
-        width: 80%;
+        width: 90%;
         font-size: 14px;
     }
     .specialServiceHeader {
         font-size: 25px;
         line-height: 27px;
+        width: 80%;
     }
     .bigReview {
         width: 100%;
@@ -3508,6 +3580,7 @@ $color: white;
 
     .priceHeader {
         font-size: 16px;
+        width: 60%;
     }
     .dopPriceHeader {
         font-size: 16px;
@@ -3516,13 +3589,18 @@ $color: white;
         gap: 10px
     }
     .price {
-        padding: 10px 20px 10px 20px;
+        padding: 10px 10px 10px 20px;
     }
     .pricesContainer {
         margin-top: 30px;
+        gap: 10px
     }
     .makeAppointmentHeader2 {
         font-size: 24px;
+        width: 70%;
+    }
+    .makeAppointmentText {
+        font-size: 10px;
     }
     .makeAppointmentText2 {
         font-size: 14px;
@@ -3562,11 +3640,37 @@ $color: white;
     .btn0 {
         width: 300px;
     }
+    .howImg {
+        height: 100%;
+        width: 100%;
+    }
+    .VUHphone {
+        display: block;
+    }
+    .whyUsCard {
+        gap: 10px;
+        padding: 15px 20px;
+    }
+    .btn5 {
+        height: 45px;
+        font-size: 16px;
+    }
+    .priceOpen {
+        padding: 10px;
+    }
+    .svgPrice {
+        width: 12px;
+        height: 12px;
+    }
 }
 
 @media (max-width: 425px) {
     .slideHeader {
         width: 250px;
+    }
+    .greenArrow {
+        width: 45px;
+        height: 45px;
     }
     .appointmentPopup {
         width: 320px;
@@ -3589,7 +3693,7 @@ $color: white;
         width: 45%;
     }
     .Header {
-        width: 300px;
+        width: 280px;
         font-size: 24px;
     }
     .statsText {
@@ -3607,7 +3711,9 @@ $color: white;
     }
 
     .priceHeader {
-        font-size: 14px;
+        font-size: 12px;
+        line-height: 14px;
+        width: 60%;
     }
     .dopPriceHeader {
         font-size: 14px;
@@ -3620,6 +3726,13 @@ $color: white;
         gap: 20px;
         width: 100%;
         padding: 20px 20px;
+    }
+    .makeAppointment {
+        gap: 10px;
+        padding: 20px 30px;
+    }
+    .appointmentInput {
+        padding: 10px;
     }
     .btn2 {
         margin: 80px 20px;
@@ -3644,7 +3757,7 @@ $color: white;
         width: 45%;
     }
     .Header {
-        width: 300px;
+        width: 280px;
         font-size: 24px;
     }
     .slideInfo {
@@ -3678,5 +3791,11 @@ $color: white;
         font-size: 28px;
         line-height: 32px;
         width: 300px;
+    }
+    .statsInfo2 {
+        height: 100%;
+    }
+    .statsInfo1 {
+        height: 100%;
     }
 }

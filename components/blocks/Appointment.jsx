@@ -100,7 +100,7 @@ export default function Appointment() {
   };
 
   return (
-    <section className={s.appointment}>
+    <section className={`${s.appointment} ${s.appointmentMedia}`}>
       <div className={s.appointmentImgContainer}>
         {/* Используем полученный URL изображения */}
         {appointmentImgUrl && (
@@ -136,7 +136,7 @@ export default function Appointment() {
             value={phone}
             onChange={handlePhoneChange}
           />
-          <button type="submit" onClick={handleSubmit} className={`${s.button5} ${s.buttonMat5} ${s.btn5}`}>
+          <button type="submit" onClick={handleSubmit} className={`${s.button5} ${s.buttonMat5} ${s.btn5} ${s.btn5media}`}>
             Записаться
           </button>
           <Link href={'/user-agreement'} className={s.appointmentAgree}>

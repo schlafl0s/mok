@@ -7,6 +7,7 @@ export default function Consultation () {
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
     const [submitted, setSubmitted] = useState(false);
+    const [mouseOn, setMouseOn] = useState(false)
     const router = useRouter();
 
     const handleSubmit = async (e) => {
@@ -68,8 +69,9 @@ export default function Consultation () {
 
     return (
         <section className={s.appointment}>
-            <div className={s.makeAppointment2}>
+            <div className={s.makeAppointment2} onMouseEnter={() => setMouseOn(true)} onMouseLeave={() => setMouseOn(false)}>
                 <Image
+                style={mouseOn ? { transform: 'rotate(180deg)', transition: '0.3s' } : {}}
                 className={s.greenArrow}
                 src={'/greenArrow.png'}
                 width={77}
@@ -90,7 +92,7 @@ export default function Consultation () {
                     value={phone}
                     onChange={handlePhoneChange}
                     />
-                    <button type='submit' onClick={handleSubmit} className={`${s.button5} ${s.buttonMat5} ${s.btn5}`}>Записаться</button>
+                    <button type='submit' onClick={handleSubmit} className={`${s.button5} ${s.buttonMat5} ${s.btn5}`}>Получить консультацию</button>
                     <span className={s.appointmentAgree}>Нажимая кнопку, вы даете согласие на обработку персональных данных</span>
                 </form>
             </div>

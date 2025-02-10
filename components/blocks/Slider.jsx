@@ -119,6 +119,7 @@ export default function Slider({ setPopupOpen, slideInfo }) {
         ))}
       </div>
       <Image className={s.VUH} style={mouseOn ? { transform: 'rotate(180deg)', transition: '0.3s' } : {}}  src={'/V.png'} width={100} height={100} />
+      <Image className={s.VUHphone} style={mouseOn ? { transform: 'rotate(-90deg)', transition: '0.3s' } : {}}  src={'/V.png'} width={100} height={100} />
     </section>
   );
 }

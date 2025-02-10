@@ -331,6 +331,8 @@ $burger-item-shadow: -1 * $burger-item - ($burger-item-offset - $burger-item) / 
     }
     .number {
         font-size: 12px;
+        line-height: 12px;
+        margin-bottom: 8px;
     }
     .btn7 {
         display: none;
@@ -341,8 +343,10 @@ $burger-item-shadow: -1 * $burger-item - ($burger-item-offset - $burger-item) / 
     }
     .logo {
         width: 160px;
-        height: 40px;
+        height: 35px;
+        margin-top: 5px;
     }
+    $burger-item: 2px;
     .phoneMenu {
         flex-wrap: wrap;
         gap: 10px;
@@ -359,12 +363,20 @@ $burger-item-shadow: -1 * $burger-item - ($burger-item-offset - $burger-item) / 
     .header {
         max-width: 325px;
     }
+    .logo {
+        width: 148px;
+        height: 30px;
+        margin-top: 5px;
+    }
     .appointment {
         line-height: 9px;
         font-size: 9px;
+        width: 100%;
     }
     .number {
-        font-size: 12px;
+        font-size: 10px;
+        line-height: 20px;
+        margin-bottom: 0px;
     }
     .btnMenu {
         display: block;

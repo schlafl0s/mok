@@ -97,7 +97,7 @@ export default function Header ({setPopupOpen}) {
             <>
             <div className={`${s.phoneMenu}`}>
                 <nav className={sf.navLinks}>
-                    <Link href={'/services'} className={sf.linksHeader}>УСЛУГИ</Link>
+                    <Link href={'/services'} style={{cursor: 'pointer'}} className={sf.linksHeader}>УСЛУГИ</Link>
                     <div className={sf.navLinksServicesFooter}>
                         {services.map((service, index) => (
                             <Link key={index} className={sf.link} href={`/services/${service.id}`}>

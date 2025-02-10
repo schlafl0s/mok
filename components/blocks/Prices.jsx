@@ -42,7 +42,7 @@ function Price({ header, price, dopPrices }) {
         <div className={s.priceRight}>
           <span className={s.pricePrice}>{price} ₽</span>
           <div className={`${s.priceOpen} ${hidden ? s.priceOpenBlue : ''}`}>
-            <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg className={s.svgPrice} width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path className={hidden ? s.linePrice : s.unactiveLinePrice} d="M8.7041 0.870117V18.1757" stroke="#5BE146" strokeWidth="1.73056" />
               <path className={hidden ? s.line2Price : s.unactiveLine2Price} d="M0.0512695 9.52246L17.3568 9.52246" stroke="#5BE146" strokeWidth="1.73056" />
             </svg>

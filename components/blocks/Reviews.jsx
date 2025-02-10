@@ -75,7 +75,7 @@ export default function Reviews({ reviewsInfo }) {
                   <Review
                     key={index}
                     text={review.text}
-                    person={review.person}
+                    author={review.author}
                     doctor={review.doctor}
                     stars={review.stars}
                   />
@@ -86,7 +86,7 @@ export default function Reviews({ reviewsInfo }) {
               <Review
                 key={currentIndex}
                 text={getReviewsForCurrentIndex().text}
-                person={getReviewsForCurrentIndex().person}
+                author={getReviewsForCurrentIndex().author}
                 doctor={getReviewsForCurrentIndex().doctor}
                 stars={getReviewsForCurrentIndex().stars}
               />
@@ -108,7 +108,7 @@ export default function Reviews({ reviewsInfo }) {
     );
 }
 
-function Review ({text, person, doctor, stars}) {
+function Review ({text, author, doctor, stars}) {
     const starArray = Array.from({ length: stars }, (_, index) => index);
 
     return (
@@ -134,7 +134,7 @@ function Review ({text, person, doctor, stars}) {
           {text}
         </p>
         <div className={s.reviewBorder}></div>
-        <span className={s.reviewPerson}>{person}</span>
+        <span className={s.reviewPerson}>{author}</span>
         <span className={s.reviewSpecialist}>Врач: {doctor}</span>
       </div>
     )

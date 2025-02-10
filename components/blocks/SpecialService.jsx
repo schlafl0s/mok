@@ -53,6 +53,7 @@ export default function SpecialService({ setPopupOpen, specialServiceInfo }) {
         />
       </picture>
       <Image className={s.VUHservice} style={mouseOn ? { transform: 'rotate(360deg)', transition: '0.3s' } : {transform: 'rotate(180deg)'}} src={'/V.png'} width={100} height={100} />
+      <Image className={s.VUHservicePhone} style={mouseOn ? { transform: 'rotate(90deg)', transition: '0.3s' } : {transform: 'rotate(-90deg)'}} src={'/V.png'} width={100} height={100} />
     </div>
   );
 }
