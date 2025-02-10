@@ -107,12 +107,14 @@ export default function Footer ({ footerCut = false }) {
                     />
                 </div>
                 <div className={s.logo}>
-                    <Image
-                    className={s.logoImg}
-                    src={'/logo.png'}
-                    width={1000}
-                    height={1000}
-                    />
+                    <Link href={'/'}>
+                        <Image
+                        className={s.logoImg}
+                        src={'/logo.png'}
+                        width={1000}
+                        height={1000}
+                        />
+                    </Link>
                     <div className={s.infoContainer}>
                         <span className={s.info}>Лицензия № Л041-01137-77/00368259 от 19.09.2019 г.</span>
                         <span className={s.info}>Сайт не является публичной офертой Первичное посещение пациентов до 18 лет осуществляется только в присутствии законного представителя</span>

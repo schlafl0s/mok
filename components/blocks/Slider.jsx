@@ -54,10 +54,10 @@ export default function Slider({ setPopupOpen, slideInfo }) {
     setCurrentTransition(index * -100);
   };
 
-  // useEffect(() => {
-  //   const interval = setInterval(nextSlide, 5000);
-  //   return () => clearInterval(interval);
-  // }, [currentSlide]);
+  useEffect(() => {
+    const interval = setInterval(nextSlide, 5000);
+    return () => clearInterval(interval);
+  }, [currentSlide]);
 
   function Slide({ slide }) {
     return (

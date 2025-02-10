@@ -190,18 +190,18 @@ $color: white;
     width: 80%;
     padding: 30px 0px;
 }
-.articleHeader {
-    font-size: 50px;
-    font-weight: 700;
-    line-height: 55px;
-    text-align: left;
-}
 .articleDate {
     font-size: 18px;
     font-weight: 400;
     line-height: 24.59px;
     text-align: left;
     color: #706B8D;
+}
+.articleTitle {
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 55px;
+    letter-spacing: 0%;
 }
 .articleHeader {
     font-size: 24px;
@@ -250,6 +250,26 @@ $color: white;
     }
     .errorDes2 {
         font-size: 20px;
+    }
+    .articleDate {
+        font-weight: 400;
+        font-size: 15.57px;
+        line-height: 21.28px;        
+    }
+    .articleTitle {
+        font-weight: 700;
+        font-size: 43.26px;
+        line-height: 47.59px;
+    }
+    .articleHeader {
+        font-weight: 700;
+        font-size: 20.77px;
+        line-height: 27px;        
+    }
+    .articleText {
+        font-weight: 400;
+        font-size: 17.31px;
+        line-height: 22.5px;
     }
     .articleImage {
         height: 500px;
@@ -367,8 +387,56 @@ $color: white;
         line-height: 40px;
         margin: 30px 0px 15px;
     }
+    .articleHead {
+        padding: 0px 0px 20px;
+        gap: 20px;
+        width: 85%;
+    }
+    .articleDataContainer {
+        gap: 20px
+    }
+    .articleDate {
+        font-weight: 400;
+        font-size: 9.1px;
+        line-height: 12.43px;      
+    }
+    .articleTitle {
+        font-weight: 700;
+        font-size: 25.28px;
+        line-height: 27.81px;
+    }
+    .articleHeader {
+        font-weight: 700;
+        font-size: 12.13px;
+        line-height: 15.77px;      
+    }
+    .articleText {
+        font-weight: 400;
+        font-size: 10.11px;
+        line-height: 13.14px;
+    }
     .articleImage {
         height: 400px;
+    }
+    .technicalHeader {
+        font-weight: 700;
+        font-size: 25.28px;
+        line-height: 27.81px;
+        margin: 0px 0px 0px;
+    }
+    .textContainer {
+        padding-top: 15px;
+        gap: 15px
+    }
+    .techHeader {
+        font-weight: 700;
+        font-size: 12.13px;
+        line-height: 15.77px;
+    }
+    .techText {
+        font-weight: 400;
+        font-size: 10.11px;
+        line-height: 13.14px;
     }
 }
 
@@ -408,8 +476,51 @@ $color: white;
         justify-content: start;
         width: 100%;
     }
+    .articleHead {
+        width: 100%;
+    }
+    .articleDate {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 16.39px;
+    }
+    .articleTitle {
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 26.4px;
+    }
+    .articleHeader {
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 18.2px;
+    }
+    .articleText {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 15.6px;
+    }
     .articleImage {
-        height: 250px;
+        height: 200px;
+    }
+    .technicalHeader {
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 26.4px;
+        margin: 0px 0px 0px;
+    }
+    .textContainer {
+        padding-top: 15px;
+        gap: 15px
+    }
+    .techHeader {
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 18.2px;
+    }
+    .techText {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 15.6px;        
     }
 }
 
@@ -429,8 +540,7 @@ $color: white;
     }
     .technicalHeader {
         font-size: 24px;
-        line-height: 32px;
-        margin: 30px 0px 15px;
+        line-height: 26.4px;
     }
     .articleImage {
         height: 200px;

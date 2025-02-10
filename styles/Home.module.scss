@@ -94,6 +94,9 @@
     font-weight: 600;
     z-index: 4;
 }
+.aboutDesFw {
+    font-weight: 400;
+}
 
 .descriptionContainer {
     display: flex;
@@ -908,6 +911,7 @@ $color: white;
     position: relative;
     z-index: 3;
     text-transform: uppercase;
+    width: 75%;
 }
 
 .whyUsText {
@@ -1482,6 +1486,7 @@ $color: white;
     right: 10px;
     width: 50px;
     height: 50px;
+    display: none;
 }
 
 .button7 {
@@ -2261,6 +2266,8 @@ $color: white;
     }
     .whyUsText {
         font-size: 15px;
+        line-height: 20px;
+        width: 55%;
     }
     .appointment {
         height: 545px;
@@ -2340,6 +2347,9 @@ $color: white;
     .whyUsText {
         font-size: 12px;
         width: 250px;
+    }
+    .whyUsCard {
+        height: 280px;
     }
     .technology {
         height: 300px;
@@ -2660,7 +2670,7 @@ $color: white;
         height: 400px;
     }
     .sliderAboutUs {
-        height: 400px;
+        height: 350px;
     }
     .slideCounter {
         width: 10px;
@@ -2870,11 +2880,12 @@ $color: white;
     }
     .whyUsHeader {
         font-size: 16px;
+        line-height: 18px;
     }
     .whyUsText {
         width: 175px;
         font-size: 10px;
-        line-height: 11px;
+        line-height: 12px;
     }
     .switchBtnLeft {
         width: 30px;
@@ -3209,7 +3220,7 @@ $color: white;
         line-height: 16px;
     }
     .aboutUsInfo {
-        gap: 20px
+        gap: 15px
     }
     .statsInfo2 {
         height: 70%;
@@ -3262,10 +3273,10 @@ $color: white;
         height: 590px;
     }
     .sliderService {
-        height: 590px;
+        height: 660px;
     }
     .sliderAboutUs {
-        height: 590px;
+        height: 660px;
     }
     .underHeaderBackground {
         height: 100%;
@@ -3458,7 +3469,7 @@ $color: white;
         width: 100%;
     }
     .whyUsText {
-        font-size: 12px;
+        font-size: 10px;
         width: 60%;
     }
     .trustItem {
@@ -3751,6 +3762,9 @@ $color: white;
     .appointmentForm {
         gap: 10px
     }
+    .btn0 {
+        width: 250px;
+    }
 }
 
 @media (max-width: 375px) {
@@ -3791,9 +3805,6 @@ $color: white;
         width: 115px;
         height: 30px;
         font-size: 10px;
-    }
-    .btn0 {
-        width: 250px;
     }
     .slideHeaderAboutUs {
         font-size: 28px;

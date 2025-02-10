@@ -51,7 +51,7 @@ export default function Service ({ setPopupOpen, servicePageInfo }) {
             <h1 className={s.serviceHeader}>{header}</h1>
             <div className={s.descriptionContainer}>
               {formattedText.map((line, idx) => (
-                <p key={idx} className={s.aboutDes}>{line}</p>
+                <p key={idx} className={`${s.aboutDes} ${s.aboutDesFw}`}>{line}</p>
               ))}
             </div>
             <button onClick={() => setPopupOpen(true)} className={`${s.button0} ${s.buttonMat0} ${s.btn0}`}>{btn}</button>
