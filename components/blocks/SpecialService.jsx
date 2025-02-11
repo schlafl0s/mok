@@ -47,7 +47,6 @@ export default function SpecialService({ setPopupOpen, specialServiceInfo }) {
         <source media="(min-width: 729px)" srcSet={imgUrl} />
         <Image
           className={s.specialServiceBackground}
-          src={imgUrl}
           width={2000}
           height={2000}
         />

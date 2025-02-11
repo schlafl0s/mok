@@ -94,7 +94,7 @@ export default function Slider({ setPopupOpen, slideInfo }) {
           {/* Используем реальный URL изображения для мобильной и десктопной версии */}
           <source media="(max-width: 728px)" srcSet={slide.imgPhoneUrl} />
           <source media="(min-width: 729px)" srcSet={slide.imgUrl || slide.imgPhoneUrl} />
-          <Image className={s.underHeaderBackground} src={slide.imgUrl} width={2000} height={2000} />
+          <Image className={s.underHeaderBackground} width={2000} height={2000} />
         </picture>
       </div>
     );
