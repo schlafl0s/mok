@@ -526,7 +526,7 @@ $color: white;
 
 @media (max-width: 425px) {
     .main {
-        max-width: 375px;
+        max-width: 325px;
     }
     .thanks {
         height: 650px;
@@ -544,11 +544,5 @@ $color: white;
     }
     .articleImage {
         height: 200px;
-    }
-}
-
-@media (max-width: 375px) {
-    .main {
-        max-width: 325px;
     }
 }

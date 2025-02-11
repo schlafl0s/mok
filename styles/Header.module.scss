@@ -355,12 +355,6 @@ $burger-item-shadow: -1 * $burger-item - ($burger-item-offset - $burger-item) / 
 
 @media (max-width: 425px) {
     .header {
-        max-width: 375px;
-    }
-}
-
-@media (max-width: 375px) {
-    .header {
         max-width: 325px;
     }
     .logo {
