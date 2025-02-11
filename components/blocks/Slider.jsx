@@ -1,119 +1,172 @@
-import s from '/styles/Home.module.scss'
-import Image from 'next/image'
-import { useState, useEffect } from 'react'
+import s from '/styles/Home.module.scss';
+import Image from 'next/image';
+import { useState, useEffect, useRef } from 'react';
 
 export default function Slider({ setPopupOpen, slideInfo }) {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [currentTransition, setCurrentTransition] = useState(0);
   const [slidesData, setSlidesData] = useState([]);
   const [mouseOn, setMouseOn] = useState(false)
+  const sliderRef = useRef(null);
+  const startX = useRef(0);
+  const currentX = useRef(0);
+  const isDragging = useRef(false);
+  const autoSlideTimer = useRef(null);
+  const slideWidth = 100;
 
-  // Функция для получения изображения по ID через API
-  const fetchImageUrlById = async (imageId) => {
-    try {
-      const res = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/media/${imageId}`);
-      const data = await res.json();
-      return data.source_url;  // Получаем полный URL изображения
-    } catch (error) {
-      console.error("Ошибка при получении изображения:", error);
-      return '';  // Если ошибка, возвращаем пустую строку
-    }
-  };
+  const AUTO_SLIDE_INTERVAL = 5000; // Интервал автопереключения (5 секунд)
+  const TRANSITION_SPEED = 500; // Скорость анимации переключения (в мс)
 
+  // Загрузка данных слайдов
   useEffect(() => {
-    // Преобразуем slideInfo в массив слайдов с уже готовыми изображениями
-    const slidesWithImages = Object.values(slideInfo.slides).map(async (slide) => {
-      const imgUrl = slide.img ? await fetchImageUrlById(slide.img) : '';  // Получаем изображение для десктопа
-      const imgPhoneUrl = slide.imgPhone ? await fetchImageUrlById(slide.imgPhone) : '';  // Получаем изображение для телефона
-      return { ...slide, imgUrl, imgPhoneUrl };
-    });
-
-    // Фильтруем слайды, оставляя только те, которые имеют данные
     const loadSlides = async () => {
-      const filledSlides = await Promise.all(slidesWithImages);
-      const nonEmptySlides = filledSlides.filter(slide =>
-        slide.headerOfSlide || slide.imgUrl || slide.imgPhoneUrl || Object.values(slide.description).some(des => des)
+      const fetchImageUrlById = async (imageId) => {
+        try {
+          const res = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/media/${imageId}`);
+          const data = await res.json();
+          return data.source_url;
+        } catch {
+          return '';
+        }
+      };
+
+      const slidesWithImages = await Promise.all(
+        Object.values(slideInfo.slides).map(async (slide) => {
+          const imgUrl = slide.img ? await fetchImageUrlById(slide.img) : '';
+          const imgPhoneUrl = slide.imgPhone ? await fetchImageUrlById(slide.imgPhone) : '';
+          return { ...slide, imgUrl, imgPhoneUrl };
+        })
       );
-      setSlidesData(nonEmptySlides);  // Устанавливаем слайды с данными
+
+      setSlidesData(
+        slidesWithImages.filter(
+          (slide) => slide.headerOfSlide || slide.imgUrl || slide.imgPhoneUrl
+        )
+      );
     };
 
     loadSlides();
   }, [slideInfo.slides]);
 
-  const nextSlide = () => {
-    setCurrentTransition(prevTransition => {
-      const newSlide = (currentSlide !== slidesData.length - 1) ? currentSlide + 1 : 0;
-      const newTransition = (currentSlide !== slidesData.length - 1) ? prevTransition - 100 : 0;
-      setCurrentSlide(newSlide);
-      return newTransition;
-    });
+  // Управление автопереключением слайдов
+  useEffect(() => {
+    if (slidesData.length > 0) startAutoSlide();
+    return () => clearInterval(autoSlideTimer.current);
+  }, [currentSlide, slidesData]);
+
+  const startAutoSlide = () => {
+    clearInterval(autoSlideTimer.current);
+    autoSlideTimer.current = setInterval(() => {
+      goToSlide((currentSlide + 1) % slidesData.length);
+    }, AUTO_SLIDE_INTERVAL);
+  };
+
+  const handleSwipeStart = (e) => {
+    isDragging.current = true;
+    startX.current = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+    sliderRef.current.style.transition = 'none';
+    clearInterval(autoSlideTimer.current);
+  };
+
+  const handleSwipeMove = (e) => {
+    if (!isDragging.current) return;
+    currentX.current = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+    const diff = currentX.current - startX.current;
+
+    if ((currentSlide === 0 && diff > 0) || (currentSlide === slidesData.length - 1 && diff < 0)) {
+      return;
+    }
+
+    sliderRef.current.style.transform = `translateX(calc(${(-currentSlide * slideWidth)}% + ${diff}px))`;
+  };
+
+  const handleSwipeEnd = () => {
+    if (!isDragging.current) return;
+    isDragging.current = false;
+    sliderRef.current.style.transition = `transform ${TRANSITION_SPEED}ms ease`;
+    const diff = currentX.current - startX.current;
+
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        goToSlide(currentSlide === 0 ? slidesData.length - 1 : currentSlide - 1);
+      } else {
+        goToSlide((currentSlide + 1) % slidesData.length);
+      }
+    } else {
+      sliderRef.current.style.transform = `translateX(${(-currentSlide * slideWidth)}%)`;
+    }
+    startAutoSlide();
   };
 
   const goToSlide = (index) => {
     setCurrentSlide(index);
-    setCurrentTransition(index * -100);
   };
-
-  useEffect(() => {
-    const interval = setInterval(nextSlide, 5000);
-    return () => clearInterval(interval);
-  }, [currentSlide]);
 
   function Slide({ slide }) {
     return (
-      <div className={s.slide}>
+      <div className={s.slide} onMouseEnter={() => setMouseOn(true)} onMouseLeave={() => setMouseOn(false)}>
         <div className={s.slideInfo}>
-          {/* Если есть заголовок слайда, то показываем его */}
           {slide.headerOfSlide && <h1 className={s.slideHeader}>{slide.headerOfSlide}</h1>}
-
           <div className={s.descriptionContainer}>
-            {/* Перебираем описание слайда, отображаем только непустые элементы */}
-            {Object.values(slide.description).map((des, index) => (
-              des ? (
-                <div key={index} className={s.description}>
-                  <svg className={s.svgSlider} width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="11.6692" cy="11.6101" r="10.3887" stroke="#391FCF" strokeWidth="0.865725" />
-                    <path d="M11.6689 6.84814V16.3711" stroke="#391FCF" strokeWidth="0.865725" />
-                    <path d="M6.9082 11.6094H16.4312" stroke="#391FCF" strokeWidth="0.865725" />
-                  </svg>
-                  <span className={s.des}>{des}</span>
-                </div>
-              ) : null
-            ))}
+            {Object.values(slide.description).map(
+              (des, index) =>
+                des && (
+                  <div key={index} className={s.description}>
+                    <svg className={s.svgSlider} width="23" height="23" viewBox="0 0 23 23" fill="none">
+                      <circle cx="11.6692" cy="11.6101" r="10.3887" stroke="#391FCF" strokeWidth="0.865725" />
+                      <path d="M11.6689 6.84814V16.3711" stroke="#391FCF" strokeWidth="0.865725" />
+                      <path d="M6.9082 11.6094H16.4312" stroke="#391FCF" strokeWidth="0.865725" />
+                    </svg>
+                    <span className={s.des}>{des}</span>
+                  </div>
+                )
+            )}
           </div>
-
-          {/* Показываем кнопку только если есть текст для кнопки */}
           {slide.btn && (
             <button onClick={() => setPopupOpen(true)} className={`${s.button0} ${s.buttonMat0} ${s.btn0}`}>
               {slide.btn}
             </button>
           )}
         </div>
-
         <picture>
-          {/* Используем реальный URL изображения для мобильной и десктопной версии */}
           <source media="(max-width: 728px)" srcSet={slide.imgPhoneUrl} />
           <source media="(min-width: 729px)" srcSet={slide.imgUrl || slide.imgPhoneUrl} />
-          <Image className={s.underHeaderBackground} width={2000} height={2000} />
+          <Image
+            className={s.underHeaderBackground}
+            src={slide.imgUrl || '/fallback.jpg'}
+            width={2000}
+            height={2000}
+            alt="Slide image"
+          />
         </picture>
       </div>
     );
   }
 
   return (
-    <section className={s.slider} onMouseEnter={() => setMouseOn(true)} onMouseLeave={() => setMouseOn(false)}>
-      <div className={s.slides} style={{ transform: `translateX(${currentTransition}%)` }}>
-        {slidesData.length > 0 && (
-          slidesData.map((slide, index) => (
-            <Slide key={slide.id} slide={slide} isActive={index === currentSlide} />
-          ))
-        )}
+    <section
+      className={s.slider}
+      onMouseDown={handleSwipeStart}
+      onMouseMove={handleSwipeMove}
+      onMouseUp={handleSwipeEnd}
+      onMouseLeave={handleSwipeEnd}
+      onTouchStart={handleSwipeStart}
+      onTouchMove={handleSwipeMove}
+      onTouchEnd={handleSwipeEnd}
+    >
+      <div
+        className={s.slides}
+        ref={sliderRef}
+        style={{ transform: `translateX(${-currentSlide * slideWidth}%)` }}
+      >
+        {slidesData.map((slide, index) => (
+          <Slide key={index} slide={slide} />
+        ))}
       </div>
       <div className={s.slideCount}>
         {slidesData.map((_, index) => (
           <div
-            onClick={() => goToSlide(index)}
             key={index}
+            onClick={() => goToSlide(index)}
             className={`${s.slideCounter} ${currentSlide === index ? s.slideCounterActive : ''}`}
           />
         ))}
