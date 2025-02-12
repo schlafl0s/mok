@@ -134,7 +134,13 @@ export default function Header ({setPopupOpen}) {
                         <span className={sf.contactsLinksInfo}>{contactInfo.address}</span>
                     </span>
                 </nav>
-                <button onClick={() => setPopupOpen(true)} className={`${s.button} ${s.buttonMat} ${s.btn7} ${s.btnMenu}`}>Записаться онлайн</button>
+                <button onClick={() => {
+                    setPopupOpen(true)
+                    setPhoneMenuOpen(false)
+                }}
+                className={`${s.button} ${s.buttonMat} ${s.btn7} ${s.btnMenu}`}
+                >Записаться онлайн
+                </button>
             </div>
             <div onClick={() => setPhoneMenuOpen(!PhoneMenuOpen)} className={`${s.blackBackground}`}></div>
             </>

@@ -3518,6 +3518,9 @@ $color: white;
     .appointmentInput {
         padding: 15px;
     }
+    .appointmentError {
+        padding: 15px;
+    }
     .btn5 {
         height: 55px;
     }
@@ -3698,7 +3701,7 @@ $color: white;
     }
     .appointmentPopup {
         width: 320px;
-        height: 360px;
+        height: 320px;
         padding: 15px 30px;
         gap: 10px
     }
@@ -3756,6 +3759,9 @@ $color: white;
         padding: 20px 30px;
     }
     .appointmentInput {
+        padding: 10px;
+    }
+    .appointmentError {
         padding: 10px;
     }
     .btn2 {

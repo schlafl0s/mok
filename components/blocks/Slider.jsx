@@ -123,8 +123,9 @@ export default function Slider({ setPopupOpen, slideInfo }) {
           </div>
           {slide.btn && (
             <button 
-            onMouseDown={(e) => e.stopPropagation()} 
-            onMouseUp={(e) => e.stopPropagation()} 
+            onMouseDown={(e) => e.stopPropagation()}
+            onMouseUp={(e) => e.stopPropagation()}
+            onTouchStart={(e) => e.stopPropagation()}
             onClick={(e) => {
               e.stopPropagation();
               setPopupOpen(true);
