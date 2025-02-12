@@ -65,7 +65,6 @@ export default function Slider({ setPopupOpen, slideInfo }) {
     startX.current = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
     sliderRef.current.style.transition = 'none';
     clearInterval(autoSlideTimer.current);
-    // e.preventDefault();
   };
 
   const handleSwipeMove = (e) => {
@@ -123,17 +122,23 @@ export default function Slider({ setPopupOpen, slideInfo }) {
             )}
           </div>
           {slide.btn && (
-            <button onMouseDown={(e) => e.stopPropagation()} onMouseUp={(e) => e.stopPropagation()} onClick={() => setPopupOpen(true)} className={`${s.button0} ${s.buttonMat0} ${s.btn0}`}>
+            <button 
+            onMouseDown={(e) => e.stopPropagation()} 
+            onMouseUp={(e) => e.stopPropagation()} 
+            onClick={(e) => {
+              e.stopPropagation();
+              setPopupOpen(true);
+            }} 
+            className={`${s.button0} ${s.buttonMat0} ${s.btn0}`}>
               {slide.btn}
             </button>
           )}
         </div>
         <picture>
           <source media="(max-width: 728px)" srcSet={slide.imgPhoneUrl} />
-          <source media="(min-width: 729px)" srcSet={slide.imgUrl || slide.imgPhoneUrl} />
+          <source media="(min-width: 729px)" srcSet={slide.imgUrl} />
           <Image
             className={s.underHeaderBackground}
-            src={slide.imgUrl || '/fallback.jpg'}
             width={2000}
             height={2000}
             alt="Slide image"

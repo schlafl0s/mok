@@ -39,7 +39,6 @@ export default function Sale ({ saleInfo, setPopupOpen }) {
         <source media="(min-width: 729px)" srcSet={imgUrl} />
         <Image
           className={s.saleBackground}
-          src={imgUrl}
           width={2000}
           height={2000}
           alt="Sale Background"
