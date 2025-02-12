@@ -65,6 +65,7 @@ export default function Slider({ setPopupOpen, slideInfo }) {
     startX.current = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
     sliderRef.current.style.transition = 'none';
     clearInterval(autoSlideTimer.current);
+    // e.preventDefault();
   };
 
   const handleSwipeMove = (e) => {
