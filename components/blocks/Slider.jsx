@@ -122,7 +122,7 @@ export default function Slider({ setPopupOpen, slideInfo }) {
             )}
           </div>
           {slide.btn && (
-            <button onClick={() => setPopupOpen(true)} className={`${s.button0} ${s.buttonMat0} ${s.btn0}`}>
+            <button onMouseDown={(e) => e.stopPropagation()} onMouseUp={(e) => e.stopPropagation()} onClick={() => setPopupOpen(true)} className={`${s.button0} ${s.buttonMat0} ${s.btn0}`}>
               {slide.btn}
             </button>
           )}
