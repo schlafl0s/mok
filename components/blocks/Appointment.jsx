@@ -42,6 +42,7 @@ export default function Appointment() {
     fetchPageData();
   }, []);
 
+  //Duplicated code fragment (56 lines long) выдели это в отдельный метод и переиспользуй
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitted(true);

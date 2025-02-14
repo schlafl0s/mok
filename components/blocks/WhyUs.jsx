@@ -2,6 +2,8 @@ import s from '/styles/Home.module.scss';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
+// Ты в каждом компоненте свой слайдер пишешь с нуля? зачем?
+
 export default function WhyUs() {
   const [whyUsData, setWhyUsData] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -26,7 +28,7 @@ export default function WhyUs() {
     try {
       const res = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/pages/462`);
       const data = await res.json();
-      
+
       const whyUsWithImages = await Promise.all(Object.values(data.acf.whyUs).map(async (slide) => {
         const imgUrl = slide.img ? await fetchImageUrlById(slide.img) : '';
         return {

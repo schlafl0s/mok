@@ -14,21 +14,22 @@ export default function Footer ({ footerCut = false }) {
             const response = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/posts?categories=7&per_page=100`);
             if (!response.ok) throw new Error('Ошибка загрузки данных');
             const data = await response.json();
-    
+
             // Фильтруем и мапим только опубликованные услуги
+              // А ты уверен, что у тебя приходят неопубликованные? https://developer.wordpress.org/rest-api/reference/posts/
             const mappedServices = data
               .filter(item => item.status === 'publish')
               .map(item => ({
                 title: item.acf.title,
                 id: item.id,
               }));
-    
+
             setServices(mappedServices);
           } catch (error) {
             console.error('Ошибка загрузки услуг:', error);
           }
         };
-    
+
         fetchServices();
     }, []);
 
@@ -38,7 +39,7 @@ export default function Footer ({ footerCut = false }) {
             const data = await res.json();
             setContactInfo(data.acf); // Сохраняем данные
         };
-        
+
         fetchContactInfo();
     }, []);
 
@@ -86,7 +87,7 @@ export default function Footer ({ footerCut = false }) {
                         Московская улица, 1 на карте Москвы, ближайшее метро Саларьево — Яндекс Карты
                     </a>
                     <iframe
-                        className={s.mapContainer} 
+                        className={s.mapContainer}
                         src="https://yandex.ru/map-widget/v1/?ll=37.439068%2C55.624637&mode=whatshere&whatshere%5Bpoint%5D=37.439068%2C55.624637&whatshere%5Bzoom%5D=17&z=16"
                         width="100%"
                         height="500"
@@ -144,7 +145,7 @@ export default function Footer ({ footerCut = false }) {
                 <nav className={`${s.navLinks} ${s.navLinksMedia}`}>
                     <h2 className={s.linksHeader}>КОНТАКТЫ</h2>
                     <span className={s.contactsLinks}>
-                        Телефон: 
+                        Телефон:
                         <span className={s.contactsLinksInfo}>{contactInfo.phone}</span>
                     </span>
                     <span className={s.contactsLinks}>
@@ -152,7 +153,7 @@ export default function Footer ({ footerCut = false }) {
                         <span className={s.contactsLinksInfo}>{contactInfo.email}</span>
                     </span>
                     <span className={s.contactsLinks}>
-                        График: 
+                        График:
                         <span className={s.contactsLinksInfo}>круглосуточно</span>
                     </span>
                     <span className={s.contactsLinks}>

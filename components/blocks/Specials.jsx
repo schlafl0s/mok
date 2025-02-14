@@ -28,10 +28,11 @@ export default function Specials({ setPopupOpen }) {
 
       // Преобразуем специальные предложения с изображениями
       const specialsWithImages = await Promise.all(Object.values(data.acf.specials).map(async (special) => {
+        // ключ "изображение"?
         const leftSpecialImageUrl = special.leftSpecial?.изображение ? await fetchImageUrlById(special.leftSpecial?.изображение) : '';
         const rightUpSpecialImageUrl = special.rightUpSpecial?.изображение ? await fetchImageUrlById(special.rightUpSpecial?.изображение) : '';
         const rightDownSpecialImageUrl = special.rightDownSpecial?.изображение ? await fetchImageUrlById(special.rightDownSpecial?.изображение) : '';
-        
+
         return {
           leftSpecial: { ...special.leftSpecial, imgUrl: leftSpecialImageUrl },
           rightUpSpecial: { ...special.rightUpSpecial, imgUrl: rightUpSpecialImageUrl },
@@ -40,7 +41,7 @@ export default function Specials({ setPopupOpen }) {
       }));
 
       // Фильтруем слайды, оставляя только те, где есть хотя бы одна из частей (leftSpecial, rightUpSpecial, rightDownSpecial)
-      const filteredSpecials = specialsWithImages.filter(special => 
+      const filteredSpecials = specialsWithImages.filter(special =>
         (special.leftSpecial?.header || special.leftSpecial?.description || special.leftSpecial?.imgUrl) ||
         (special.rightUpSpecial?.header || special.rightUpSpecial?.description || special.rightUpSpecial?.imgUrl) ||
         (special.rightDownSpecial?.header || special.rightDownSpecial?.description || special.rightDownSpecial?.imgUrl)
@@ -93,6 +94,7 @@ export default function Specials({ setPopupOpen }) {
   return (
     <section className={s.specials}>
       <div className={s.specialsUp}>
+        {/*не h1*/}
         <h1 className={s.Header}>Акции и специальные предложения</h1>
         <div className={s.switcher}>
           <button

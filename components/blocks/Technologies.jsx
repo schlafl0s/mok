@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { useState, useEffect } from 'react'
 
 export default function Technologies({ technologiesInfo }) {
+  // Это уже в каждом компоненте, что я открываю
   const fetchImageUrlById = async (imageId) => {
     try {
       const res = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/media/${imageId}`);

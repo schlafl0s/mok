@@ -35,6 +35,7 @@ export default function Directions({ directionsInfo }) {
 
   return (
     <section className={s.directions}>
+      {/*Это не h1*/}
       <h1 className={s.Header}>Основные направления клиники</h1>
       <div className={s.directionsContainer}>
         {directionsData.map((direction, index) => (
@@ -45,12 +46,14 @@ export default function Directions({ directionsInfo }) {
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
           >
+            {/*это не h2*/}
             <h2 className={`${s.directionName} ${direction.isWhiteText ? s.whitePick : ""}`}>
               {direction.header}
             </h2>
             <p className={`${s.directionDes} ${direction.isWhiteText ? s.whitePick : ""}`}>
               {direction.description}
             </p>
+            {/*Чем тебе не нравиться hover в css?*/}
             <svg
               style={
                 hoveredIndex === index

@@ -16,6 +16,7 @@ export default function Slider({ setPopupOpen, slideInfo }) {
   const AUTO_SLIDE_INTERVAL = 5000; // Интервал автопереключения (5 секунд)
   const TRANSITION_SPEED = 500; // Скорость анимации переключения (в мс)
 
+  // Зачем это вообще, нельзя хранить данные вместе?
   // Загрузка данных слайдов
   useEffect(() => {
     const loadSlides = async () => {
@@ -25,6 +26,7 @@ export default function Slider({ setPopupOpen, slideInfo }) {
           const data = await res.json();
           return data.source_url;
         } catch {
+          // Ошибки так не исключают
           return '';
         }
       };
@@ -105,12 +107,14 @@ export default function Slider({ setPopupOpen, slideInfo }) {
     return (
       <div className={s.slide} onMouseEnter={() => setMouseOn(true)} onMouseLeave={() => setMouseOn(false)}>
         <div className={s.slideInfo}>
+          {/*На странице должен быть только один h1 заголовок*/}
           {slide.headerOfSlide && <h1 className={s.slideHeader}>{slide.headerOfSlide}</h1>}
           <div className={s.descriptionContainer}>
             {Object.values(slide.description).map(
               (des, index) =>
                 des && (
                   <div key={index} className={s.description}>
+                    {/*СВГ лучше импортировать как компонент*/}
                     <svg className={s.svgSlider} width="23" height="23" viewBox="0 0 23 23" fill="none">
                       <circle cx="11.6692" cy="11.6101" r="10.3887" stroke="#391FCF" strokeWidth="0.865725" />
                       <path d="M11.6689 6.84814V16.3711" stroke="#391FCF" strokeWidth="0.865725" />
@@ -122,14 +126,14 @@ export default function Slider({ setPopupOpen, slideInfo }) {
             )}
           </div>
           {slide.btn && (
-            <button 
+            <button
             onMouseDown={(e) => e.stopPropagation()}
             onMouseUp={(e) => e.stopPropagation()}
             onTouchStart={(e) => e.stopPropagation()}
             onClick={(e) => {
               e.stopPropagation();
               setPopupOpen(true);
-            }} 
+            }}
             className={`${s.button0} ${s.buttonMat0} ${s.btn0}`}>
               {slide.btn}
             </button>
@@ -138,6 +142,7 @@ export default function Slider({ setPopupOpen, slideInfo }) {
         <picture>
           <source media="(max-width: 728px)" srcSet={slide.imgPhoneUrl} />
           <source media="(min-width: 729px)" srcSet={slide.imgUrl} />
+          {/*Тут требуется атрибут src, думаю, source вообще лишнее*/}
           <Image
             className={s.underHeaderBackground}
             width={2000}
@@ -150,6 +155,7 @@ export default function Slider({ setPopupOpen, slideInfo }) {
   }
 
   return (
+    // Сомнительно изобретать велосипед, когда есть тот же swiper
     <section
       className={s.slider}
       onMouseDown={handleSwipeStart}
@@ -178,6 +184,7 @@ export default function Slider({ setPopupOpen, slideInfo }) {
           />
         ))}
       </div>
+      {/*Чем тебя не устраивает hover через CSS?*/}
       <Image className={s.VUH} style={mouseOn ? { transform: 'rotate(180deg)', transition: '0.3s' } : {}}  src={'/V.png'} width={100} height={100} />
       <Image className={s.VUHphone} style={mouseOn ? { transform: 'rotate(-90deg)', transition: '0.3s' } : {}}  src={'/V.png'} width={100} height={100} />
     </section>

@@ -18,7 +18,7 @@ export default function Header ({setPopupOpen}) {
             const response = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/posts?categories=7&per_page=100`);
             if (!response.ok) throw new Error('Ошибка загрузки данных');
             const data = await response.json();
-    
+
             // Фильтруем и мапим только опубликованные услуги
             const mappedServices = data
               .filter(item => item.status === 'publish')
@@ -26,23 +26,23 @@ export default function Header ({setPopupOpen}) {
                 title: item.acf.title,
                 id: item.id,
               }));
-    
+
             setServices(mappedServices);
           } catch (error) {
             console.error('Ошибка загрузки услуг:', error);
           }
         };
-    
+
         fetchServices();
     }, []);
-    
+
     useEffect(() => {
         const fetchContactInfo = async () => {
             const res = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/pages/16`);
             const data = await res.json();
             setContactInfo(data.acf); // Сохраняем данные
         };
-        
+
         fetchContactInfo();
     }, []);
 
@@ -52,7 +52,7 @@ export default function Header ({setPopupOpen}) {
         }
         setUslugiOpen(true)
     }
-    
+
     const handleMouseLeave = () => {
         const newTimeoutId = setTimeout(() => {
           setUslugiOpen(false)
@@ -66,7 +66,7 @@ export default function Header ({setPopupOpen}) {
         }
         setUslugiOpen(true)
     }
-    
+
     const handlePopupMouseLeave = () => {
         const newTimeoutId = setTimeout(() => {
           setUslugiOpen(false)
@@ -76,7 +76,7 @@ export default function Header ({setPopupOpen}) {
     useEffect(() => {
         const menu = document.querySelector(`.${s.phoneMenu}`);
         const background = document.querySelector(`.${s.blackBackground}`);
-    
+
         if (PhoneMenuOpen) {
             // Плавное открытие
             requestAnimationFrame(() => {
@@ -107,7 +107,9 @@ export default function Header ({setPopupOpen}) {
                     </div>
                 </nav>
                 <nav className={sf.navLinks}>
+                    {/*Это не h2 заголовок*/}
                     <h2 className={sf.linksHeader}>ПАЦИЕНТАМ</h2>
+                    {/*Когда передаешь строку в пропсы, крайне не обязательно использовать фигурные кавычки*/}
                     <Link href={'/about-us'} className={sf.link}>О клинике</Link>
                     <Link href={'/doctors'} className={sf.link}>Врачи</Link>
                     <Link href={'/reviews'} className={sf.link}>Отзывы</Link>
@@ -118,7 +120,7 @@ export default function Header ({setPopupOpen}) {
                 <nav className={`${sf.navLinks} ${sf.navLinksMedia}`}>
                     <h2 className={sf.linksHeader}>КОНТАКТЫ</h2>
                     <span className={sf.contactsLinks}>
-                        Телефон: 
+                        Телефон:
                         <span className={sf.contactsLinksInfo}>{contactInfo.phone}</span>
                     </span>
                     <span className={sf.contactsLinks}>
@@ -126,7 +128,7 @@ export default function Header ({setPopupOpen}) {
                         <span className={sf.contactsLinksInfo}>{contactInfo.email}</span>
                     </span>
                     <span className={sf.contactsLinks}>
-                        График: 
+                        График:
                         <span className={sf.contactsLinksInfo}>круглосуточно</span>
                     </span>
                     <span className={sf.contactsLinks}>

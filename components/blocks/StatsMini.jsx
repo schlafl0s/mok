@@ -2,9 +2,11 @@ import s from '/styles/Home.module.scss'
 import Image from 'next/image'
 import { useState, useEffect } from 'react';
 
+// Когда копируешь, хоть постарайся форматировать Duplicated code fragment (46 lines long)
 export default function StatsMini () {const [statsData, setStatsData] = useState([]);
+  // Тут ты даже не используешь это
   const [textsStats, setTextsStats] = useState({});
-  
+
   // Функция для получения изображения по ID через API
   const fetchImageUrlById = async (imageId) => {
     try {
@@ -62,8 +64,8 @@ export default function StatsMini () {const [statsData, setStatsData] = useState
                         height={80}
                         alt={card.text}
                     />
-                    <div 
-                        className={s.statsNumber} 
+                    <div
+                        className={s.statsNumber}
                         style={{ color: card.numberColor }}  // Применяем цвет напрямую через стиль
                     >
                         {card.number}
