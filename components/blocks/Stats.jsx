@@ -3,9 +3,10 @@ import Image from 'next/image'
 import { useState, useEffect } from 'react'
 
 export default function Stats() {
+  //Duplicated code fragment (46 lines long) куча дублирующего кода, который мог бы быть одним хуком
   const [statsData, setStatsData] = useState([]);
   const [textsStats, setTextsStats] = useState({});
-  
+
   // Функция для получения изображения по ID через API
   const fetchImageUrlById = async (imageId) => {
     try {
@@ -65,8 +66,8 @@ export default function Stats() {
                 height={80}
                 alt={card.text}
               />
-              <div 
-                className={s.statsNumber} 
+              <div
+                className={s.statsNumber}
                 style={{ color: card.numberColor }}  // Применяем цвет напрямую через стиль
               >
                 {card.number}

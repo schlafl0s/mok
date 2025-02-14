@@ -139,6 +139,7 @@ export default function BigSpecialists({ setPopupOpen, specialistsInfo }) {
           ))}
         </div>
         {hasMoreDoctors && (
+          // Зачем ты css модули по итогу вставляешь строкой, есть пакеты classNames
           <button onClick={handleShowMore} className={`${s.button8} ${s.buttonMat8} ${s.btn8}`}>Показать еще</button>
         )}
       </section>

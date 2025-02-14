@@ -25,6 +25,7 @@ export default function Article({ articlesInfo, articleData }) {
 
     useEffect(() => {
         // Обработка контента
+        // Зачем это?
         const formatContent = () => {
             const formatted = Object.values(content).map(item => {
                 if (item.text) {
@@ -79,6 +80,7 @@ export default function Article({ articlesInfo, articleData }) {
                     {/* Контент статьи */}
                     <div className={s.articleDataContainer}>
                         {formattedContent && formattedContent.map((block, index) => {
+                            // А если у статьи нет изображения, почему ее не надо рендерить?
                             if (!block || (!block.header2 && !block.formattedText && !block.img)) return null;
 
                             return (

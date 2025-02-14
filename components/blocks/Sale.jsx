@@ -9,6 +9,8 @@ export default function Sale ({ saleInfo, setPopupOpen }) {
   const [imgUrl, setImgUrl] = useState('');
   const [imgPhoneUrl, setImgPhoneUrl] = useState('');
 
+  // Duplicated code fragment (22 lines long) - возможно, стоит вынести в отдельный метод, который будет принимать
+  // маршут и возвращать тебе json?
   const fetchImageUrl = async (imageId) => {
     try {
       const res = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/media/${imageId}`);
@@ -44,7 +46,7 @@ export default function Sale ({ saleInfo, setPopupOpen }) {
           alt="Sale Background"
         />
       </picture>
-      
+
       {btn && (
         <button onClick={() => setPopupOpen(true)} className={`${s.button2} ${s.buttonMat2} ${s.btn2}`}>
             {btn}

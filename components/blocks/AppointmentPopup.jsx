@@ -7,12 +7,13 @@ export default function AppointmentPopup ({ popupOpen, setPopupOpen }) {
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
     const [submitted, setSubmitted] = useState(false);
+    // Duplicated code fragment (58 lines long)
     const router = useRouter();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setSubmitted(true)
-    
+
         try {
           const response = await fetch('/api/sendToTelegram', {
             method: 'POST',
@@ -21,9 +22,9 @@ export default function AppointmentPopup ({ popupOpen, setPopupOpen }) {
             },
             body: JSON.stringify({ name, phone }),
           });
-    
+
           const result = await response.json();
-    
+
           if (response.ok) {
             setName('');
             setPhone('');
@@ -87,7 +88,7 @@ export default function AppointmentPopup ({ popupOpen, setPopupOpen }) {
                     value={phone}
                     onChange={handlePhoneChange}
                     />
-                    <button type='submit' onClick={handleSubmit} className={`${s.button5} ${s.buttonMat5} ${s.btn5}`}>Записаться</button>  
+                    <button type='submit' onClick={handleSubmit} className={`${s.button5} ${s.buttonMat5} ${s.btn5}`}>Записаться</button>
                     <Link href={'/user-agreement'} className={s.appointmentAgree}>Нажимая кнопку, вы даете согласие на обработку персональных данных</Link>
                 </form>
                 <button onClick={() => setPopupOpen(false)} className={s.closePopup}>

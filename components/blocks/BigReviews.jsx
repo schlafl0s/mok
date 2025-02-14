@@ -8,6 +8,7 @@ export default function BigReviews({ reviewsInfo }) {
     const reviewsPerPage = 6; // Количество отзывов на одну страницу
 
     // Обновляем текущие отзывы для отображения на странице
+    // Не проще загружать их с сервера с пагинацией. А когда их будет 2000? Все 2000 будут на клиенте сортироваться?
     const updateCurrentReviews = () => {
         const startIndex = (page - 1) * reviewsPerPage;
         const newCurrentReviews = reviewsInfo.slice(0, startIndex + reviewsPerPage);
