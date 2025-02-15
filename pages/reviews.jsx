@@ -7,11 +7,18 @@ import Layout from '@/components/Layout'
 import Head from 'next/head'
 import Bread from '@/components/blocks/Bread'
 
-export default function AboutUsPage ({ reviewsInfo, articlesInfo }) {
+export default function reviewsPage ({ pageInfo, reviewsInfo, articlesInfo }) {
   return (
     <>
     <Head>
-      <title>Отзывы</title>
+      <title>{pageInfo.acf?.reviews?.title || 'Отзывы'}</title>
+      <meta name="description" content={pageInfo.acf?.reviews?.description || ''} />
+      <meta name="keywords" content={pageInfo.acf?.reviews?.keywords || ''} />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://doctor-mok.ru/reviews" />
+      <meta property="og:title" content={pageInfo.acf?.reviews?.title || 'Отзывы'} />
+      <meta property="og:description" content={pageInfo.acf?.reviews?.description || ''} />
+      <meta property="og:image" content="/mokfavicon.png" />
     </Head>
     <Layout>
       <main className={s.main}>
@@ -27,7 +34,10 @@ export default function AboutUsPage ({ reviewsInfo, articlesInfo }) {
 }
 
 export async function getStaticProps() {
-  const resReviews = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/posts?categories=5&per_page=100`)
+  const resPage = await fetch('https://wp.doctor-mok.ru/wp-json/wp/v2/pages/1382');
+  const pageInfo = await resPage.json();
+
+  const resReviews = await fetch(`https://wp.doctor-mok.ru/wp-json/wp/v2/posts?categories=5&per_page=100`)
   const dataReviews = await resReviews.json()
   const reviewsInfo = dataReviews.map(item => ({
     text: item.acf.review.text,
@@ -36,7 +46,7 @@ export async function getStaticProps() {
     stars: item.acf.review.stars,
   }))
 
-  const res = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/posts?categories=6&per_page=100`);
+  const res = await fetch(`https://wp.doctor-mok.ru/wp-json/wp/v2/posts?categories=6&per_page=100`);
   const posts = await res.json();
 
   const articlesInfo = posts.map((post) => {
@@ -51,6 +61,7 @@ export async function getStaticProps() {
 
   return {
     props: {
+      pageInfo: pageInfo,
       reviewsInfo: reviewsInfo,
       articlesInfo: articlesInfo,
     },

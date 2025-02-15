@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['clinic.traff-agency.ru'],
+    domains: ['wp.doctor-mok.ru'],
   },
 };
 

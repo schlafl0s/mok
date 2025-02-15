@@ -6,11 +6,18 @@ import sf from '/styles/Footer.module.scss'
 import Head from 'next/head'
 import Bread from '@/components/blocks/Bread'
 
-export default function Contacts ({ contactInfo }) {
+export default function Contacts ({ pageInfo, contactInfo }) {
     return (
         <>
         <Head>
-        <title>Контакты</title>
+            <title>{pageInfo.acf?.contacts?.title || 'Контакты'}</title>
+            <meta name="description" content={pageInfo.acf?.contacts?.description || ''} />
+            <meta name="keywords" content={pageInfo.acf?.contacts?.keywords || ''} />
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content="https://doctor-mok.ru/contacts" />
+            <meta property="og:title" content={pageInfo.acf?.contacts?.title || 'Контакты'} />
+            <meta property="og:description" content={pageInfo.acf?.contacts?.description || ''} />
+            <meta property="og:image" content="/mokfavicon.png" />
         </Head>
         <Layout footerCut={true}>
             <main className={s.main}>
@@ -74,15 +81,17 @@ export default function Contacts ({ contactInfo }) {
 }
 
 export async function getStaticProps() {
-    const res = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/pages/16`);
-  
-    // Извлекаем данные из ответа
+    const resPage = await fetch('https://wp.doctor-mok.ru/wp-json/wp/v2/pages/1382');
+    const pageInfo = await resPage.json();
+
+    const res = await fetch(`https://wp.doctor-mok.ru/wp-json/wp/v2/pages/16`);
+
     const data = await res.json();
-  
-    // Получаем ACF поля, если они есть
+
     const contactInfo = data.acf
     return {
       props: {
+        pageInfo: pageInfo,
         pageData: data,
         contactInfo: contactInfo,
       },

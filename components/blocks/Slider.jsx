@@ -21,7 +21,7 @@ export default function Slider({ setPopupOpen, slideInfo }) {
     const loadSlides = async () => {
       const fetchImageUrlById = async (imageId) => {
         try {
-          const res = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/media/${imageId}`);
+          const res = await fetch(`https://wp.doctor-mok.ru/wp-json/wp/v2/media/${imageId}`);
           const data = await res.json();
           return data.source_url;
         } catch {

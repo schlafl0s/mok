@@ -2,9 +2,9 @@ import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
   return (
-    <Html lang="en">
+    <Html lang="ru">
       <Head>
-        <link rel="icon" href="/mokFavicon.png" type="image/png" />
+        <link rel="icon" href="/mokfavicon.png" type="image/png" />
       </Head>
       <body>
         <Main />

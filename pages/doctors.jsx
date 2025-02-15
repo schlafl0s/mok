@@ -9,13 +9,20 @@ import AppointmentPopup from '@/components/blocks/AppointmentPopup'
 import Head from 'next/head'
 import Bread from '@/components/blocks/Bread'
 
-export default function AboutUsPage ({ reviewsInfo, specialistsInfo }) {
+export default function doctorsPage ({ pageInfo, reviewsInfo, specialistsInfo }) {
   const [popupOpen, setPopupOpen] = useState(false);
   
   return (
     <>
     <Head>
-      <title>Врачи</title>
+      <title>{pageInfo.acf?.doctors?.title || 'Врачи'}</title>
+      <meta name="description" content={pageInfo.acf?.doctors?.description || ''} />
+      <meta name="keywords" content={pageInfo.acf?.doctors?.keywords || ''} />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://doctor-mok.ru/doctors" />
+      <meta property="og:title" content={pageInfo.acf?.doctors?.title || 'Врачи'} />
+      <meta property="og:description" content={pageInfo.acf?.doctors?.description || ''} />
+      <meta property="og:image" content="/mokfavicon.png" />
     </Head>
     <Layout>
       <main className={s.main}>
@@ -32,7 +39,10 @@ export default function AboutUsPage ({ reviewsInfo, specialistsInfo }) {
 }
 
 export async function getStaticProps() {
-  const resSpecialists = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/posts?categories=4&per_page=100`);
+  const resPage = await fetch('https://wp.doctor-mok.ru/wp-json/wp/v2/pages/1382');
+  const pageInfo = await resPage.json();
+
+  const resSpecialists = await fetch(`https://wp.doctor-mok.ru/wp-json/wp/v2/posts?categories=4&per_page=100`);
   const dataSpecialists = await resSpecialists.json();
 
   const specialistsInfo = await Promise.all(dataSpecialists.map(async (item) => {
@@ -48,14 +58,14 @@ export async function getStaticProps() {
     };
 
     // Получаем изображение для врача по его imgId
-    const imgResponse = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/media/${specialist.imgId}`);
+    const imgResponse = await fetch(`https://wp.doctor-mok.ru/wp-json/wp/v2/media/${specialist.imgId}`);
     const imgData = await imgResponse.json();
     specialist.img = imgData.source_url;  // URL изображения
 
     return specialist;
   }));
 
-  const resReviews = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/posts?categories=5&per_page=100`)
+  const resReviews = await fetch(`https://wp.doctor-mok.ru/wp-json/wp/v2/posts?categories=5&per_page=100`)
   const dataReviews = await resReviews.json()
   const reviewsInfo = dataReviews.map(item => ({
     text: item.acf.review.text,
@@ -66,6 +76,7 @@ export async function getStaticProps() {
 
   return {
     props: {
+      pageInfo: pageInfo,
       specialistsInfo: specialistsInfo,
       reviewsInfo: reviewsInfo,
     },

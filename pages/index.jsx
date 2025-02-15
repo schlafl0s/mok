@@ -17,12 +17,19 @@ import AppointmentPopup from '@/components/blocks/AppointmentPopup'
 import Head from 'next/head'
 import { useState } from 'react'
 
-export default function Home({ slideInfo, saleInfo, directionsInfo, specialsInfo, statsInfo, technologiesInfo, whyUsInfo, specialistsInfo, reviewsInfo, articlesInfo }) {
+export default function Home({ pageInfo, slideInfo, saleInfo, directionsInfo, specialsInfo, statsInfo, technologiesInfo, whyUsInfo, specialistsInfo, reviewsInfo, articlesInfo }) {
   const [popupOpen, setPopupOpen] = useState(false);
   return (
     <>
     <Head>
-      <title>Главная</title>
+      <title>{pageInfo.acf?.home?.title || 'Главная'}</title>
+      <meta name="description" content={pageInfo.acf?.home?.description || ''} />
+      <meta name="keywords" content={pageInfo.acf?.home?.keywords || ''} />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://doctor-mok.ru" />
+      <meta property="og:title" content={pageInfo.acf?.home?.title || 'Главная'} />
+      <meta property="og:description" content={pageInfo.acf?.home?.description || ''} />
+      <meta property="og:image" content="/mokfavicon.png" />
     </Head>
     <Layout>
       <main className={s.main}>
@@ -47,10 +54,12 @@ export default function Home({ slideInfo, saleInfo, directionsInfo, specialsInfo
 }
 
 export async function getStaticProps() {
-  const res = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/posts?categories=6&per_page=100`);
+  const resPage = await fetch('https://wp.doctor-mok.ru/wp-json/wp/v2/pages/1382');
+  const pageInfo = await resPage.json();
+
+  const res = await fetch(`https://wp.doctor-mok.ru/wp-json/wp/v2/posts?categories=6&per_page=100`);
   const posts = await res.json();
 
-  // Обработка данных статей
   const articlesInfo = posts.map((post) => {
     const article = post.acf?.article?.miniArticle || {};
     return {
@@ -61,39 +70,39 @@ export async function getStaticProps() {
     };
   });
 
-  const resSlide = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/pages/51`);
+  const resSlide = await fetch(`https://wp.doctor-mok.ru/wp-json/wp/v2/pages/51`);
   const dataSlide = await resSlide.json();
   const slideInfo = dataSlide.acf;
 
-  const resSale = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/pages/160`);
+  const resSale = await fetch(`https://wp.doctor-mok.ru/wp-json/wp/v2/pages/160`);
   const dataSale = await resSale.json();
   const saleInfo = dataSale.acf;
 
-  const resDirections = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/pages/174`);
+  const resDirections = await fetch(`https://wp.doctor-mok.ru/wp-json/wp/v2/pages/174`);
   const dataDirections = await resDirections.json();
   const directionsInfo = dataDirections.acf;
 
-  const resSpecials = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/pages/263`);
+  const resSpecials = await fetch(`https://wp.doctor-mok.ru/wp-json/wp/v2/pages/263`);
   const dataSpecials = await resSpecials.json();
   const specialsInfo = dataSpecials.acf;
   
-  const resStats = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/pages/370`);
+  const resStats = await fetch(`https://wp.doctor-mok.ru/wp-json/wp/v2/pages/370`);
   const dataStats = await resStats.json();
   const statsInfo = dataStats.acf;
 
-  const resTechnologies = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/pages/409`);
+  const resTechnologies = await fetch(`https://wp.doctor-mok.ru/wp-json/wp/v2/pages/409`);
   const dataTechnologies = await resTechnologies.json();
   const technologiesInfo = dataTechnologies.acf;
   
-  const resWhyUs = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/pages/462`);
+  const resWhyUs = await fetch(`https://wp.doctor-mok.ru/wp-json/wp/v2/pages/462`);
   const dataWhyUs = await resWhyUs.json();
   const whyUsInfo = dataWhyUs.acf;
 
-  const resTrust = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/pages/506`);
+  const resTrust = await fetch(`https://wp.doctor-mok.ru/wp-json/wp/v2/pages/506`);
   const dataTrust = await resTrust.json();
   const trustInfo = dataTrust.acf;
   
-  const resSpecialists = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/posts?categories=4&per_page=100`)
+  const resSpecialists = await fetch(`https://wp.doctor-mok.ru/wp-json/wp/v2/posts?categories=4&per_page=100`)
   const dataSpecialists = await resSpecialists.json()
   const specialistsInfo = dataSpecialists.map(item => ({
     experience: item.acf.doctor.experience,
@@ -104,7 +113,7 @@ export async function getStaticProps() {
     imgId: item.acf.doctor.img,  // Здесь храним только ID изображения
   }))
 
-  const resReviews = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/posts?categories=5&per_page=100`)
+  const resReviews = await fetch(`https://wp.doctor-mok.ru/wp-json/wp/v2/posts?categories=5&per_page=100`)
   const dataReviews = await resReviews.json()
   const reviewsInfo = dataReviews.map(item => ({
     text: item.acf.review.text,
@@ -115,6 +124,7 @@ export async function getStaticProps() {
 
   return {
     props: {
+      pageInfo: pageInfo,
       slideInfo: slideInfo,
       saleInfo: saleInfo,
       directionsInfo: directionsInfo,

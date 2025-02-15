@@ -19,7 +19,7 @@ export default function Specialists({ setPopupOpen, specialistsInfo }) {
     const fetchImages = async () => {
       const updatedSpecialists = await Promise.all(specialistsData.map(async (specialist) => {
         if (specialist.imgId) {
-          const imgResponse = await fetch(`https://clinic.traff-agency.ru/wp-json/wp/v2/media/${specialist.imgId}`)
+          const imgResponse = await fetch(`https://wp.doctor-mok.ru/wp-json/wp/v2/media/${specialist.imgId}`)
           const imgData = await imgResponse.json()
           return { ...specialist, img: imgData.source_url }  // Добавляем правильный URL картинки
         }
