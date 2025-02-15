@@ -46,19 +46,19 @@ export async function getStaticProps() {
   const resPage = await fetch('https://wp.doctor-mok.ru/wp-json/wp/v2/pages/1382');
   const pageInfo = await resPage.json();
 
-  const resAbout = await fetch(`https://https://wp.doctor-mok.ru/wp-json/wp/v2/pages/665`);
+  const resAbout = await fetch(`https://wp.doctor-mok.ru/wp-json/wp/v2/pages/665`);
   const dataAbout = await resAbout.json();
   const aboutInfo = dataAbout.acf;
 
-  const resStats = await fetch(`https://https://wp.doctor-mok.ru/wp-json/wp/v2/pages/370`);
+  const resStats = await fetch(`https://wp.doctor-mok.ru/wp-json/wp/v2/pages/370`);
   const dataStats = await resStats.json();
   const statsInfo = dataStats.acf;
   
-  const resWhyUs = await fetch(`https://https://wp.doctor-mok.ru/wp-json/wp/v2/pages/462`);
+  const resWhyUs = await fetch(`https://wp.doctor-mok.ru/wp-json/wp/v2/pages/462`);
   const dataWhyUs = await resWhyUs.json();
   const whyUsInfo = dataWhyUs.acf;
   
-  const resSpecialists = await fetch(`https://https://wp.doctor-mok.ru/wp-json/wp/v2/posts?categories=4&per_page=100`)
+  const resSpecialists = await fetch(`https://wp.doctor-mok.ru/wp-json/wp/v2/posts?categories=4&per_page=100`)
   const dataSpecialists = await resSpecialists.json()
   const specialistsInfo = dataSpecialists.map(item => ({
     experience: item.acf.doctor.experience,
